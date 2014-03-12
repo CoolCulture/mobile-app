@@ -308,7 +308,7 @@ module.exports = function (grunt) {
         'compass:server'
       ],
       test: [
-        'compass'
+        // 'compass'
       ],
       dist: [
         'compass:dist',
