@@ -10,7 +10,7 @@ angular.module('mobileAppApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MuseumCtrl'
       })
       .otherwise({
         redirectTo: '/'
