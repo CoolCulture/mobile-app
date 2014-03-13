@@ -1,5 +1,5 @@
-<div ng-controller="MuseumListCtrl">
   <section ng-repeat="museum in museums">
+    <a href="#/museums/{{museum.id}}">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">
@@ -14,5 +14,5 @@
         </div>
       </div>
     </article>
+  </a>
   </section>
-</div>

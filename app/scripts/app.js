@@ -8,12 +8,15 @@ angular.module('mobileAppApp', [
 ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
+      .when('/museums', {
+        templateUrl: 'views/museumList.html',
         controller: 'MuseumListCtrl'
       })
-      .when()
+      .when('/museums/:id', {
+        templateUrl: 'views/museumDetail.html',
+        controller: 'MuseumDetailCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/museums'
       });
   });
