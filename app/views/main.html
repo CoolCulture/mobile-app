@@ -1,6 +1,18 @@
-<div ng-controller="MuseumCtrl">
-  <div ng-repeat="museum in museums">
-    {{museum}}
-    <img src="{{museum.imageUrl}}" width=100px/>
-  </div>
+<div ng-controller="MuseumListCtrl">
+  <section ng-repeat="museum in museums">
+    <article class="panel panel-default">
+      <div class="panel-body">
+          <div class="museum-image">
+            <img ng-src="{{museum.imageUrl}}" width=100px/>
+          </div>
+
+          <div class="museum-text">
+            {{museum.name}}
+          </div>
+
+          <span class="glyphicon glyphicon-chevron-right pull-right center-chevron"></span>
+        </div>
+      </div>
+    </article>
+  </section>
 </div>
