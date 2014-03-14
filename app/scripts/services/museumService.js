@@ -25,14 +25,14 @@ angular.module('coolCultureApp')
       requestAllMuseums : function() {
             return museums;
           },
-        requestMuseum : function(id) {
+      requestMuseum : function(id) {
             var requestedMuseum = {};
             museums.forEach(function(museum) {
                 if(museum.id == id) {
-                    requestedMuseum = museum;
+                  requestedMuseum = museum;
                 }
-            });
+              });
             return requestedMuseum;
-        }
+          }
     };
   });
