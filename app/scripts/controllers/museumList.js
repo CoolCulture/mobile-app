@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mobileAppApp')
+angular.module('coolCultureApp')
   .controller('MuseumListCtrl', function($scope, MuseumService) {
     $scope.museums = MuseumService.requestAllMuseums();
   });

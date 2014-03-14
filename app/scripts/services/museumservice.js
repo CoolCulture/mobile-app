@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mobileAppApp')
+angular.module('coolCultureApp')
   .service('MuseumService', function MuseumService() {
     var museums = [ {id: '1',
                             name: 'Museum of Modern Art',

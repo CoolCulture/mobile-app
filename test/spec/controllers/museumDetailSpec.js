@@ -3,7 +3,7 @@
 describe('Controller: MuseumDetailCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('mobileAppApp'));
+  beforeEach(module('coolCultureApp'));
 
   var MuseumDetailCtrl,
     scope, routeParams;

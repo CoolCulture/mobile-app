@@ -3,7 +3,7 @@
 describe('Service: MuseumService', function () {
 
   // load the service's module
-  beforeEach(module('mobileAppApp'));
+  beforeEach(module('coolCultureApp'));
 
   // instantiate service
   var MuseumService;
@@ -21,6 +21,5 @@ describe('Service: MuseumService', function () {
     var museum = MuseumService.requestMuseum(1);
 
     expect(museum.name).toBe('Museum of Modern Art');
-  })
-
+  });
 });

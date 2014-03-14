@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mobileAppApp', [
+angular.module('coolCultureApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
