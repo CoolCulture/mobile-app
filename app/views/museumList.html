@@ -1,5 +1,5 @@
   <section ng-repeat="museum in museums">
-    <a href="#/museums/{{museum.id}}">
+    <a ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">

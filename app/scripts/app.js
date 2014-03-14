@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('coolCultureApp', [
+  'ngAnimate',
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
-  'ngAnimate'
+  'ngRoute'
 ])
   .config(function ($routeProvider) {
     $routeProvider

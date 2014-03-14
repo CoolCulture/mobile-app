@@ -1,6 +1,7 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'slider';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -11,8 +12,8 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -101,3 +102,8 @@ body {
 .center-chevron {
     margin-top: 12px;
 }
+
+.panel-default {
+    background: #DCDCDC;
+}
+
