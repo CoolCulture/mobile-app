@@ -3,6 +3,9 @@
     <button ng-click="openFilterModal()" class="btn">
       Filters
     </button>
+    <button ng-click="resetFilters()" class="btn">
+      View All
+    </button>
     <a ng-repeat="museum in museums | filter: {borough: museumFilters.borough, subwayLine: museumFilters.subwayLine, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
@@ -21,15 +24,41 @@
   </a>
   </section>
 <script type="text/ng-template" id="filters.html">
-  Borough:
-  <input type="radio" ng-model="museumFilters.borough" value="Manhattan"> Manhattan
-  <input type="radio" ng-model="museumFilters.borough" value="Queens"> Queens
-  <input type="radio" ng-model="museumFilters.borough" value="Brooklyn"> Brooklyn
-  <input type="radio" ng-model="museumFilters.borough" value="Staten Island"> Staten Island
-  <input type="radio" ng-model="museumFilters.borough" value="Bronx"> Bronx
+  <div class="modal-header">Borough:</div>
+  <div class="modal-body">
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.borough" value="Manhattan"> Manhattan
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.borough" value="Queens"> Queens
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.borough" value="Brooklyn"> Brooklyn
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.borough" value="Staten Island"> Staten Island
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.borough" value="Bronx"> Bronx
+    </label>
+  </div>
 
-  Category:
-  <input type="radio" ng-model="museumFilters.category" value="History"> History
-  <input type="radio" ng-model="museumFilters.category" value="Art"> Art
-  <input type="radio" ng-model="museumFilters.category" value="Science"> Science
+  <div class="modal-header">Category:</div>
+  <div class="modal-body">
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.category" value="History"> History
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.category" value="Art"> Art
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="museumFilters.category" value="Science"> Science
+    </label>
+  </div>
+
+  <div class="modal-body">
+    <button ng-click="ok()" class="btn">
+      OK
+    </button>
+  </div>
 </script>

@@ -9,6 +9,11 @@ angular.module('coolCultureApp')
     	subwayLine: ""
     };
 
+    $scope.resetFilters = function() {
+		$scope.museumFilters.category = "";
+		$scope.museumFilters.borough = "";
+    };
+
     $scope.openFilterModal = function() {
     	var modalInstance = $modal.open({
     		templateUrl: 'filters.html',
