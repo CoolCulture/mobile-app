@@ -1,4 +1,5 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$light-gray: #DCDCDC;
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'slider';
@@ -104,6 +105,25 @@ body {
 }
 
 .panel-default {
-    background: #DCDCDC;
+    background: $light-gray;
 }
+
+.container {
+    margin-top: 70px;
+}
+
+header {
+     position: fixed;
+     text-align: center;
+     background: $light-gray;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+}
+
+section {
+    display: block;
+}
+
 

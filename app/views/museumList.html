@@ -1,5 +1,22 @@
-  <section ng-repeat="museum in museums">
-    <a ng-click="go('/museums/' + museum.id)">
+  <section class="scroller">
+    <a ng-repeat="museum in museums" ng-click="go('/museums/' + museum.id)">
+    <article class="panel panel-default">
+      <div class="panel-body">
+          <div class="museum-image">
+            <img ng-src="{{museum.imageUrl}}" width=100px/>
+          </div>
+
+          <div class="museum-text">
+            {{museum.name}}
+          </div>
+
+          <span class="glyphicon glyphicon-chevron-right pull-right center-chevron"></span>
+        </div>
+      </div>
+    </article>
+  </a>
+
+  <a ng-repeat="museum in museums" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">
@@ -16,3 +33,5 @@
     </article>
   </a>
   </section>
+
+
