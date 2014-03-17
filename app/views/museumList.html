@@ -1,9 +1,8 @@
 <header><h1>Cool Culture</h1></header>
-  <section >
-  borough: <input ng-model="museumFilters.borough">
-  subway line: <input ng-model="museumFilters.subwayLine">
-  category: <input ng-model="museumFilters.category">
-
+  <section>
+    <button ng-click="openFilterModal()" class="btn">
+      Filters
+    </button>
     <a ng-repeat="museum in museums | filter: {borough: museumFilters.borough, subwayLine: museumFilters.subwayLine, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
@@ -21,5 +20,16 @@
     </article>
   </a>
   </section>
+<script type="text/ng-template" id="filters.html">
+  Borough:
+  <input type="radio" ng-model="museumFilters.borough" value="Manhattan"> Manhattan
+  <input type="radio" ng-model="museumFilters.borough" value="Queens"> Queens
+  <input type="radio" ng-model="museumFilters.borough" value="Brooklyn"> Brooklyn
+  <input type="radio" ng-model="museumFilters.borough" value="Staten Island"> Staten Island
+  <input type="radio" ng-model="museumFilters.borough" value="Bronx"> Bronx
 
-
+  Category:
+  <input type="radio" ng-model="museumFilters.category" value="History"> History
+  <input type="radio" ng-model="museumFilters.category" value="Art"> Art
+  <input type="radio" ng-model="museumFilters.category" value="Science"> Science
+</script>

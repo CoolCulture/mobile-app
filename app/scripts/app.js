@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp', [
+  'ui.bootstrap',
   'ngAnimate',
   'ngCookies',
   'ngResource',
