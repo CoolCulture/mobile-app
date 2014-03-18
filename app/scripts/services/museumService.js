@@ -7,6 +7,7 @@ angular.module('coolCultureApp')
                       address: '200 Central Park West',
                       phoneNumber: '212-595-9533',
                       hours: '10AM-5:45PM M-S',
+                      siteUrl: 'http://www.amnh.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Manhattan',
                       subwayLines:
@@ -17,9 +18,10 @@ angular.module('coolCultureApp')
                       address: '44 Park Pl.',
                       phoneNumber: '212-431-7993',
                       hours: 'Tue-Sat: 10AM-5PM',
+                      siteUrl: 'http://www.annefrank.com',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Manhattan',
-                      subwayLines: 
+                      subwayLines:
                         ['A', 'C', 'E', 'R', '2', '3', '4', '5'],
                       category: 'History'},
                       {id: '3',
@@ -27,6 +29,7 @@ angular.module('coolCultureApp')
                       address: '536 LaGuardia Pl',
                       phoneNumber: '212-683-0023',
                       hours: 'M-F 9AM-8PM, Sat 11AM-5PM',
+                      siteUrl: 'http://www.aiany.org/centerforarchitecture',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Manhattan',
                       subwayLines:
@@ -37,6 +40,7 @@ angular.module('coolCultureApp')
                       address: 'Pier 86, W. 46th St',
                       phoneNumber: '212-245-0072',
                       hours: 'M-F 10AM-5PM, Sa-Su 10AM-6PM',
+                      siteUrl: 'http://www.intrepidmuseum.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Manhattan',
                       subwayLines:
@@ -47,9 +51,10 @@ angular.module('coolCultureApp')
                       address: '1000 Fifth Ave',
                       phoneNumber: '212-535-7710',
                       hours: 'Su-Th 10AM-5:30PM, Fri-Sat 10AM-9PM',
+                      siteUrl: 'http://www.metmuseum.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Manhattan',
-                      subwayLine: 
+                      subwayLine:
                         ['4', '5', '6'],
                       category: 'Art'},
                       {id: '6',
@@ -57,6 +62,7 @@ angular.module('coolCultureApp')
                       address: '128 Pierrepont St.',
                       phoneNumber: '718-222-4111',
                       hours: 'Wed-Fri 12PM-5PM, Sat 10AM-5PM',
+                      siteUrl: 'http://www.brooklynhistory.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Brooklyn',
                       subwayLines:
@@ -67,6 +73,7 @@ angular.module('coolCultureApp')
                       address: '452 Flatbush Ave. In Park.',
                       phoneNumber: '718-789-2822',
                       hours: 'May-June: Thu-Sun 12PM-PM, July-August: Thu-Sun: 12PM-6PM, April-November: Check Website',
+                      siteUrl: 'http://www.prospectpark.org/visit/places/lefferts',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Brooklyn',
                       subwayLines:
@@ -77,6 +84,7 @@ angular.module('coolCultureApp')
                       address: '80 Hanson Pl.',
                       phoneNumber: '718-230-0492',
                       hours: 'Wed, Fri, Sat 12PM-7PM, Thu 12PM-8PM, Sun 12PM-6PM',
+                      siteUrl: 'http://www.mocada.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Brooklyn',
                       subwayLines:
@@ -87,6 +95,7 @@ angular.module('coolCultureApp')
                       address: 'Boreum Pl. at Schermerhorn St',
                       phoneNumber: '718-694-1600',
                       hours: 'Tue-Fri 10AM-4PM, Sat-Sun 11AM-5PM',
+                      siteUrl: 'http://www.mta.info/museum',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Brooklyn',
                       subwayLines:
@@ -97,6 +106,7 @@ angular.module('coolCultureApp')
                       address: 'Van Cortlandt Park (Broadway & W 246th St)',
                       phoneNumber: '718-543-3344',
                       hours: 'March-October: Tue-Sat 9AM-5:30PM, November-April: Tue-Sun 9AM-5:30PM',
+                      siteUrl: 'http://www.vancortlandhouse.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Brooklyn',
                       subwayLines:
@@ -107,11 +117,34 @@ angular.module('coolCultureApp')
                       address: '22-25 Jackson Ave',
                       phoneNumber: '718-784-2084',
                       hours: 'Thur-Mon 12PM-6PM',
+                      siteUrl: 'http://www.momaps1.org',
                       imageUrl: '/images/sample_museum.jpg',
                       borough: 'Queens',
                       subwayLines:
                         ['E', 'M', 'G', '7'],
-                      category: 'Art'}
+                      category: 'Art'},
+                      {id: '12',
+                      name: 'Bronx Museum of the Arts',
+                      address: '1040 Grand Concourse at 165th',
+                      phoneNumber: '718-681-6000',
+                      hours: 'Thur, Sat-Sun: 11AM-6PM, Fri: 11AM-8PM',
+                      siteUrl: 'http://www.bronxmuseum.org',
+                      imageUrl: '/images/sample_museum.jpg',
+                      borough: 'Bronx',
+                      subwayLines:
+                        ['B', 'D', '4'],
+                      category: 'Art'},
+                      {id: '13',
+                      name: 'Alice Austen House Museum',
+                      address: '2 Hylan Blvd.',
+                      phoneNumber: '718-816-4506',
+                      hours: 'Tue-Sun: 11AM-5PM',
+                      siteUrl: 'http://www.austen.org',
+                      imageUrl: '/images/sample_museum.jpg',
+                      borough: 'Staten Island',
+                      subwayLines:
+                        ['1', '4', '5'],
+                      category: 'History'}
                       ];
     return  {
       requestAllMuseums : function() {

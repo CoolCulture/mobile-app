@@ -14,7 +14,7 @@ angular.module('coolCultureApp')
     };
 
     $scope.openFilterModal = function() {
-    	var modalInstance = $modal.open({
+    	$modal.open({
     		templateUrl: 'filters.html',
 	    	controller: ['$scope', '$modalInstance', 'museumFilters', function ($scope, $modalInstance, museumFilters) {
 	    		$scope.museumFilters = museumFilters;
