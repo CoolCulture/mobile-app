@@ -2,5 +2,7 @@
 
 angular.module('coolCultureApp')
   .controller('MuseumDetailCtrl', function ($scope, $routeParams, MuseumService) {
-    $scope.museum = MuseumService.requestMuseum($routeParams.id);
+    MuseumService.requestMuseum($routeParams.id).then(function(data){
+      $scope.museum = data;
+    });
   });

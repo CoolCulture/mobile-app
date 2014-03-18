@@ -6,20 +6,32 @@ describe('Service: MuseumService', function () {
   beforeEach(module('coolCultureApp'));
 
   // instantiate service
-  var MuseumService;
-  beforeEach(inject(function (_MuseumService_) {
+  var MuseumService, httpBackend;
+  beforeEach(inject(function (_MuseumService_, _$httpBackend_) {
     MuseumService = _MuseumService_;
+    httpBackend = _$httpBackend_;
   }));
 
   it('should request all museums', function () {
-    var museums = MuseumService.requestAllMuseums();
 
-    expect(museums.length).toBe(13);
+    httpBackend.expect('GET', 'scripts/services/museums.json')
+      .respond(200, '[ {"id": "1", "name": "American Museum of Natural History" }]');
+
+    MuseumService.requestAllMuseums().then(function(museums){
+      expect(museums.length).toBe(1);
+    });
+
+    httpBackend.flush();
   });
 
   it('should request specific museum with id', function () {
-    var museum = MuseumService.requestMuseum(1);
 
-    expect(museum.name).toBe('American Museum of Natural History');
+    httpBackend.expect('GET', 'scripts/services/museums.json')
+      .respond(200, '[ {"id": "1", "name": "American Museum of Natural History" }]'
+    );
+
+      MuseumService.requestMuseum(1).then(function(museum) {
+        expect(museum.name).toBe('American Museum of Natural History')
+      });
   });
 });

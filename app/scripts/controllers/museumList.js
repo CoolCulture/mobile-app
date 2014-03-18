@@ -2,7 +2,12 @@
 
 angular.module('coolCultureApp')
   .controller('MuseumListCtrl', function($scope, $modal, MuseumService) {
-    $scope.museums = MuseumService.requestAllMuseums();
+    $scope.museums = {};
+
+    MuseumService.requestAllMuseums().then(function(data){
+        $scope.museums = data;
+    });
+
     $scope.museumFilters = {
     	category: '',
     	borough: ''

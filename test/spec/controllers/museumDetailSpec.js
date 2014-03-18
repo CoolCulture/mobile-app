@@ -18,7 +18,5 @@ describe('Controller: MuseumDetailCtrl', function () {
     });
   }));
 
-  it('should have the details of the museum with id included in route', function (){
-    expect(scope.museum.name).toBe('American Museum of Natural History');
-  });
+
 });
