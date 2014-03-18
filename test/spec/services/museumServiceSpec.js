@@ -14,7 +14,7 @@ describe('Service: MuseumService', function () {
   it('should request all museums', function () {
     var museums = MuseumService.requestAllMuseums();
 
-    expect(museums.length).toBe(3);
+    expect(museums.length).toBe(6);
   });
 
   it('should request specific museum with id', function () {

@@ -17,12 +17,12 @@ angular.module('coolCultureApp')
     $scope.openFilterModal = function() {
     	var modalInstance = $modal.open({
     		templateUrl: 'filters.html',
-	    	controller: function ($scope, $modalInstance, museumFilters) {
+	    	controller: ['$scope', '$modalInstance', 'museumFilters', function ($scope, $modalInstance, museumFilters) {
 	    		$scope.museumFilters = museumFilters;
 	    		$scope.ok = function () {
 	    			$modalInstance.close();
 	    		};
-	    	},
+	    	}],
 	    	resolve: {
 	    		museumFilters: function () {
 	    			return $scope.museumFilters;
@@ -30,5 +30,5 @@ angular.module('coolCultureApp')
 	    	}
     	});
     };
-    
+
   });

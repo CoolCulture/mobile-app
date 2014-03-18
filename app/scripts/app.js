@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('coolCultureApp', [
-  'ui.bootstrap',
   'ngAnimate',
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
