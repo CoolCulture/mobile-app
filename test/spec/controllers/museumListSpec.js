@@ -17,6 +17,6 @@ describe('Controller: MuseumListCtrl', function () {
   }));
 
   it('should attach a list of museums to the scope', function () {
-    expect(scope.museums.length).toBe(6);
+    expect(scope.museums.length).toBe(11);
   });
 });

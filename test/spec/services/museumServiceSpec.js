@@ -14,12 +14,12 @@ describe('Service: MuseumService', function () {
   it('should request all museums', function () {
     var museums = MuseumService.requestAllMuseums();
 
-    expect(museums.length).toBe(6);
+    expect(museums.length).toBe(11);
   });
 
   it('should request specific museum with id', function () {
     var museum = MuseumService.requestMuseum(1);
 
-    expect(museum.name).toBe('Museum of Modern Art');
+    expect(museum.name).toBe('American Museum of Natural History');
   });
 });
