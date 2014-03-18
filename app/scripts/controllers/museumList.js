@@ -4,14 +4,13 @@ angular.module('coolCultureApp')
   .controller('MuseumListCtrl', function($scope, $modal, MuseumService) {
     $scope.museums = MuseumService.requestAllMuseums();
     $scope.museumFilters = {
-    	category: "",
-    	borough: "",
-    	subwayLine: ""
+    	category: '',
+    	borough: ''
     };
 
     $scope.resetFilters = function() {
-		$scope.museumFilters.category = "";
-		$scope.museumFilters.borough = "";
+		$scope.museumFilters.category = '';
+		$scope.museumFilters.borough = '';
     };
 
     $scope.openFilterModal = function() {
@@ -20,6 +19,11 @@ angular.module('coolCultureApp')
 	    	controller: ['$scope', '$modalInstance', 'museumFilters', function ($scope, $modalInstance, museumFilters) {
 	    		$scope.museumFilters = museumFilters;
 	    		$scope.ok = function () {
+	    			$modalInstance.close();
+	    		};
+	    		$scope.cancel = function() {
+	    			$scope.museumFilters.borough = '';
+	    			$scope.museumFilters.category = '';
 	    			$modalInstance.close();
 	    		};
 	    	}],

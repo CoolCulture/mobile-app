@@ -1,12 +1,14 @@
-<header><h1>Cool Culture</h1></header>
-  <section>
-    <button ng-click="openFilterModal()" class="btn">
+<header>
+  <input ng-model="searchText" />
+  <button ng-click="openFilterModal()" class="btn">
       Filters
     </button>
     <button ng-click="resetFilters()" class="btn">
       View All
     </button>
-    <a ng-repeat="museum in museums | filter: {borough: museumFilters.borough, subwayLine: museumFilters.subwayLine, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
+</header>
+  <section>
+    <a ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, subwayLine: museumFilters.subwayLine, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">
@@ -59,6 +61,9 @@
   <div class="modal-body">
     <button ng-click="ok()" class="btn">
       OK
+    </button>
+    <button ng-click="cancel()" class="btn">
+      Cancel
     </button>
   </div>
 </script>
