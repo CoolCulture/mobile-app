@@ -1,7 +1,28 @@
 <header><button ng-click="back()" class="btn btn-default">Back</button></header>
 <section class="panel panel-default">
-      <div ng-repeat="museumInfo in museum" class="panel-body">
-          {{museumInfo}}
+      <div class="panel-heading">
+          <div class="panel-title">{{museum.name}}</div>
       </div>
+      <div class="panel-body">
+        <div>
+          {{museum.name}}
+        </div>
+        <div>
+          <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">{{museum.address}}</a>
+        </div>
+        <div>
+          <a href="{{museum.siteUrl}}">{{museum.siteUrl}}</a>
+        </div>
+        <div>
+          <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">{{museum.phoneNumber}}</a>
+        </div>
+        <div>
+          {{museum.hours}}
+        </div>
+        <div>
+          {{museum.subwayLines}}
+        </div>
+      </div>
+
 </section>
 
