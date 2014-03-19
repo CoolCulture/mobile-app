@@ -20,7 +20,7 @@
           </div>
 
           <span class="glyphicon glyphicon-chevron-right pull-right center-chevron"></span>
-          
+
           <div class="subway-lines">
             <img src="images/train.svg" width="20px"></img>
             <subway-lines lines="museum.subwayLines"></subwayLines>
@@ -32,36 +32,40 @@
   </a>
   </section>
 <script type="text/ng-template" id="filters.html">
-  <div class="modal-header">Borough:</div>
+  <div class="modal-header"><h4>Borough:</h4></div>
   <div class="modal-body">
-    <label class="radio-inline">
+    <div class="row">
+    <label class="col-xs-5">
       <input type="radio" ng-model="museumFilters.borough" value="Manhattan"> Manhattan
     </label>
-    <label class="radio-inline">
+    <label class="col-xs-5">
       <input type="radio" ng-model="museumFilters.borough" value="Queens"> Queens
     </label>
-    <label class="radio-inline">
+    <label class="col-xs-5">
       <input type="radio" ng-model="museumFilters.borough" value="Brooklyn"> Brooklyn
     </label>
-    <label class="radio-inline">
+    <label class="col-xs-5">
       <input type="radio" ng-model="museumFilters.borough" value="Staten Island"> Staten Island
     </label>
-    <label class="radio-inline">
+    <label class="col-xs-5">
       <input type="radio" ng-model="museumFilters.borough" value="Bronx"> Bronx
     </label>
   </div>
+</div>
 
-  <div class="modal-header">Category:</div>
+  <div class="modal-header"><h4>Category:</h4></div>
   <div class="modal-body">
-    <label class="radio-inline">
-      <input type="radio" ng-model="museumFilters.category" value="History"> History
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="museumFilters.category" value="Art"> Art
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="museumFilters.category" value="Science"> Science
-    </label>
+    <div class="row">
+      <label class="col-xs-4 col-md-3">
+        <input type="radio" ng-model="museumFilters.category" value="History"> History
+      </label>
+      <label class="col-xs-3 col-md-3">
+        <input type="radio" ng-model="museumFilters.category" value="Art"> Art
+      </label>
+      <label class="col-xs-4 col-md-3">
+        <input type="radio" ng-model="museumFilters.category" value="Science"> Science
+      </label>
+    </div>
   </div>
 
   <div class="modal-body">
