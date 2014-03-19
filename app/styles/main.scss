@@ -95,6 +95,12 @@ body {
 
 .museum-text {
     margin-left: 110px;
+
+}
+
+.subway-lines {
+    @extend .museum-text;
+    padding-top: 43px;
 }
 
 .museum-image {

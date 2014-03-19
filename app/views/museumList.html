@@ -18,9 +18,14 @@
           <div class="museum-text">
             {{museum.name}}
           </div>
-          <subway-lines lines="museum.subwayLines"></subwayLines>
 
           <span class="glyphicon glyphicon-chevron-right pull-right center-chevron"></span>
+          
+          <div class="subway-lines">
+            <img src="images/train.svg" width="20px"></img>
+            <subway-lines lines="museum.subwayLines"></subwayLines>
+          </div>
+
         </div>
       </div>
     </article>
