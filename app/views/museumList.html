@@ -8,7 +8,7 @@
     </button>
 </header>
   <section>
-    <a ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
+    <div ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">
@@ -29,7 +29,7 @@
         </div>
       </div>
     </article>
-  </a>
+  </div>
   </section>
 <script type="text/ng-template" id="filters.html">
   <div class="modal-header"><h4>Borough:</h4></div>

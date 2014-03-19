@@ -4,26 +4,26 @@
           <div class="panel-title">{{museum.name}}</div>
       </div>
       <div class="panel-body">
-        <div>
+        <h4>
           <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
             <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
           </a>
-        </div>
-        <div>
+        </h4>
+        <h4>
           <a href="{{museum.siteUrl}}" target="_blank">{{museum.siteUrl}}</a>
-        </div>
-        <div>
+        </h4>
+        <h4>
           <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
             <span class="glyphicon glyphicon-earphone"></span> {{museum.phoneNumber}}
           </a>
-        </div>
-        <div>
+        </h4>
+        <h4>
           {{museum.hours}}
-        </div>
-        <div>
+        </h4>
+        <h4>
           <img src="images/train.svg" width="20px"></img>
           <subway-lines lines="museum.subwayLines"></subwayLines>
-        </div>
+        </h4>
       </div>
 
 </section>
