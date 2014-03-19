@@ -8,13 +8,17 @@
           {{museum.name}}
         </div>
         <div>
-          <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">{{museum.address}}</a>
+          <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
+            <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
+          </a>
         </div>
         <div>
-          <a href="{{museum.siteUrl}}">{{museum.siteUrl}}</a>
+          <a href="{{museum.siteUrl}}" target="_blank">{{museum.siteUrl}}</a>
         </div>
         <div>
-          <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">{{museum.phoneNumber}}</a>
+          <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
+            <span class="glyphicon glyphicon-earphone"></span> {{museum.phoneNumber}}
+          </a>
         </div>
         <div>
           {{museum.hours}}
