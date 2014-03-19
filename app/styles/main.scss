@@ -3,6 +3,7 @@ $light-gray: #DCDCDC;
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'slider';
+@import 'badges';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -122,5 +123,6 @@ section {
     display: block;
     margin-top: 70px;
 }
+
 
 

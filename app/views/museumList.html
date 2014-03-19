@@ -8,7 +8,7 @@
     </button>
 </header>
   <section>
-    <a ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, subwayLine: museumFilters.subwayLine, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
+    <a ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <article class="panel panel-default">
       <div class="panel-body">
           <div class="museum-image">
