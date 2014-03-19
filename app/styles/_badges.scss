@@ -1,38 +1,47 @@
 .badge {
     margin-right: 2px;
+    padding: 3px, 2px;
 }
 
 .badge-1, .badge-2, .badge-3 {
-  background: red;
+  background: #ee352e;
 }
 
 .badge-4, .badge-5, .badge-6 {
-  background: green;
+  background: #00933c;
 }
 
 .badge-7 {
-  background: pink;
+  background: #b933ad;
 }
 
 .badge-A, .badge-C, .badge-E {
-  background: blue;
+  background: #2850ad;
 }
 
 .badge-B, .badge-D, .badge-F, .badge-M {
-  background: orange;
+  background: #ff6319;
+}
+
+.badge-L {
+  background: #a7a9ac
 }
 
 .badge-G {
-  background: #ADFF2F; //Light Green
+  background: #6cbe45;
 }
 
 .badge-J, .badge-Z {
-  background: brown;
+  background: #996633;
 }
 
 .badge-N, .badge-Q, .badge-R {
-  background: yellow;
+  background: #fccc0a;
   color: black;
+}
+
+.badge-S {
+  background: #808183;
 }
 
 
