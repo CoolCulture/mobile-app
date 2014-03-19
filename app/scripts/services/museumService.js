@@ -11,7 +11,7 @@ angular.module('coolCultureApp')
           },
       requestMuseum : function(id) {
             var request = $http.get('scripts/services/museums.json').then(function(response) {
-              return response.data[id];
+              return response.data[id - 1];
             });
           return request;
           }
