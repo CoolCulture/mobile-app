@@ -5,6 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 MobileApp::Application.load_tasks
 
-task :test do
+task :angular do
   system("cd angular; npm install; npm test")
 end
