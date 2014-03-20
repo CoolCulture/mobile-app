@@ -1,0 +1,41 @@
+<h1>Listing museums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phonenumber</th>
+      <th>Address</th>
+      <th>Borough</th>
+      <th>Website</th>
+      <th>Hours</th>
+      <th>Subwaylines</th>
+      <th>Buslines</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @museums.each do |museum| %>
+      <tr>
+        <td><%= museum.name %></td>
+        <td><%= museum.phoneNumber %></td>
+        <td><%= museum.address %></td>
+        <td><%= museum.borough %></td>
+        <td><%= museum.website %></td>
+        <td><%= museum.hours %></td>
+        <td><%= museum.subwayLines %></td>
+        <td><%= museum.busLines %></td>
+        <td><%= link_to 'Show', museum %></td>
+        <td><%= link_to 'Edit', edit_museum_path(museum) %></td>
+        <td><%= link_to 'Destroy', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Museum', new_museum_path %>

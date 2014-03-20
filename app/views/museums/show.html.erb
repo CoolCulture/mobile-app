@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @museum.name %>
+</p>
+
+<p>
+  <strong>Phonenumber:</strong>
+  <%= @museum.phoneNumber %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @museum.address %>
+</p>
+
+<p>
+  <strong>Borough:</strong>
+  <%= @museum.borough %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @museum.website %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @museum.hours %>
+</p>
+
+<p>
+  <strong>Subwaylines:</strong>
+  <%= @museum.subwayLines %>
+</p>
+
+<p>
+  <strong>Buslines:</strong>
+  <%= @museum.busLines %>
+</p>
+
+<%= link_to 'Edit', edit_museum_path(@museum) %> |
+<%= link_to 'Back', museums_path %>
