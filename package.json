@@ -5,7 +5,7 @@
   "scripts": {
     "install": "cd angular && npm install"
   },
-  "devDependencies": {
+  "dependencies": {
     "grunt": "~0.4.1",
     "grunt-hub": "^0.6.2"
   }
