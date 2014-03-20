@@ -238,6 +238,9 @@ module.exports = function (grunt) {
     },
     svgmin: {
       dist: {
+        options: {
+          force: true
+        },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
