@@ -1,0 +1,12 @@
+{
+  "name": "mobile-app",
+  "version": "0.0.0",
+  "description": "Cool Culture Mobile App ",
+  "scripts": {
+    "install": "cd angular && npm install"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-hub": "^0.6.2"
+  }
+}

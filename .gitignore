@@ -17,3 +17,4 @@
 *.log
 
 public/
+node_modules
