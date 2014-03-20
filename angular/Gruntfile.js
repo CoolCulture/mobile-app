@@ -224,9 +224,6 @@ module.exports = function (grunt) {
 
     // The following *-min tasks produce minified files in the dist folder
     imagemin: {
-      options: {
-        force: true
-      },
       dist: {
         files: [{
           expand: true,
@@ -286,6 +283,9 @@ module.exports = function (grunt) {
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
+        options: {
+          force: true
+        },
         files: [{
           expand: true,
           dot: true,
