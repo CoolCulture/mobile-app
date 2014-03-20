@@ -224,10 +224,10 @@ module.exports = function (grunt) {
 
     // The following *-min tasks produce minified files in the dist folder
     imagemin: {
+      options: {
+        force: true
+      },
       dist: {
-        options: {
-          force: true
-        },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
@@ -238,9 +238,6 @@ module.exports = function (grunt) {
     },
     svgmin: {
       dist: {
-        options: {
-          force: true
-        },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
