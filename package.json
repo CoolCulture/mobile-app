@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Cool Culture Mobile App ",
   "scripts": {
-    "postinstall": "cd angular && npm install"
+    "postinstall": "cd angular && npm install && bower install"
   },
   "dependencies": {
     "grunt": "~0.4.1",
