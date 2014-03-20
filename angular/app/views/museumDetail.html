@@ -1,0 +1,30 @@
+<header><button ng-click="back()" class="btn btn-default">Back</button></header>
+<section class="panel panel-default">
+      <div class="panel-heading">
+          <div class="panel-title">{{museum.name}}</div>
+      </div>
+      <div class="panel-body">
+        <h4>
+          <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
+            <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
+          </a>
+        </h4>
+        <h4>
+          <a href="{{museum.siteUrl}}" target="_blank">{{museum.siteUrl}}</a>
+        </h4>
+        <h4>
+          <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
+            <span class="glyphicon glyphicon-earphone"></span> {{museum.phoneNumber}}
+          </a>
+        </h4>
+        <h4>
+          {{museum.hours}}
+        </h4>
+        <h4>
+          <img src="images/train.svg" width="20px"></img>
+          <subway-lines lines="museum.subwayLines"></subwayLines>
+        </h4>
+      </div>
+
+</section>
+

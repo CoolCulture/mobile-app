@@ -1,0 +1,53 @@
+@import 'compass/css3/transition';
+
+.scroller {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    // position: absolute;
+    // top: 70px;
+    // bottom: 0px;
+    // left: 0px;
+    // right: 0px;
+}
+
+.slide-left.ng-enter,
+.slide-left.ng-leave,
+.slide-right.ng-enter,
+.slide-right.ng-leave {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: inherit;
+    @include single-transition(all, .25s, ease-in-out);
+}
+
+.slide-left.ng-enter {
+    @include translate(100%, 0);
+}
+
+.slide-left.ng-enter.ng-enter-active {
+    @include translate(0, 0);
+}
+
+.slide-left.ng-leave {
+    @include translate(0, 0);
+}
+
+.slide-left.ng-leave.ng-leave-active {
+    @include translate(-100%, 0);
+}
+
+.slide-right.ng-enter {
+    @include translate(-100%, 0);
+}
+
+.slide-right.ng-enter.ng-enter-active {
+    @include translate(0, 0);
+}
+
+.slide-right.ng-leave {
+    @include translate(0, 0);
+}
+
+.slide-right.ng-leave.ng-leave-active {
+    @include translate(100%, 0);
+}
