@@ -1,3 +1,3 @@
 MobileApp::Application.routes.draw do
-  resources :museums
+  resources :museums , path: 'api/museums'
 end

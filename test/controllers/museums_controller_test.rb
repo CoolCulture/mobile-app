@@ -18,7 +18,7 @@ class MuseumsControllerTest < ActionController::TestCase
 
   test "should create museum" do
     assert_difference('Museum.count') do
-      post :create, museum: { address: @museum.address, borough: @museum.borough, busLines: @museum.busLines, hours: @museum.hours, name: @museum.name, phoneNumber: @museum.phoneNumber, subwayLines: @museum.subwayLines, website: @museum.website }
+      post :create, museum: { address: @museum.address, borough: @museum.borough, busLines: @museum.busLines, hours: @museum.hours, name: @museum.name, phoneNumber: @museum.phoneNumber, subwayLines: @museum.subwayLines, siteUrl: @museum.siteUrl }
     end
 
     assert_redirected_to museum_path(assigns(:museum))
@@ -35,7 +35,7 @@ class MuseumsControllerTest < ActionController::TestCase
   end
 
   test "should update museum" do
-    patch :update, id: @museum, museum: { address: @museum.address, borough: @museum.borough, busLines: @museum.busLines, hours: @museum.hours, name: @museum.name, phoneNumber: @museum.phoneNumber, subwayLines: @museum.subwayLines, website: @museum.website }
+    patch :update, id: @museum, museum: { address: @museum.address, borough: @museum.borough, busLines: @museum.busLines, hours: @museum.hours, name: @museum.name, phoneNumber: @museum.phoneNumber, subwayLines: @museum.subwayLines, siteUrl: @museum.siteUrl }
     assert_redirected_to museum_path(assigns(:museum))
   end
 

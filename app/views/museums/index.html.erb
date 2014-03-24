@@ -1,6 +1,7 @@
 <h1>Listing museums</h1>
 
-<table>
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -24,7 +25,7 @@
         <td><%= museum.phoneNumber %></td>
         <td><%= museum.address %></td>
         <td><%= museum.borough %></td>
-        <td><%= museum.website %></td>
+        <td><%= museum.siteUrl %></td>
         <td><%= museum.hours %></td>
         <td><%= museum.subwayLines %></td>
         <td><%= museum.busLines %></td>
@@ -35,6 +36,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 

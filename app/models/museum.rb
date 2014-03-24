@@ -4,13 +4,13 @@ class Museum
   field :phoneNumber, type: String
   field :address, type: String
   field :borough, type: String
-  field :website, type: String
+  field :siteUrl, type: String
   field :hours, type: Array
   field :subwayLines, type: Array
   field :busLines, type: Array
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :website, :hours, :subwayLines, :busLines
+  						 :siteUrl, :hours, :subwayLines, :busLines
 
   validates_uniqueness_of :name
 end
