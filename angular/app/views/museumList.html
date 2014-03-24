@@ -9,11 +9,11 @@
 </header>
 
   <section>
-    <div class="row" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
+    <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
     <hr>
     <article class="list-item col-xs-12">
 
-          <div class="col-xs-10">
+          <div class="col-xs-12">
             <strong>{{museum.name}}</strong>
           </div>
 
@@ -21,16 +21,14 @@
             <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
           </div>
 
-          <div class="col-xs-1 col-xs-offset-1">
+          <div class="col-xs-1 pull-right">
             <span class="glyphicon glyphicon-chevron-right"></span>
           </div>
 
-          <div class="subway-lines col-xs-10">
+          <div class="subway-lines col-xs-9">
             <img src="images/train.svg" width="20px"></img>
             <subway-lines lines="museum.subwayLines"></subwayLines>
           </div>
-
-
 
     </article>
   </div>
