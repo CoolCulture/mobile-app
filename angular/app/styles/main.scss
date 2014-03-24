@@ -101,6 +101,13 @@ body {
     color: #B20000;
 }
 
+.pull-right.center-vertical{
+    position: absolute;
+    top: 50%;
+    margin-top: -7px;
+    left: 90%;
+}
+
 .list-item {
     display: block;
     padding-top: 20px;
