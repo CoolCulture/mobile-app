@@ -5,14 +5,17 @@
 
 .badge-1, .badge-2, .badge-3 {
   background: #ee352e;
+  padding: 3px 5.5px;
 }
 
 .badge-4, .badge-5, .badge-6 {
   background: #00933c;
+  padding: 3px 6px;
 }
 
 .badge-7 {
   background: #b933ad;
+  padding: 3px 6px;
 }
 
 .badge-A, .badge-C, .badge-E {
@@ -21,6 +24,14 @@
 
 .badge-B, .badge-D, .badge-F, .badge-M {
   background: #ff6319;
+}
+
+.badge-F {
+  padding: 3px 5.5px;
+}
+
+.badge-M {
+  padding: 3px 4px;
 }
 
 .badge-L {
