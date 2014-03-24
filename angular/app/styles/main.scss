@@ -123,6 +123,25 @@ hr {
     margin-bottom: 0px;
 }
 
+.action {
+    padding: 10px 0px;
+}
+
+.action:active {
+    background: $light-gray;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
 header {
      position: fixed;
      text-align: center;
