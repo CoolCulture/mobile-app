@@ -7,27 +7,31 @@
       View All
     </button>
 </header>
+
   <section>
-    <div ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
-    <article class="panel panel-default">
-      <div class="panel-body">
-          <div class="museum-image">
-            <img ng-src="{{museum.imageUrl}}" width=100px/>
+    <div class="row" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.id)">
+    <hr>
+    <article class="list-item col-xs-12">
+
+          <div class="col-xs-10">
+            <strong>{{museum.name}}</strong>
           </div>
 
-          <div class="museum-text">
-            {{museum.name}}
+          <div class="col-xs-10">
+            <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
           </div>
 
-          <span class="glyphicon glyphicon-chevron-right pull-right center-chevron"></span>
+          <div class="col-xs-1 col-xs-offset-1">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </div>
 
-          <div class="subway-lines">
+          <div class="subway-lines col-xs-10">
             <img src="images/train.svg" width="20px"></img>
             <subway-lines lines="museum.subwayLines"></subwayLines>
           </div>
 
-        </div>
-      </div>
+
+
     </article>
   </div>
   </section>

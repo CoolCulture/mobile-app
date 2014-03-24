@@ -93,26 +93,27 @@ body {
     }
 }
 
-.museum-text {
-    margin-left: 110px;
-
-}
-
 .subway-lines {
-    @extend .museum-text;
-    padding-top: 43px;
+    margin-bottom: 3px;
 }
 
-.museum-image {
-    float: left;
+.glyphicon-chevron-right {
+    color: #B20000;
 }
 
-.center-chevron {
-    margin-top: 12px;
+.list-item {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.panel-default {
+.ng-click-active {
     background: $light-gray;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 2px;
 }
 
 header {

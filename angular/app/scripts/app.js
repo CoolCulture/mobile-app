@@ -6,7 +6,8 @@ angular.module('coolCultureApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngTouch'
 ])
   .config(function ($routeProvider) {
     $routeProvider
