@@ -2,9 +2,8 @@
 
 angular.module('coolCultureApp')
   .controller('MuseumListCtrl', function($scope, $modal, MuseumService) {
-    $scope.museums = {};
 
-    MuseumService.requestAllMuseums().then(function(data){
+    MuseumService.requestAllMuseums().success(function(data){
         $scope.museums = data;
     });
 
