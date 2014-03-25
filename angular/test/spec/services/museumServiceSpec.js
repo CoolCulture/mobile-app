@@ -14,7 +14,7 @@ describe('Service: MuseumService', function () {
 
   it('should request all museums', function () {
 
-    httpBackend.expect('GET', 'api/museums.json')
+    httpBackend.expect('GET', '/api/museums.json')
       .respond(200, '[ {"id": "1", "name": "American Museum of Natural History" }]');
 
     MuseumService.requestAllMuseums().success(function(museums){
@@ -26,7 +26,7 @@ describe('Service: MuseumService', function () {
 
   it('should request specific museum with id', function () {
 
-    httpBackend.expect('GET', 'api/museums.json')
+    httpBackend.expect('GET', '/api/museums.json')
       .respond(200, '[ {"id": "1", "name": "American Museum of Natural History" }]'
     );
 
