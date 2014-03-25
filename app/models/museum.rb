@@ -5,12 +5,23 @@ class Museum
   field :address, type: String
   field :borough, type: String
   field :siteUrl, type: String
-  field :hours, type: Array
-  field :subwayLines, type: Array
-  field :busLines, type: Array
+  field :hours, type: Array, default: []
+  field :subwayLines, type: Array, default: []
+  field :busLines, type: String
+  field :category, type: Array, default: []
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :hours, :subwayLines, :busLines
+  						 :siteUrl, :hours, :subwayLines, :category
 
   validates_uniqueness_of :name
+
+  SUBWAY_LINES = [
+    "1", "2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M",
+    "G", "J", "Z", "N", "Q", "R", "L", "S", "SIR"
+  ]
+
+  CATEGORIES = [
+    "History", "Science", "Art"
+  ]
+
 end

@@ -33,10 +33,15 @@ gem 'compass'
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 
 gem 'bootstrap-sass'
+gem 'simple_form'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development, :test do
+  gem 'pry'
 end
 
 group :test do
