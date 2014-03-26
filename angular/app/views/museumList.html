@@ -9,7 +9,7 @@
 </header>
 
   <section>
-    <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough }" ng-click="go('/museums/' + museum.name_id)">
+    <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, category: museumFilters.category }" ng-click="go('/museums/' + museum.name_id)">
     <hr>
     <article class="list-item col-xs-12">
 
