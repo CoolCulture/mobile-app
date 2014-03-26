@@ -5,11 +5,36 @@ Cool Culture Mobile App
 
 ###Installation Instructions
 
-After cloning to repository, run the following commands in order to install the necessary packages
+You will Need:
+* ruby 2.1.0
+* node 0.10.6
+
+
+## Install Mongo
+```
+brew install mongo
+mongod
+```
+
+## Clone the Repository
 
 ```
+git clone
+cd mobile-app
+```
+
+## Rails Backend Application
+
+```
+bundle install
+rails s
+```
+## Angular Frontend Application
+
+```
+npm install -g grunt-cli
 npm install
-npm test
+bower install
 ```
 
 Then, to run the server, run
