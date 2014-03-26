@@ -13,8 +13,8 @@
           <subway-lines lines="museum.subwayLines"></subwayLines>
         </div>
 
-        <div>
-          {{museum.hours[0]}}
+        <div ng-repeat="hour in museum.hours">
+          {{hour}}
         </div>
       </div>
 

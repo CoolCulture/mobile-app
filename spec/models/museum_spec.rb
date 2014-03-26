@@ -40,4 +40,14 @@ describe Museum do
       museum_after_save.name_id.should == museum.slug
     end
   end
+
+  describe "before save" do
+    it "should remove empty strings from hours" do
+      museum = FactoryGirl.build(:museum, hours: ['9AM-5PM M-F', '10AM-9PM Sat', ''])
+
+      museum.save
+
+      museum.hours.should == ['9AM-5PM M-F', '10AM-9PM Sat']
+    end
+  end
 end

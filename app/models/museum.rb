@@ -21,6 +21,8 @@ class Museum
 
   validates_uniqueness_of :name
 
+  before_save :remove_empty_hours
+
   SUBWAY_LINES = [
     "1", "2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M",
     "G", "J", "Z", "N", "Q", "R", "L", "S", "SIR"
@@ -29,5 +31,10 @@ class Museum
   CATEGORIES = [
     "History", "Science", "Art"
   ]
+
+  protected
+  def remove_empty_hours
+    self.hours.reject!(&:empty?)
+  end
 
 end
