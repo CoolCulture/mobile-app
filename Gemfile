@@ -32,7 +32,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'compass'
+
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem "mongoid_slug"
 
 gem 'bootstrap-sass'
 gem 'simple_form'
@@ -47,5 +49,8 @@ group :development, :test do
 end
 
 group :test do
-	gem 'rspec-rails'
+  gem 'rspec-rails'
+  gem 'mongoid-rspec'
+  gem 'factory_girl_rails'
+  gem "database_cleaner"
 end

@@ -1,5 +1,6 @@
 class Museum
   include Mongoid::Document
+  include Mongoid::Slug
   field :name, type: String
   field :phoneNumber, type: String
   field :address, type: String
@@ -9,6 +10,10 @@ class Museum
   field :subwayLines, type: Array, default: []
   field :busLines, type: String
   field :category, type: Array, default: []
+
+  slug do |museum|
+   museum.name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
+  end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
   						 :siteUrl, :hours, :subwayLines, :category

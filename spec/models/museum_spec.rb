@@ -1,0 +1,32 @@
+require 'spec_helper'
+
+describe Museum do
+  it {should validate_presence_of(:name)}
+  it {should validate_presence_of(:phoneNumber)}
+  it {should validate_presence_of(:address)}
+  it {should validate_presence_of(:borough)}
+  it {should validate_presence_of(:siteUrl)}
+  it {should validate_presence_of(:hours)}
+  it {should validate_presence_of(:subwayLines)}
+  it {should validate_presence_of(:category)}
+
+  it {should validate_uniqueness_of(:name)}
+
+  describe "slug" do
+    it "should find museum by slug" do
+      museum = FactoryGirl.build(:museum)
+      museum.save
+
+      museum_slug = Museum.find("the-museum-of-modern-art")
+      museum_slug.name.should == "The Museum of Modern Art"
+    end
+
+    it "should generate slug with non-alphanumeric characters removed" do
+      museum = FactoryGirl.build(:museum, name: "New York's Museum")
+      museum.save
+
+      museum_slug = Museum.find("new-yorks-museum")
+      museum_slug.name.should == "New York's Museum"
+    end
+  end
+end
