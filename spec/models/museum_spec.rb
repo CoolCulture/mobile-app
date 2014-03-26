@@ -15,6 +15,7 @@ describe Museum do
   describe "slug" do
     it "should find museum by slug" do
       museum = FactoryGirl.build(:museum)
+
       museum.save
 
       museum_slug = Museum.find("the-museum-of-modern-art")
@@ -23,10 +24,20 @@ describe Museum do
 
     it "should generate slug with non-alphanumeric characters removed" do
       museum = FactoryGirl.build(:museum, name: "New York's Museum")
+
       museum.save
 
       museum_slug = Museum.find("new-yorks-museum")
       museum_slug.name.should == "New York's Museum"
+    end
+
+     it "should set name_id to the museum slug" do
+      museum = FactoryGirl.build(:museum)
+
+      museum.save
+
+      museum_after_save = Museum.find("the-museum-of-modern-art")
+      museum_after_save.name_id.should == museum.slug
     end
   end
 end

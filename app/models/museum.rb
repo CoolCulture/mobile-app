@@ -10,6 +10,7 @@ class Museum
   field :subwayLines, type: Array, default: []
   field :busLines, type: String
   field :category, type: Array, default: []
+  field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
    museum.name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
