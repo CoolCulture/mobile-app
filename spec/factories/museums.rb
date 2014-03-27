@@ -9,5 +9,6 @@ FactoryGirl.define do
     subwayLines ['A','C','J','Z']
     busLines 'B1,B2,B7'
     category ['Art','History']
+    wifi true
   end
 end
