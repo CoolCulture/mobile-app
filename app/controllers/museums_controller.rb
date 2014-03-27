@@ -61,6 +61,11 @@ class MuseumsController < ApplicationController
     end
   end
 
+  def import 
+    Museum.import(params[:file])
+    redirect_to museums_url, notice: "Museums imported successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_museum

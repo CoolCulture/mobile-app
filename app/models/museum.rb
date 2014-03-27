@@ -23,6 +23,26 @@ class Museum
 
   before_save :remove_empty_hours
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      row_hash = row.to_hash
+
+      hours = [row_hash["hours1"], row_hash["hours2"], row_hash["hours3"], row_hash["hours4"]]
+      hours.reject!{|hour| hour.nil?}
+
+      row_hash.delete("hours1")
+      row_hash.delete("hours2")
+      row_hash.delete("hours3")
+      row_hash.delete("hours4")
+
+      row_hash["subwayLines"] = row_hash["subwayLines"].split
+      row_hash["category"] = row_hash["category"].split
+
+      row_hash.merge!("hours" => hours)
+      Museum.create! row_hash
+    end
+  end
+
   SUBWAY_LINES = [
     "1", "2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M",
     "G", "J", "Z", "N", "Q", "R", "L", "S", "SIR"
