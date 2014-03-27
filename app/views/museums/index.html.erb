@@ -12,6 +12,7 @@
       <th>Hours</th>
       <th>Subwaylines</th>
       <th>Buslines</th>
+      <th>Has Wifi?</th>
       <th></th>
       <th></th>
       <th></th>
@@ -29,6 +30,7 @@
         <td><%= museum.hours %></td>
         <td><%= museum.subwayLines %></td>
         <td><%= museum.busLines %></td>
+        <td><%= human_boolean(museum.wifi) %></td>
         <td><%= link_to 'Show', museum %></td>
         <td><%= link_to 'Edit', edit_museum_path(museum) %></td>
         <td><%= link_to 'Destroy', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>

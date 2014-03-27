@@ -40,5 +40,10 @@
   <%= @museum.busLines %>
 </p>
 
+<p>
+  <strong>Wifi?</strong>
+  <%= human_boolean(@museum.wifi) %>
+</p>
+
 <%= link_to 'Edit', edit_museum_path(@museum) %> |
 <%= link_to 'Back', museums_path %>

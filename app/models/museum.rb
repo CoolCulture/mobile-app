@@ -10,6 +10,7 @@ class Museum
   field :subwayLines, type: Array, default: []
   field :busLines, type: String
   field :category, type: Array, default: []
+  field :wifi, type: Boolean
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
@@ -17,7 +18,7 @@ class Museum
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :hours, :subwayLines, :category
+  						 :siteUrl, :hours, :subwayLines, :category, :wifi
 
   validates_uniqueness_of :name
 
