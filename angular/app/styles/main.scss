@@ -1,5 +1,6 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 $light-gray: #DCDCDC;
+$lighter-gray: #EEE;
 $cool-culture-red: #F34927;
 
 @import 'sass-bootstrap/lib/bootstrap';
@@ -148,8 +149,12 @@ body {
     padding-bottom: 20px;
 }
 
-.list-item-container:active, .list-item-container:nth-child(even) {
-    background: #EEEEEE;
+.list-item-container:active {
+    background: $light-gray
+}
+
+.list-item-container:nth-child(even) {
+    background: $lighter-gray;
 }
 
 hr {
