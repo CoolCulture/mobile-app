@@ -43,7 +43,6 @@ class Museum
                               photo: nil,
                               :"updated_from_2013-2014_family_guide" => nil}
               }
-binding.pry
 
     SmarterCSV.process(file, options) do |row|
       attrs = row.first

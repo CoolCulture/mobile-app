@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe MuseumsController do
   
+  describe "import" do
+    it "should import CSV and create museums" do
+      csv_to_import = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'museums.csv'), "text/csv")
+
+      post :import, file: csv_to_import
+
+      flash[:notice].should eq("Museums imported successfully.")
+      Museum.count.should == 5
+    end
+  end
+
   describe "GET index" do
     it "assigns @museums" do
       museum = FactoryGirl.create(:museum)
