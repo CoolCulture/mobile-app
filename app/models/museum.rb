@@ -16,7 +16,7 @@ class Museum
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
-   museum.name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
+    museum.slug_format(museum.name)
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
@@ -25,6 +25,7 @@ class Museum
   validates_uniqueness_of :name
 
   before_save :remove_empty_hours
+  before_update :assign_slug
 
   def self.import(file)
     options = {col_sep: "\t",
@@ -73,9 +74,16 @@ class Museum
     "History", "Science", "Art"
   ]
 
+  def slug_format(name)
+    name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
+  end
+
   protected
   def remove_empty_hours
     self.hours.reject!(&:empty?)
   end
 
+  def assign_slug
+    self.slugs[0] = slug_format(self.name)
+  end
 end

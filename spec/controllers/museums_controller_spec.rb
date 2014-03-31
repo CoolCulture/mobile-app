@@ -64,13 +64,14 @@ describe MuseumsController do
   end
 
   describe "PATCH update" do    
-    it "should update museum" do
+    it "should update museum and update slug name" do
       museum = FactoryGirl.create(:museum)
       patch :update, id: museum.id, museum: FactoryGirl.attributes_for(:museum, name:"A New Museum Name")
       museum.reload
       museum.name.should eq("A New Museum Name")
-
+      museum.slug.should eq("a-new-museum-name")
       response.should redirect_to assigns(:museum)
+
     end
   end
 
