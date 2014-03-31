@@ -1,5 +1,6 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 $light-gray: #DCDCDC;
+$cool-culture-red: #F34927;
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'slider';
@@ -28,7 +29,7 @@ body {
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid $cool-culture-red;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -43,7 +44,7 @@ body {
 .footer {
     padding-top: 19px;
     color: #777;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid $cool-culture-red;
 }
 
 .container-narrow > hr {
@@ -53,7 +54,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid $cool-culture-red;
 }
 
 .jumbotron .btn {
@@ -93,9 +94,13 @@ body {
     }
 }
 
-.museum-name {
+.museum-name-detail-view {
     font-size: 135%;
     margin-bottom: 5px;
+}
+
+.museum-name-list-view {
+    vertical-align: top;
 }
 
 .subway-lines {
@@ -123,7 +128,11 @@ body {
 }
 
 .glyphicon-chevron-right {
-    color: #B20000;
+    color: $cool-culture-red;
+}
+
+.glyphicon-map-marker {
+    font-size: 135%;
 }
 
 .pull-right.center-vertical{
@@ -170,7 +179,7 @@ a:hover {
 header {
      position: fixed;
      text-align: center;
-     background: $light-gray;
+     background: $cool-culture-red;
      top: 0;
      left: 0;
      width: 100%;

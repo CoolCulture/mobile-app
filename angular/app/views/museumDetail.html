@@ -1,6 +1,6 @@
 <header><button ng-click="back()" class="btn btn-default">Back</button></header>
 <section class="row">
-      <div class="museum-name col-xs-12">
+      <div class="museum-name-detail-view col-xs-12">
         <strong>{{museum.name}}</strong>
       </div>
 
@@ -39,7 +39,7 @@
       <div class="col-xs-12">
         <a href="{{museum.siteUrl}}" target="_blank">
           <div class="action">
-            {{museum.siteUrl}}
+            Visit Museum Website
             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
           </div>
         </a>
@@ -49,7 +49,7 @@
       <div class="col-xs-12">
         <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
           <div class="action">
-            <span class="glyphicon glyphicon-earphone"></span> {{museum.phoneNumber}}
+            <span class="glyphicon glyphicon-earphone"></span> Call Now: {{museum.phoneNumber}}
             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
           </div>
         </a>
