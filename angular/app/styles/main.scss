@@ -148,8 +148,8 @@ body {
     padding-bottom: 20px;
 }
 
-.list-item-container:active {
-    background: $light-gray;
+.list-item-container:active, .list-item-container:nth-child(even) {
+    background: #EEEEEE;
 }
 
 hr {
