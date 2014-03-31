@@ -61,7 +61,7 @@ class MuseumsController < ApplicationController
     end
   end
 
-  def import 
+  def import
     Museum.import(params[:file].path)
     redirect_to museums_url, notice: "Museums imported successfully."
   end
@@ -74,6 +74,6 @@ class MuseumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def museum_params
-      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl, :busLines, :wifi, category: [], hours: [], subwayLines: [])
+      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl, :busLines, :wifi, categories: [], hours: [], subwayLines: [])
     end
 end
