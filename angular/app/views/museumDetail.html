@@ -1,6 +1,6 @@
 <header><button ng-click="back()" class="btn btn-default">Back</button></header>
 <section class="row">
-      <div class="col-xs-12">
+      <div class="museum-name col-xs-12">
         <strong>{{museum.name}}</strong>
       </div>
 
@@ -13,6 +13,13 @@
           <subway-lines lines="museum.subwayLines"></subwayLines>
         </div>
 
+        <div class="bus-lines col-xs-6">
+          <img src="images/bus.svg" class="bus-lines-logo"></img>
+          <span class="bus-lines-text">{{museum.busLines}}</span>
+        </div>
+      </div>
+      
+      <div class="hours col-xs-12">
         <div ng-repeat="hour in museum.hours">
           {{hour}}
         </div>

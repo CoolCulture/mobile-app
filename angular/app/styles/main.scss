@@ -93,8 +93,33 @@ body {
     }
 }
 
+.museum-name {
+    font-size: 135%;
+    margin-bottom: 5px;
+}
+
 .subway-lines {
     margin-bottom: 3px;
+}
+
+.subway-lines-logo {
+    width: 20px;
+}
+
+.bus-lines {
+    padding-left: 17px;
+}
+
+.bus-lines-logo {
+    width: 15px;
+}
+
+.bus-lines-text {
+    padding: 3px;
+}
+
+.hours {
+    margin: 10px 0px;
 }
 
 .glyphicon-chevron-right {
