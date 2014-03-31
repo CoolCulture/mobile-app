@@ -39,6 +39,8 @@ gem "mongoid_slug"
 gem 'bootstrap-sass'
 gem 'simple_form'
 
+gem 'smarter_csv'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

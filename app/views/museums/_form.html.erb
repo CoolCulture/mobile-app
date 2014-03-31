@@ -48,8 +48,8 @@
   <div class="field">
     <% Museum::CATEGORIES.each do |category| %>
       <%= category %>
-      <%= check_box_tag "museum[category][]", category,
-       @museum.category.include?(category) ? true : false,
+      <%= check_box_tag "museum[categories][]", category,
+       @museum.categories.include?(category) ? true : false,
         include_hidden: false %>
     <% end %>
   </div>

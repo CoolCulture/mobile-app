@@ -26,6 +26,11 @@
 </p>
 
 <p>
+  <strong>Categories:</strong>
+  <%= @museum.categories %>
+</p>
+
+<p>
   <strong>Hours:</strong>
   <%= @museum.hours %>
 </p>
@@ -42,7 +47,7 @@
 
 <p>
   <strong>Wifi?</strong>
-  <%= human_boolean(@museum.wifi) %>
+  <%= boolean_to_human(@museum.wifi) %>
 </p>
 
 <%= link_to 'Edit', edit_museum_path(@museum) %> |

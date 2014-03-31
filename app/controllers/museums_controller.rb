@@ -62,7 +62,7 @@ class MuseumsController < ApplicationController
   end
 
   def import 
-    Museum.import(params[:file])
+    Museum.import(params[:file].path)
     redirect_to museums_url, notice: "Museums imported successfully."
   end
 

@@ -8,7 +8,7 @@ FactoryGirl.define do
     hours ['9AM-5PM M-F', '10AM-9PM Sat']
     subwayLines ['A','C','J','Z']
     busLines 'B1,B2,B7'
-    category ['Art','History']
+    categories ['Art','History']
     wifi true
   end
 end
