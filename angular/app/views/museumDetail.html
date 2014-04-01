@@ -1,5 +1,15 @@
-<header><button ng-click="back()" class="btn btn-default">Back</button></header>
-<section class="row" ng-show="museum">
+<header>
+  <div class="back-btn-container">
+    <button ng-click="back()" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </button>
+  </div>
+  <div class="header-text">
+    Cool Culture
+  </div>
+</header>
+
+<section class="section-detail row" ng-show="museum">
       <div class="museum-name-detail-view col-xs-12">
         <strong>{{museum.name}}</strong>
       </div>
@@ -8,8 +18,9 @@
         <div class="col-xs-6">
           <img src="images/sample_museum.jpg" width="100" />
         </div>
+
         <div class="col-xs-6">
-          <img src="images/train.svg" width="20px" />
+          <img src="images/train.svg" width="20px">
           <subway-lines lines="museum.subwayLines"></subwayLines>
         </div>
 
@@ -29,8 +40,11 @@
         <hr>
         <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
           <div class="action">
-            <span class="glyphicon glyphicon-map-marker"></span> {{museum.address}}
-            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            <img class="address-icon address-icon-detail-view" src="images/address.svg">
+            <span class="detail-view-action-text">
+              {{museum.address}}
+            </span>
+            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
           </div>
         </a>
         <hr>
@@ -39,8 +53,11 @@
       <div class="col-xs-12">
         <a href="{{museum.siteUrl}}" target="_blank">
           <div class="action">
-            Visit Museum Website
-            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            <img class="home-icon" src="images/home.svg">
+            <span class="detail-view-action-text">
+              Visit Museum Website
+            </span>
+            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
           </div>
         </a>
         <hr>
@@ -49,8 +66,11 @@
       <div class="col-xs-12">
         <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
           <div class="action">
-            <span class="glyphicon glyphicon-earphone"></span> Call Now: {{museum.phoneNumber}}
-            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            <img class="phone-icon" src="images/phone.svg">
+            <span class="detail-view-action-text">
+              Call Now: {{museum.phoneNumber}}
+            </span>
+            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
           </div>
         </a>
         <hr>
