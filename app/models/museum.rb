@@ -3,6 +3,8 @@ class Museum
   include Mongoid::Slug
   extend BooleanHelper
 
+  has_many :checkins, dependent: :delete
+
   field :name, type: String
   field :phoneNumber, type: String
   field :address, type: String
@@ -47,7 +49,7 @@ class Museum
 
     SmarterCSV.process(file, options) do |row|
       attrs = row.first
-      
+
       attrs[:subwayLines] = attrs[:subwayLines].split(' ')
       attrs[:categories] = attrs[:categories].split(' ')
       attrs[:wifi] = human_to_boolean(attrs[:wifi])

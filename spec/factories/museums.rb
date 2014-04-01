@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :museum do
     name 'The Museum of Modern Art'
+    name_id 'the-museum-of-modern-art'
     phoneNumber '(212)-455-1236'
     address '123 Fake St'
     borough 'Manhattan'
