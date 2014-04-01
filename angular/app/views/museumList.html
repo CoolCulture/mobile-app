@@ -1,44 +1,46 @@
 <header>
-  <input ng-model="searchText" />
-  <button ng-click="openFilterModal()" class="btn">
-      Filters
+  <div class="search-btn-container">
+    <button ng-click="openFilterModal()" class="btn">
+      <img class="search-icon" src="images/search.svg">
     </button>
-    <button ng-click="resetFilters()" class="btn">
-      View All
-    </button>
+  </div>
+  <div class="header-text">
+    Cool Culture
+  </div>
 </header>
-
-  <section>
-    <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, categories: museumFilters.category }" ng-click="go('/museums/' + museum.name_id)">
+<div class="search-bar col-xs-12">
+  <img class="search-icon" src="images/search.svg">
+  <input class="search-bar-input" placeholder="Search" ng-model="searchText"/>
+</div>
+<section>
+  <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, categories: museumFilters.category }" ng-click="go('/museums/' + museum.name_id)">
     <hr>
     <article class="list-item col-xs-12">
+      <div class="col-xs-12">
+        <strong>{{museum.name}}</strong>
+      </div>
 
-          <div class="col-xs-12">
-            <strong>{{museum.name}}</strong>
-          </div>
+      <div class="col-xs-10">
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <span class="museum-name-list-view">{{museum.address}}</span>
+      </div>
 
-          <div class="col-xs-10">
-            <span class="glyphicon glyphicon-map-marker"></span>
-            <span class="museum-name-list-view">{{museum.address}}</span>
-          </div>
+      <div class="col-xs-1 pull-right center-vertical">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </div>
 
-          <div class="col-xs-1 pull-right center-vertical">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </div>
+      <div class="subway-lines col-xs-9">
+        <img src="images/train.svg" class="subway-lines-icon"></img>
+        <subway-lines lines="museum.subwayLines"></subwayLines>
+      </div>
 
-          <div class="subway-lines col-xs-9">
-            <img src="images/train.svg" class="subway-lines-logo"></img>
-            <subway-lines lines="museum.subwayLines"></subwayLines>
-          </div>
-
-          <div class="bus-lines col-xs-9" ng-show="museum.busLines">
-            <img src="images/bus.svg" class="bus-lines-logo"></img>
-            <span class="bus-lines-text">{{museum.busLines}}</span>
-          </div>
-
+      <div class="bus-lines col-xs-9" ng-show="museum.busLines">
+        <img src="images/bus.svg" class="bus-lines-icon"></img>
+        <span class="bus-lines-text">{{museum.busLines}}</span>
+      </div>
     </article>
   </div>
-  </section>
+</section>
 <script type="text/ng-template" id="filters.html">
   <div class="modal-header"><h4>Borough:</h4></div>
   <div class="modal-body">

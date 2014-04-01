@@ -1,7 +1,8 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$white: #FFF;
 $light-gray: #DCDCDC;
 $lighter-gray: #EEE;
-$cool-culture-red: #F34927;
+$cool-culture-red: #F5623C;
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'slider';
@@ -108,7 +109,7 @@ body {
     margin-bottom: 3px;
 }
 
-.subway-lines-logo {
+.subway-lines-icon {
     width: 20px;
 }
 
@@ -116,7 +117,7 @@ body {
     padding-left: 17px;
 }
 
-.bus-lines-logo {
+.bus-lines-icon {
     width: 15px;
 }
 
@@ -180,21 +181,46 @@ a:hover {
     text-decoration: none;
 }
 
-
 header {
-     position: fixed;
-     text-align: center;
-     background: $cool-culture-red;
-     top: 0;
-     left: 0;
-     width: 100%;
-     z-index: 1;
+    text-align: center;
+    background: $cool-culture-red;
+    color: $white;
+    height: 40px;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header-text {
+    font-size: 200%;
+    font-weight: bold;
 }
 
 section {
     display: block;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
+.search-bar {
+    margin-top: 10px;
+}
 
+.search-icon {
+    width: 25px;
+}
 
+.search-bar-input {
+    border: 0;
+    height: 33px;
+}
+
+.btn {
+    background: $cool-culture-red;
+    color: $white;
+    height: 100%;
+}
+
+.search-btn-container {
+    position: absolute;
+}
