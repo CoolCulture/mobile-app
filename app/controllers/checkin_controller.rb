@@ -5,7 +5,7 @@ class CheckinController < ApplicationController
   # POST /checkin.json
   def create
     museum = Museum.find(params[:museum_id])
-    family_card = FamilyCard.find(params[:family_card_id])
+    family_card = FamilyCard.find_or_initialize_by(id: params[:family_card_id])
 
     respond_to do |format|
       if family_card.valid_last_name(params[:last_name])
