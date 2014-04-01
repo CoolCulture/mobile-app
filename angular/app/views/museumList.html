@@ -8,9 +8,11 @@
     Cool Culture
   </div>
 </header>
-<div class="search-bar col-xs-12">
-  <img class="search-icon" src="images/search.svg">
-  <input class="search-bar-input" placeholder="Search" ng-model="searchText"/>
+<div class="row">
+  <div class="search-bar col-xs-12">
+      <img class="search-icon" src="images/search.svg">
+      <input class="search-bar-input" placeholder="Search" ng-model="searchText"/>
+  </div>
 </div>
 <section>
   <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, categories: museumFilters.category }" ng-click="go('/museums/' + museum.name_id)">
