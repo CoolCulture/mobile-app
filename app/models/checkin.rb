@@ -7,4 +7,6 @@ class Checkin
   field :number_of_adults, type: Integer
   field :number_of_children, type: Integer
 
+  validates_presence_of :number_of_children, :number_of_adults
+
 end

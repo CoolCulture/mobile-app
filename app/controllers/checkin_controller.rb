@@ -7,16 +7,19 @@ class CheckinController < ApplicationController
     museum = Museum.find(params[:museum_id])
     family_card = FamilyCard.find(params[:family_card_id])
 
-    @checkin = Checkin.new(checkin_params)
-    @checkin.museum = museum
-    @checkin.family_card = family_card
-
     respond_to do |format|
-      if @checkin.save
-        format.json { render action: 'show', status: :created, location: @checkin }
+      if family_card.valid_last_name(params[:last_name])
+        @checkin = Checkin.new(checkin_params)
+        @checkin.museum = museum
+        @checkin.family_card = family_card
+
+        if @checkin.save
+          format.json { render action: 'show', status: :created, location: @checkin }
+        end
+      else
+          format.json { render json: @checkin, status: :unprocessable_entity }
       end
     end
-
   end
 
   def show
