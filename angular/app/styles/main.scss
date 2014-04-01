@@ -266,6 +266,10 @@ section {
     background-color: adjust-lightness($cool-culture-orange, -7);
 }
 
+.btn:hover {
+    color: white;
+}
+
 .filter-btn, .back-btn {
     height: 55px;
     width: 55px;
