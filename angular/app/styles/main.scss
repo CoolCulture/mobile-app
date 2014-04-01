@@ -2,7 +2,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 $white: #FFF;
 $light-gray: #DCDCDC;
 $lighter-gray: #EEE;
-$cool-culture-red: #F5623C;
+$cool-culture-orange: #F5623C;
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'slider';
@@ -31,7 +31,7 @@ body {
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid $cool-culture-red;
+    border-bottom: 1px solid $cool-culture-orange;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -46,7 +46,7 @@ body {
 .footer {
     padding-top: 19px;
     color: #777;
-    border-top: 1px solid $cool-culture-red;
+    border-top: 1px solid $cool-culture-orange;
 }
 
 .container-narrow > hr {
@@ -56,7 +56,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
     text-align: center;
-    border-bottom: 1px solid $cool-culture-red;
+    border-bottom: 1px solid $cool-culture-orange;
 }
 
 .jumbotron .btn {
@@ -101,8 +101,8 @@ body {
     margin-bottom: 5px;
 }
 
-.museum-name-list-view {
-    vertical-align: top;
+.museum-address-list-view {
+    margin-left: -3px;
 }
 
 .subway-lines {
@@ -125,12 +125,17 @@ body {
     padding: 3px;
 }
 
+.address-icon {
+    width: 30px;
+    margin-left: -6px;
+}
+
 .hours {
     margin: 10px 0px;
 }
 
 .glyphicon-chevron-right {
-    color: $cool-culture-red;
+    color: $cool-culture-orange;
 }
 
 .glyphicon-map-marker {
@@ -183,9 +188,9 @@ a:hover {
 
 header {
     text-align: center;
-    background: $cool-culture-red;
+    background: $cool-culture-orange;
     color: $white;
-    height: 40px;
+    height: 55px;
     margin-left: -15px;
     margin-right: -15px;
     padding-left: 15px;
@@ -195,6 +200,7 @@ header {
 .header-text {
     font-size: 200%;
     font-weight: bold;
+    padding-top: 7px;
 }
 
 section {
@@ -210,17 +216,28 @@ section {
     width: 25px;
 }
 
+.filter-icon {
+    width: 45px;
+    padding-bottom: 5px;
+}
+
 .search-bar-input {
     border: 0;
     height: 33px;
 }
 
 .btn {
-    background: $cool-culture-red;
+    background: $cool-culture-orange;
     color: $white;
     height: 100%;
 }
 
-.search-btn-container {
+.filter-btn {
+    height: 55px;
+    width: 55px;
+    padding: 0px;
+}
+
+.filter-btn-container {
     position: absolute;
 }

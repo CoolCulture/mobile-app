@@ -1,7 +1,7 @@
 <header>
-  <div class="search-btn-container">
-    <button ng-click="openFilterModal()" class="btn">
-      <img class="search-icon" src="images/search.svg">
+  <div class="filter-btn-container">
+    <button ng-click="openFilterModal()" class="btn filter-btn">
+      <img class="filter-icon" src="images/filter.svg">
     </button>
   </div>
   <div class="header-text">
@@ -21,8 +21,8 @@
       </div>
 
       <div class="col-xs-10">
-        <span class="glyphicon glyphicon-map-marker"></span>
-        <span class="museum-name-list-view">{{museum.address}}</span>
+        <img class="address-icon" src="images/address.svg">
+        <span class="museum-address-list-view">{{museum.address}}</span>
       </div>
 
       <div class="col-xs-1 pull-right center-vertical">
