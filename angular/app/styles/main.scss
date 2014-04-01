@@ -1,10 +1,12 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-$white: #FFF;
-$light-gray: #DCDCDC;
-$lighter-gray: #EEE;
+$white: #FFFFFF;
+$light-gray: #E2E2E2;
+$middle-gray: #CCCCCC;
+$dark-gray: #4C4C4C;
 $cool-culture-orange: #F5623C;
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'compass/css3';
 @import 'slider';
 @import 'badges';
 
@@ -135,7 +137,7 @@ body {
 }
 
 .glyphicon-chevron-right {
-    color: $cool-culture-orange;
+    color: $dark-gray;
 }
 
 .glyphicon-map-marker {
@@ -155,12 +157,12 @@ body {
     padding-bottom: 20px;
 }
 
-.list-item-container:active {
-    background: $light-gray
+.list-item-container:active, .list-item-container:nth-child(even):active {
+    background: $middle-gray;
 }
 
 .list-item-container:nth-child(even) {
-    background: $lighter-gray;
+    background: $light-gray;
 }
 
 hr {
@@ -205,15 +207,17 @@ header {
 
 section {
     display: block;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .search-bar {
-    margin-top: 10px;
+    margin-top: 3px;
+    margin-left: -14px;
 }
 
 .search-icon {
-    width: 25px;
+    width: 50px;
+    margin-top: -7px;
 }
 
 .filter-icon {
@@ -223,13 +227,22 @@ section {
 
 .search-bar-input {
     border: 0;
-    height: 33px;
+    height: 50px;
+    width: 90%;
+    font-size: 150%;
+    color: $dark-gray;
+    margin-top: 2px;
 }
 
 .btn {
     background: $cool-culture-orange;
     color: $white;
     height: 100%;
+}
+
+.btn:active {
+    box-shadow: none;
+    background-color: adjust-lightness($cool-culture-orange, -7);
 }
 
 .filter-btn {
@@ -240,4 +253,17 @@ section {
 
 .filter-btn-container {
     position: absolute;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: $light-gray
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $light-gray
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $light-gray
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: $light-gray
 }
