@@ -59,5 +59,22 @@
   background: #172082;
 }
 
+.badge-group-number {
+  color: $cool-culture-orange;
+  background: none;
+  border: solid 1px;
+  font-size: 200%;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 15px 10px;
+
+}
+
+.badge-group-number.active, .badge-group-number:hover {
+  color: white;
+  background: $cool-culture-orange;
+  border: solid 1px;
+}
+
 
 

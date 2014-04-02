@@ -9,6 +9,43 @@
   </div>
 </header>
 
-<section class="section-detail row">
-  Check In
+<section class="row section-detail ">
+  <div class="col-xs-12">
+    <h1>Check In</h1>
+    <h2>{{checkinData.museum_id}}</h2>
+  </div>
+
+  <div class="col-xs-12 alert alert-danger" ng-show="errors">
+    {{errors}}
+  </div>
+
+  <div class="col-xs-12">
+    <input class="checkin-input" placeholder="Family Card Id" ng-model="checkinData.family_card_id"/>
+  </div>
+
+  <div class="col-xs-12">
+    <input class="checkin-input" placeholder="Last Name" ng-model="checkinData.last_name"/>
+    <hr>
+  </div>
+
+
+  <div class="col-xs-12">
+    <h4>How many children are in your group?</h4>
+    <group-number options="options" number="checkinData.checkin.number_of_children"></group-number>
+    <hr>
+  </div>
+
+
+  <div class="col-xs-12">
+    <h4>How many adults are in your group?</h4>
+    <group-number options="options" number="checkinData.checkin.number_of_adults"></group-number>
+  </div>
+
+  <div class="col-xs-12">
+    <button ng-click="checkin()" class="btn">
+        CHECK IN
+  </button>
+  </div>
+
+
 </section>
