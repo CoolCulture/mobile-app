@@ -26,8 +26,8 @@
 </p>
 
 <p>
-  <strong>Categories:</strong>
-  <%= @museum.categories %>
+  <strong>Image URL:</strong>
+  <%= @museum.imageUrl %>
 </p>
 
 <p>
@@ -46,9 +46,30 @@
 </p>
 
 <p>
+  <strong>Categories:</strong>
+  <%= @museum.categories %>
+</p>
+
+<p>
   <strong>Wifi?</strong>
   <%= boolean_to_human(@museum.wifi) %>
 </p>
+
+<p>
+  <strong>Handicap Accessible?</strong>
+  <%= boolean_to_human(@museum.handicapAccessible) %>
+</p>
+
+<p>
+  <strong>Hands-On Activity?</strong>
+  <%= boolean_to_human(@museum.handsOnActivity) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @museum.description %>
+</p>
+
 
 <%= link_to 'Edit', edit_museum_path(@museum) %> |
 <%= link_to 'Back', museums_path %>

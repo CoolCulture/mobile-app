@@ -16,6 +16,7 @@
   <%= f.input :address %>
   <%= f.input :borough, collection: ["Brooklyn", "Bronx", "Manhattan", "Queens", "Staten Island"], prompt: "Select a Borough" %>
   <%= f.input :siteUrl %>
+  <%= f.input :imageUrl %>
 
   <div class="field">
     <%= label_tag :hours_1 %><br>
@@ -44,6 +45,8 @@
     <% end %>
   </div>
 
+  <%= f.input :busLines %>
+
   <%= label_tag "Categories" %>
   <div class="field">
     <% Museum::CATEGORIES.each do |category| %>
@@ -59,7 +62,17 @@
     <%= f.check_box :wifi %> <br />
 </div>
 
-  <%= f.input :busLines %>
+<div class="field">
+    <%= f.label "Handicap Accessible" %> <br />
+    <%= f.check_box :handicapAccessible %> <br />
+</div>
+
+<div class="field">
+    <%= f.label "Hands-On Activity" %> <br />
+    <%= f.check_box :handsOnActivity %> <br />
+</div>
+
+  <%= f.input :description %>
   <div class="actions">
     <%= f.submit %>
   </div>
