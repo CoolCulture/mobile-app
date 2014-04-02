@@ -12,7 +12,7 @@ describe('Service: CheckinService', function () {
     httpBackend = _$httpBackend_;
   }));
 
-  it('with valid should checkin to museum', function () {
+  it('with valid last name and family id should checkin to museum', function () {
 
     httpBackend.expect('POST', '/api/checkin')
       .respond(201, '{ "number_of_children": 3, "number_of_adults": 2 }');
@@ -34,4 +34,28 @@ describe('Service: CheckinService', function () {
 
     httpBackend.flush();
   });
+
+   it('with invalid last name and family id should checkin to museum', function () {
+
+    httpBackend.expect('POST', '/api/checkin')
+      .respond(422, null);
+
+    var museumCheckin = {
+                                          "museum_id": "museum-does-not-exist",
+                                          "family_card_id": "12345",
+                                          "last_name": "WrongLastName",
+                                          "checkin": {
+                                            "number_of_children" : "3",
+                                            "number_of_adults" : "2"
+                                          }
+                                        };
+
+    CheckinService.checkin(museumCheckin).error(function(data){
+      expect(data).toBe(null);
+    });
+
+    httpBackend.flush();
+  });
+
+
 });

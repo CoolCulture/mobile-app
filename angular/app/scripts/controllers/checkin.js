@@ -2,12 +2,18 @@
 
 angular.module('coolCultureApp')
   .controller('CheckinCtrl', function ($scope, $routeParams, CheckinService) {
-    $scope.checkinData = {}
+    $scope.checkinData = {
+      museum_id: $routeParams.id,
+      family_card_id: '',
+      last_name: '',
+      checkin: {
+        number_of_children: 0,
+        number_of_adults: 0
+      }
+    }
 
-    // var checkin = function() {
-    //   MuseumService.requestMuseum($routeParams.id).success(function(data){
-    //     $scope.museum = data;
-    //   });
-    // }
+    $scope.checkin = function() {
+      CheckinService.checkin($scope.checkinData);
+    }
 
   });
