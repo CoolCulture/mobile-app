@@ -26,7 +26,8 @@ class Museum
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :hours, :subwayLines, :categories, :wifi
+  						 :siteUrl, :imageUrl, :hours, :subwayLines, :categories,
+               :wifi, :handicapAccessible, :handsOnActivity
 
   validates_uniqueness_of :name
 

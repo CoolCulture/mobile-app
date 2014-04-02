@@ -1,1 +1,1 @@
-json.extract! @museum, :id, :name, :phoneNumber, :address, :borough, :siteUrl, :hours, :subwayLines, :busLines, :categories, :name_id, :wifi
+json.extract! @museum, :id, :name, :phoneNumber, :address, :borough, :siteUrl, :imageUrl, :hours, :subwayLines, :busLines, :categories, :name_id, :wifi, :handicapAccessible, :handsOnActivity, :description

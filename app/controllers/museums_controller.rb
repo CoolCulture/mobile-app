@@ -74,6 +74,8 @@ class MuseumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def museum_params
-      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl, :busLines, :wifi, categories: [], hours: [], subwayLines: [])
+      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl, 
+        :imageUrl, :busLines, :wifi, :handicapAccessible, :handsOnActivity, :description,
+        categories: [], hours: [], subwayLines: [])
     end
 end
