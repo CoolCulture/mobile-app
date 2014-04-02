@@ -12,7 +12,9 @@
 <section class="row section-detail ">
   <div class="col-xs-12">
     <h2 class="checkin-text">Check In</h2>
-    <h3>{{checkinData.museum_id | displayMuseumIdFilter }}</h3>
+    <div class="checkin-museum-text">
+      <strong>{{checkinData.museum_id | displayMuseumIdFilter }}</strong>
+    </div>
   </div>
 
   <div class="col-xs-12 alert alert-danger" ng-show="errors">

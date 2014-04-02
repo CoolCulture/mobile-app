@@ -1,6 +1,6 @@
 <header>
   <div class="back-btn-container">
-    <button ng-click="back()" class="btn back-btn">
+    <button ng-click="go('/museums')" class="btn back-btn">
       <img class="back-icon" src="images/arrow.svg">
     </button>
   </div>
@@ -9,8 +9,8 @@
   </div>
 </header>
 <section class="section-detail row">
-  <div>
-    Check In
-    {{checkinData.museum_id}}
+  <div >
+    {{museum_id}}
+    {{groupNumber}}
   </div>
 </section>

@@ -16,7 +16,11 @@ angular.module('coolCultureApp')
     $scope.checkin = function() {
       $scope.errors = "";
       CheckinService.checkin($scope.checkinData).success(function(data) {
-        // $rootScope.go('museums/checkinConfirmation');
+        var groupNumber = $scope.checkinData.checkin.number_of_adults + $scope.checkinData.checkin.number_of_children;
+        var path = 'museums/checkinConfirmation/' + $scope.checkinData.museum_id + '?number=' + groupNumber;
+        console.log(path);
+        $rootScope.go(path);
+
       }).error(function() {
         $scope.errors = "Verify your Family Card Id and Last Name are correct.";
       });
