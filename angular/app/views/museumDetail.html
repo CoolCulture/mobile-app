@@ -16,17 +16,27 @@
 
       <div class="col-xs-12">
         <div class="col-xs-6">
-          <img src="{{museum.imageUrl}}" width="100" />
+          <img class="museum-image" src="{{museum.imageUrl}}"/>
         </div>
 
         <div class="col-xs-6">
-          <img src="images/train.svg" width="20px">
+          <img class="train-icon" src="images/train.svg">
           <subway-lines lines="museum.subwayLines"></subwayLines>
         </div>
 
         <div class="bus-lines col-xs-6" ng-show="museum.busLines">
           <img src="images/bus.svg" class="bus-lines-icon"></img>
           <span class="bus-lines-text">{{museum.busLines}}</span>
+        </div>
+
+        <div class="col-xs-1" ng-if="museum.wifi">
+          <img class="wifi-icon" src="images/wifi.svg">
+        </div>
+        <div class="col-xs-1" ng-if="museum.handicapAccessible">
+          <img class="handicap-icon" src="images/handicap.svg">
+        </div>
+        <div class="col-xs-1" ng-if="museum.handsOnActivity">
+          <img class="hands-on-icon" src="images/hands-on.svg">
         </div>
       </div>
 
