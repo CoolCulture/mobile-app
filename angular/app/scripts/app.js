@@ -19,6 +19,10 @@ angular.module('coolCultureApp', [
         templateUrl: 'views/museumDetail.html',
         controller: 'MuseumDetailCtrl'
       })
+      .when('/museums/checkin/:id', {
+        templateUrl: 'views/checkin.html',
+        controller: 'CheckinCtrl'
+      })
       .otherwise({
         redirectTo: '/museums'
       });
