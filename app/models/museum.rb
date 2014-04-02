@@ -10,11 +10,15 @@ class Museum
   field :address, type: String
   field :borough, type: String
   field :siteUrl, type: String
+  field :imageUrl, type: String
   field :hours, type: Array, default: []
   field :subwayLines, type: Array, default: []
   field :busLines, type: String
   field :categories, type: Array, default: []
   field :wifi, type: Boolean
+  field :handicapAccessible, type: Boolean
+  field :handsOnActivity, type: Boolean
+  field :description, type: String
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
@@ -38,8 +42,11 @@ class Museum
                               website: :siteUrl,
                               subway: :subwayLines,
                               bus: :busLines,
-                              flickr_url: nil,
+                              photo_url: :imageUrl,
                               :"wi-fi" => :wifi,
+                              wheelchair_accessible: :handicapAccessible,
+                              hands_on_activity: :handsOnActivity,
+                              museum_description: :description,
                               seasonal_hours: nil,
                               closed: nil,
                               wifi_notes: nil,
@@ -50,7 +57,7 @@ class Museum
     SmarterCSV.process(file, options) do |row|
       attrs = row.first
 
-      attrs[:subwayLines] = attrs[:subwayLines].split(' ')
+      attrs[:subwayLines] = attrs[:subwayLines].to_s.split(' ')
       attrs[:categories] = attrs[:categories].split(' ')
       attrs[:wifi] = human_to_boolean(attrs[:wifi])
 
@@ -61,6 +68,8 @@ class Museum
       attrs.delete(:hours_2)
       attrs.delete(:hours_3)
       attrs.delete(:hours_4)
+
+      attrs[:borough] = BOROUGHS[attrs[:borough]]
 
       created = Museum.create(attrs)
 
@@ -75,6 +84,12 @@ class Museum
   CATEGORIES = [
     "History", "Science", "Art"
   ]
+
+  BOROUGHS = {"M" => "Manhattan",
+              "BX" => "Bronx",
+              "BK" => "Brooklyn",
+              "SI" => "Staten Island",
+              "Q" => "Queens"}
 
   def slug_format(name)
     name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
