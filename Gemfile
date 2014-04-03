@@ -46,6 +46,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+   gem 'heroku-deflater'
+end
+
 group :development, :test do
   gem 'pry'
 end
