@@ -71,9 +71,19 @@
 }
 
 .badge-group-number.active, .badge-group-number:hover {
-  color: white;
+  color: $white;
   background: $cool-culture-orange;
   border: solid 1px;
+}
+
+.badge-group-number-checkin {
+  color: $white;
+  background: $cool-culture-orange;
+  border: solid 1px;
+  font-size: 220%;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 15px 10px;
 }
 
 

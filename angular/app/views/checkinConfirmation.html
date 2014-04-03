@@ -9,8 +9,22 @@
   </div>
 </header>
 <section class="section-detail row">
-  <div >
-    {{museum_id}}
-    {{groupNumber}}
+  <div class="col-xs-12">
+    <h2 class="checkin-text">Great! <br>You are checked in...</h2>
+  </div>
+  <div class="col-xs-11 checkin-confirmation-card ">
+    <div class="col-xs-11">
+      <strong>{{museum_id | displayMuseumIdFilter }}</strong>
+    </div>
+    <div class="col-xs-11">
+      <span class="badge badge-group-number-checkin">{{groupNumber}}</span>
+      people checked in
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <button ng-click="go('/museums')" class="btn btn-checkin">
+        VIEW MUSEUM LIST
+  </button>
   </div>
 </section>
