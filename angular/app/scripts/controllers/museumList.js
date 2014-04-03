@@ -8,14 +8,9 @@ angular.module('coolCultureApp')
     });
 
     $scope.museumFilters = {
-    	category: '',
-    	borough: ''
-    };
-
-    $scope.resetFilters = function() {
-		$scope.museumFilters.category = '';
-		$scope.museumFilters.borough = '';
-    };
+    	categories: [],
+    	boroughs: []
+        };
 
     $scope.openFilterModal = function() {
     	$modal.open({
@@ -26,10 +21,26 @@ angular.module('coolCultureApp')
 	    			$modalInstance.close();
 	    		};
 	    		$scope.cancel = function() {
-	    			$scope.museumFilters.borough = '';
-	    			$scope.museumFilters.category = '';
+	    			$scope.museumFilters.boroughs = [];
+	    			$scope.museumFilters.categories = [];
 	    			$modalInstance.close();
 	    		};
+	    		$scope.addCategory = function(category) {
+	    			var indexOfCategory = $scope.museumFilters.categories.indexOf(category);
+			    	if (indexOfCategory === -1){
+			    		$scope.museumFilters.categories.push(category);
+			    	}	else {
+			    		$scope.museumFilters.categories.splice(indexOfCategory, 1);
+			    	}
+			    };
+			    $scope.addBorough = function(borough) {
+	    			var indexOfBorough = $scope.museumFilters.boroughs.indexOf(borough);
+			    	if (indexOfBorough === -1){
+			    		$scope.museumFilters.boroughs.push(borough);
+			    	}	else {
+			    		$scope.museumFilters.boroughs.splice(indexOfBorough, 1);
+			    	}
+			    };
 	    	}],
 	    	resolve: {
 	    		museumFilters: function () {

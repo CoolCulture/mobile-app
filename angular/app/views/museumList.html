@@ -15,7 +15,7 @@
   </div>
 </div>
 <section>
-  <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText, borough: museumFilters.borough, categories: museumFilters.category }" ng-click="go('/museums/' + museum.name_id)">
+  <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText} | museumCategoryFilter:museumFilters.categories | museumBoroughFilter:museumFilters.boroughs" ng-click="go('/museums/' + museum.name_id)">
     <hr>
     <article class="list-item col-xs-12">
       <div class="col-xs-12">
@@ -44,39 +44,59 @@
   </div>
 </section>
 <script type="text/ng-template" id="filters.html">
-  <div class="modal-header"><h4>Borough:</h4></div>
-  <div class="modal-body">
-    <div class="row">
-    <label class="col-xs-5">
-      <input type="radio" ng-model="museumFilters.borough" value="Manhattan"> Manhattan
-    </label>
-    <label class="col-xs-5">
-      <input type="radio" ng-model="museumFilters.borough" value="Queens"> Queens
-    </label>
-    <label class="col-xs-5">
-      <input type="radio" ng-model="museumFilters.borough" value="Brooklyn"> Brooklyn
-    </label>
-    <label class="col-xs-5">
-      <input type="radio" ng-model="museumFilters.borough" value="Staten Island"> Staten Island
-    </label>
-    <label class="col-xs-5">
-      <input type="radio" ng-model="museumFilters.borough" value="Bronx"> Bronx
-    </label>
+  <div class="modal-header">
+    <h4>Categories</h4>
   </div>
-</div>
-
-  <div class="modal-header"><h4>Category:</h4></div>
   <div class="modal-body">
-    <div class="row">
-      <label class="col-xs-4 col-md-3">
-        <input type="radio" ng-model="museumFilters.category" value="History"> History
-      </label>
-      <label class="col-xs-3 col-md-3">
-        <input type="radio" ng-model="museumFilters.category" value="Art"> Art
-      </label>
-      <label class="col-xs-4 col-md-3">
-        <input type="radio" ng-model="museumFilters.category" value="Science"> Science
-      </label>
+    <div class="row categories-row">
+      <div class="art-checkbox col-sm-2 col-sm-offset-1 col-xs-4">
+        <input type="checkbox" ng-click="addCategory('Art')" ng-checked="museumFilters.categories.indexOf('Art') !== -1" id="art" class="checkboxLabel">
+        <label class="category-checkbox" for="art">Art</label>
+      </div>
+      <div class="history-checkbox col-sm-2 col-xs-4">
+        <input type="checkbox" ng-click="addCategory('History')" ng-checked="museumFilters.categories.indexOf('History') !== -1" id="history" class="checkboxLabel">
+        <label class="category-checkbox" for="history">History</label>
+      </div>
+      <div class="nature-checkbox col-sm-2 col-xs-4">
+        <input type="checkbox" ng-click="addCategory('Nature')" ng-checked="museumFilters.categories.indexOf('Nature') !== -1" id="nature" class="checkboxLabel">
+        <label class="category-checkbox" for="nature">Nature</label>
+      </div>
+      <div class="science-checkbox col-sm-2 col-xs-6">
+        <input type="checkbox" ng-click="addCategory('Science')" ng-checked="museumFilters.categories.indexOf('Science') !== -1" id="science" class="checkboxLabel">
+        <label class="category-checkbox" for="science">Science</label>
+      </div>
+      <div class="other-checkbox col-sm-2 col-xs-6">
+        <input type="checkbox" ng-click="addCategory('Other')" ng-checked="museumFilters.categories.indexOf('Other') !== -1" id="other" class="checkboxLabel">
+        <label class="category-checkbox" for="other">Other</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-header">
+    <h4>Boroughs</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row boroughs-row">
+      <div class="manhattan-checkbox col-sm-2 col-sm-offset-1 col-xs-4">
+        <input type="checkbox" ng-click="addBorough('Manhattan')" ng-checked="museumFilters.boroughs.indexOf('Manhattan') !== -1" id="manhattan" class="checkboxLabel">
+        <label class="boroughs-checkbox" for="manhattan"></label>  
+      </div>
+      <div class="queens-checkbox col-sm-2 col-xs-4">
+        <input type="checkbox" ng-click="addBorough('Queens')" ng-checked="museumFilters.boroughs.indexOf('Queens') !== -1" id="queens" class="checkboxLabel">
+        <label class="boroughs-checkbox" for="queens"></label>  
+      </div>
+      <div class="brooklyn-checkbox col-sm-2 col-xs-4">
+        <input type="checkbox" ng-click="addBorough('Brooklyn')" ng-checked="museumFilters.boroughs.indexOf('Brooklyn') !== -1" id="brooklyn" class="checkboxLabel">
+        <label class="boroughs-checkbox" for="brooklyn"></label>  
+      </div>
+      <div class="staten-island-checkbox col-sm-2 col-xs-6">
+        <input type="checkbox" ng-click="addBorough('Staten Island')" ng-checked="museumFilters.boroughs.indexOf('Staten Island') !== -1" id="staten-island" class="checkboxLabel">
+        <label class="boroughs-checkbox" for="staten-island"></label>  
+      </div>
+      <div class="bronx-checkbox col-sm-2 col-xs-6">
+        <input type="checkbox" ng-click="addBorough('Bronx')" ng-checked="museumFilters.boroughs.indexOf('Bronx') !== -1" id="bronx" class="checkboxLabel">
+        <label class="boroughs-checkbox" for="bronx"></label>  
+      </div>
     </div>
   </div>
 

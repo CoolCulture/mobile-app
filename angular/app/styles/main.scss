@@ -336,6 +336,232 @@ section {
     margin-left: -12px;
 }
 
+.categories-row, .boroughs-row {
+    margin-bottom: 10px;
+}
+
+.category-checkbox, .boroughs-checkbox{
+    padding-top: 100px;
+}
+
+.category-checkbox {
+    margin-bottom: 20px;
+}
+
+.art-checkbox, .history-checkbox, .other-checkbox, .science-checkbox, .nature-checkbox { 
+    display: inline-block;
+}
+
+label .boroughs-checkbox {
+    display: none;
+}
+
+.manhattan-checkbox, .queens-checkbox, .brooklyn-checkbox, .staten-island-checkbox, .bronx-checkbox { 
+    display: inline-block;
+}
+
+.manhattan-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.manhattan-checkbox input[type="checkbox"] + label {    
+    background: url('../images/manhattan-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.manhattan-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/manhattan-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.queens-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.queens-checkbox input[type="checkbox"] + label {    
+    background: url('../images/queens-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.queens-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/queens-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.brooklyn-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.brooklyn-checkbox input[type="checkbox"] + label {    
+    background: url('../images/brooklyn-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.brooklyn-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/brooklyn-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.staten-island-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.staten-island-checkbox input[type="checkbox"] + label {    
+    background: url('../images/staten-island-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.staten-island-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/staten-island-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.bronx-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.bronx-checkbox input[type="checkbox"] + label {    
+    background: url('../images/bronx-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.bronx-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/bronx-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.art-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.art-checkbox input[type="checkbox"] + label {    
+    background: url('../images/art-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.art-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/art-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.history-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.history-checkbox input[type="checkbox"] + label {    
+    background: url('../images/history-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.history-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/history-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.nature-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.nature-checkbox input[type="checkbox"] + label {    
+    background: url('../images/nature-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.nature-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/nature-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.science-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.science-checkbox input[type="checkbox"] + label {    
+    background: url('../images/science-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.science-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/science-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.other-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.other-checkbox input[type="checkbox"] + label {    
+    background: url('../images/other-unselected.svg') no-repeat scroll 0% 0% transparent;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.other-checkbox input[type="checkbox"]:checked + label {
+    background: url('../images/other-selected.svg')  no-repeat;
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+}
+
+.col-xs
+
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: $light-gray
 }
