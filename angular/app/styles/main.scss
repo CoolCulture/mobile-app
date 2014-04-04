@@ -340,7 +340,7 @@ section {
     display: inline-block;
 }
 
-.categories-row .modal-checkbox {
+.categories-row {
     margin-bottom: 20px;
 }
 
@@ -360,85 +360,15 @@ section {
     padding-top: 100px;
 }
 
-.modal-checkbox input[type="checkbox"] + label[class="manhattan-checkbox"] {    
-    background-image: url('../images/manhattan-unselected.svg');
+$filters: manhattan brooklyn bronx queens staten-island art science nature history other;
 
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="manhattan-checkbox"] {    
-    background-image: url('../images/manhattan-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="brooklyn-checkbox"] {    
-    background-image: url('../images/brooklyn-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="brooklyn-checkbox"] {    
-    background-image: url('../images/brooklyn-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="bronx-checkbox"] {    
-    background-image: url('../images/bronx-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="bronx-checkbox"] {    
-    background-image: url('../images/bronx-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="queens-checkbox"] {    
-    background-image: url('../images/queens-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="queens-checkbox"] {    
-    background-image: url('../images/queens-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="staten-island-checkbox"] {    
-    background-image: url('../images/staten-island-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="staten-island-checkbox"] {    
-    background-image: url('../images/staten-island-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="art-checkbox"] {    
-    background-image: url('../images/art-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="art-checkbox"] {    
-    background-image: url('../images/art-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="science-checkbox"] {    
-    background-image: url('../images/science-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="science-checkbox"] {    
-    background-image: url('../images/science-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="nature-checkbox"] {    
-    background-image: url('../images/nature-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="nature-checkbox"] {    
-    background-image: url('../images/nature-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="history-checkbox"] {    
-    background-image: url('../images/history-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="history-checkbox"] {    
-    background-image: url('../images/history-selected.svg');
-}
-
-.modal-checkbox input[type="checkbox"] + label[class="other-checkbox"] {    
-    background-image: url('../images/other-unselected.svg');
-}
-
-.modal-checkbox input[type="checkbox"]:checked + label[class="other-checkbox"] {    
-    background-image: url('../images/other-selected.svg');
+@each $filter in $filters {
+    input[type="checkbox"] + label[class="#{$filter}-checkbox"] {
+        background-image: url('../images/#{$filter}-unselected.svg');
+    }
+    input[type="checkbox"]:checked + label[class="#{$filter}-checkbox"] {
+        background-image: url('../images/#{$filter}-selected.svg');
+    }
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
