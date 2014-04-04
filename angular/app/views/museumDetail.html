@@ -36,7 +36,7 @@
           <img class="handicap-icon" src="images/handicap.svg">
         </div>
         <div class="col-xs-1" ng-if="museum.handsOnActivity">
-          <img class="hands-on-icon" src="images/hands-on.svg">
+          <img class="hands-on-text" src="images/hands-on-text.svg">
         </div>
       </div>
 
@@ -90,6 +90,17 @@
         <button ng-click="go('/museums/checkin/' + museum.name_id)" class="btn btn-checkin">
           CHECK IN TO MUSEUM
         </button>
+        <hr>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="description-title">
+          More Information
+        </div>
+        <hr>
+        <div class="description-text">
+          {{museum.description}}
+        </div>
       </div>
 
 </section>

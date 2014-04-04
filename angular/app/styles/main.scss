@@ -119,9 +119,9 @@ body {
     width: 45px;
 }
 
-.hands-on-icon {
-    width: 35px;
-    padding-top: 7px;
+.hands-on-text {
+    margin-top: -15px;
+    margin-left: -5px;
 }
 
 .subway-lines {
@@ -156,6 +156,14 @@ body {
 
 .detail-view-action-text {
     padding-top: 2px;
+}
+
+.description-title, .description-text {
+    padding: 10px;
+}
+
+.description-title {
+    font-size: 120%;
 }
 
 .phone-icon {
