@@ -12,9 +12,12 @@ class CheckinController < ApplicationController
         @checkin = Checkin.new(checkin_params)
         @checkin.museum = museum
         @checkin.family_card = family_card
+        @checkin.date = Date.today
 
         if @checkin.save
           format.json { render action: 'show', status: :created, location: @checkin }
+        else
+          format.json { render json: @checkin.errors, status: :unprocessable_entity }
         end
       else
           format.json { render json: @checkin, status: :unprocessable_entity }

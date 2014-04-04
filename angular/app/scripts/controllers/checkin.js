@@ -20,8 +20,12 @@ angular.module('coolCultureApp')
         var path = 'museums/checkinConfirmation/' + $scope.checkinData.museum_id + '?number=' + groupNumber;
         $rootScope.go(path);
 
-      }).error(function() {
-        $scope.errors = "Verify your Family Card Id and Last Name are correct.";
+      }).error(function(data) {
+        if (data.limit) {
+          $scope.errors = data.limit[0];
+        } else {
+          $scope.errors = "Verify your Family Card Id and Last Name are correct.";
+        };
       });
     }
 
