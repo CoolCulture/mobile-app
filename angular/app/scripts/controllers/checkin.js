@@ -16,8 +16,7 @@ angular.module('coolCultureApp')
     $scope.checkin = function() {
       $scope.errors = "";
       CheckinService.checkin($scope.checkinData).success(function(data) {
-        var groupNumber = $scope.checkinData.checkin.number_of_adults + $scope.checkinData.checkin.number_of_children;
-        var path = 'museums/checkinConfirmation/' + $scope.checkinData.museum_id + '?number=' + groupNumber;
+        var path = 'museums/checkinConfirmation/' + $scope.checkinData.museum_id + '?family_card_id=' + $scope.checkinData.family_card_id;
         $rootScope.go(path);
 
       }).error(function(data) {

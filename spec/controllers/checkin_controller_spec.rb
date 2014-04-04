@@ -81,5 +81,13 @@ describe CheckinController do
       end
     end
 
+    describe "GET show" do
+      it "should return success" do
+        checkin = FactoryGirl.create(:checkin, { date: Date.today })
+        get :show, museum_name_id: checkin.museum.name_id, family_card_id: checkin.family_card_id
+        response.should be_ok
+        response.body.should == checkin.to_json
+      end
+    end
   end
 end

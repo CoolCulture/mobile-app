@@ -14,11 +14,19 @@
   </div>
   <div class="col-xs-11 checkin-confirmation-card ">
     <div class="col-xs-11">
-      <strong>{{museum_id | displayMuseumIdFilter }}</strong>
+      <strong>{{checkinTicket.museumId | displayMuseumIdFilter }}</strong>
     </div>
     <div class="col-xs-11">
-      <span class="badge badge-group-number-checkin">{{groupNumber}}</span>
-      people checked in
+      <strong>{{checkinTicket.familyCardId}}</strong> | {{checkinTicket.lastName}}
+    </div>
+    <div class="col-xs-11">
+      <div class="col-xs-3 col-md-2">
+        <span class="badge badge-group-number-checkin">{{checkinTicket.groupNumber}}</span>
+      </div>
+      <div class="checkin-date col-xs-7">
+        people checked in <br>
+        {{checkinTicket.date}}
+      </div>
     </div>
   </div>
 

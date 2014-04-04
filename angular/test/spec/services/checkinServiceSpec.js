@@ -57,5 +57,25 @@ describe('Service: CheckinService', function () {
     httpBackend.flush();
   });
 
+  it('should get specific checkin', function () {
+
+    httpBackend.expect('GET', '/api/checkin?family_card_id=12345&museum_id=museum-of-modern-art')
+      .respond(200, '{"date":"2014-04-04","family_card_id":10000,"last_name":"Cooling", "number_of_adults":3,"number_of_children":2}');
+
+    var museumCheckin = {
+                                          "museum_id": "museum-of-modern-art",
+                                          "family_card_id": "12345"
+                                        };
+
+    CheckinService.getCheckin(museumCheckin).success(function(data){
+      expect(data.number_of_adults).toBe(3);
+      expect(data.number_of_children).toBe(2);
+      expect(data.date).toBe('2014-04-04');
+      expect(data.family_card_id).toBe(10000);
+      expect(data.last_name).toBe('Cooling');
+    });
+
+    httpBackend.flush();
+  });
 
 });

@@ -4,5 +4,6 @@ MobileApp::Application.routes.draw do
   end
 
   post 'api/checkin', defaults: {format: :json},  to: 'checkin#create', as: :checkin
+  get 'api/checkin', defaults: {format: :json},  to: 'checkin#show', as: :get_checkin
 
 end

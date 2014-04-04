@@ -8,6 +8,12 @@ angular.module('coolCultureApp')
               return response.data;
             });
           return request;
-          }
+          },
+      getCheckin : function(data) {
+        var request = $http.get('/api/checkin', { params: data }).success(function(response){
+          return response.data;
+        });
+          return request;
+      }
     };
   });

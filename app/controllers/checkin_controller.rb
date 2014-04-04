@@ -12,6 +12,7 @@ class CheckinController < ApplicationController
         @checkin = Checkin.new(checkin_params)
         @checkin.museum = museum
         @checkin.family_card = family_card
+        @checkin.last_name = family_card.last_name
         @checkin.date = Date.today
 
         if @checkin.save
@@ -26,12 +27,14 @@ class CheckinController < ApplicationController
   end
 
   def show
+    render json: @checkin
   end
 
   private
   def set_checkin
-      @checkin = Checkin.find(params[:id])
-    end
+      museum = Museum.find(params[:museum_name_id])
+      @checkin = Checkin.find_by(museum_id: museum.id, family_card_id: params[:family_card_id], date: Date.today)
+  end
 
   def checkin_params
       params.require(:checkin).permit(:number_of_adults, :number_of_children)

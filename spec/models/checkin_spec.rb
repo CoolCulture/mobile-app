@@ -7,6 +7,7 @@ describe Checkin do
   it {should validate_presence_of(:number_of_children)}
   it {should validate_presence_of(:number_of_adults)}
   it {should validate_presence_of(:date)}
+  it {should validate_presence_of(:last_name)}
 
   describe "checkin limit" do
     it "should validate that only one checkin per museum and family card happen a day" do
