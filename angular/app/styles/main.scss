@@ -336,231 +336,110 @@ section {
     margin-left: -12px;
 }
 
-.categories-row, .boroughs-row {
-    margin-bottom: 10px;
+.modal-checkbox { 
+    display: inline-block;
 }
 
-.category-checkbox, .boroughs-checkbox{
-    padding-top: 100px;
-}
-
-.category-checkbox {
+.categories-row .modal-checkbox {
     margin-bottom: 20px;
 }
 
-.art-checkbox, .history-checkbox, .other-checkbox, .science-checkbox, .nature-checkbox { 
-    display: inline-block;
-}
-
-label .boroughs-checkbox {
+.modal-checkbox input[type="checkbox"] {
     display: none;
 }
 
-.manhattan-checkbox, .queens-checkbox, .brooklyn-checkbox, .staten-island-checkbox, .bronx-checkbox { 
-    display: inline-block;
-}
-
-.manhattan-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.manhattan-checkbox input[type="checkbox"] + label {    
-    background: url('../images/manhattan-unselected.svg') no-repeat scroll 0% 0% transparent;
+.modal-checkbox input[type="checkbox"] + label, .modal-checkbox input[type="checkbox"]:checked + label{
     height: 100px;
     display: block;
     text-align: center;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
-.manhattan-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/manhattan-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.categories-row .modal-checkbox input[type="checkbox"] + label, .categories-row .modal-checkbox input[type="checkbox"]:checked + label{
+    padding-top: 100px;
 }
 
-.queens-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"] + label[class="manhattan-checkbox"] {    
+    background-image: url('../images/manhattan-unselected.svg');
+
 }
 
-.queens-checkbox input[type="checkbox"] + label {    
-    background: url('../images/queens-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="manhattan-checkbox"] {    
+    background-image: url('../images/manhattan-selected.svg');
 }
 
-.queens-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/queens-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="brooklyn-checkbox"] {    
+    background-image: url('../images/brooklyn-unselected.svg');
 }
 
-.brooklyn-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"]:checked + label[class="brooklyn-checkbox"] {    
+    background-image: url('../images/brooklyn-selected.svg');
 }
 
-.brooklyn-checkbox input[type="checkbox"] + label {    
-    background: url('../images/brooklyn-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="bronx-checkbox"] {    
+    background-image: url('../images/bronx-unselected.svg');
 }
 
-.brooklyn-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/brooklyn-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="bronx-checkbox"] {    
+    background-image: url('../images/bronx-selected.svg');
 }
 
-.staten-island-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"] + label[class="queens-checkbox"] {    
+    background-image: url('../images/queens-unselected.svg');
 }
 
-.staten-island-checkbox input[type="checkbox"] + label {    
-    background: url('../images/staten-island-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="queens-checkbox"] {    
+    background-image: url('../images/queens-selected.svg');
 }
 
-.staten-island-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/staten-island-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="staten-island-checkbox"] {    
+    background-image: url('../images/staten-island-unselected.svg');
 }
 
-.bronx-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"]:checked + label[class="staten-island-checkbox"] {    
+    background-image: url('../images/staten-island-selected.svg');
 }
 
-.bronx-checkbox input[type="checkbox"] + label {    
-    background: url('../images/bronx-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="art-checkbox"] {    
+    background-image: url('../images/art-unselected.svg');
 }
 
-.bronx-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/bronx-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="art-checkbox"] {    
+    background-image: url('../images/art-selected.svg');
 }
 
-.art-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"] + label[class="science-checkbox"] {    
+    background-image: url('../images/science-unselected.svg');
 }
 
-.art-checkbox input[type="checkbox"] + label {    
-    background: url('../images/art-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="science-checkbox"] {    
+    background-image: url('../images/science-selected.svg');
 }
 
-.art-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/art-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="nature-checkbox"] {    
+    background-image: url('../images/nature-unselected.svg');
 }
 
-.history-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"]:checked + label[class="nature-checkbox"] {    
+    background-image: url('../images/nature-selected.svg');
 }
 
-.history-checkbox input[type="checkbox"] + label {    
-    background: url('../images/history-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"] + label[class="history-checkbox"] {    
+    background-image: url('../images/history-unselected.svg');
 }
 
-.history-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/history-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="history-checkbox"] {    
+    background-image: url('../images/history-selected.svg');
 }
 
-.nature-checkbox input[type="checkbox"] {
-    display: none;
+.modal-checkbox input[type="checkbox"] + label[class="other-checkbox"] {    
+    background-image: url('../images/other-unselected.svg');
 }
 
-.nature-checkbox input[type="checkbox"] + label {    
-    background: url('../images/nature-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
+.modal-checkbox input[type="checkbox"]:checked + label[class="other-checkbox"] {    
+    background-image: url('../images/other-selected.svg');
 }
-
-.nature-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/nature-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-}
-
-.science-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.science-checkbox input[type="checkbox"] + label {    
-    background: url('../images/science-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-}
-
-.science-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/science-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-}
-
-.other-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.other-checkbox input[type="checkbox"] + label {    
-    background: url('../images/other-unselected.svg') no-repeat scroll 0% 0% transparent;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-}
-
-.other-checkbox input[type="checkbox"]:checked + label {
-    background: url('../images/other-selected.svg')  no-repeat;
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-}
-
-.col-xs
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: $light-gray
