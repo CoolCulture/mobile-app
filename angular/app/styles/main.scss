@@ -336,19 +336,19 @@ section {
     margin-left: -12px;
 }
 
-.modal-checkbox { 
-    display: inline-block;
-}
-
 .categories-row {
     margin-bottom: 20px;
+}
+
+.modal-checkbox { 
+    display: inline-block;
 }
 
 .modal-checkbox input[type="checkbox"] {
     display: none;
 }
 
-.modal-checkbox input[type="checkbox"] + label, .modal-checkbox input[type="checkbox"]:checked + label{
+.modal-checkbox label{
     height: 100px;
     display: block;
     text-align: center;
@@ -356,7 +356,7 @@ section {
     background-repeat: no-repeat;
 }
 
-.categories-row .modal-checkbox input[type="checkbox"] + label, .categories-row .modal-checkbox input[type="checkbox"]:checked + label{
+.categories-row label {
     padding-top: 100px;
 }
 
