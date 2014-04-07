@@ -9,7 +9,8 @@ angular.module('coolCultureApp')
 
     $scope.museumFilters = {
     	categories: [],
-    	boroughs: []
+    	boroughs: [],
+    	admissionType: []
         };
 
     $scope.openFilterModal = function() {
@@ -39,6 +40,14 @@ angular.module('coolCultureApp')
 			    		$scope.museumFilters.boroughs.push(borough);
 			    	}	else {
 			    		$scope.museumFilters.boroughs.splice(indexOfBorough, 1);
+			    	}
+			    };
+			    $scope.addAdmissionType = function(admissionType) {
+			    	var indexOfAdmissionType = $scope.museumFilters.admissionType.indexOf(admissionType);
+			    	if (indexOfAdmissionType === -1){
+			    		$scope.museumFilters.admissionType.push(admissionType);
+			    	}	else {
+			    		$scope.museumFilters.admissionType.splice(indexOfAdmissionType, 1);
 			    	}
 			    };
 	    	}],

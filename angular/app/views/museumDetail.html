@@ -12,6 +12,8 @@
 <section class="section-detail row" ng-show="museum">
       <div class="museum-name-detail-view col-xs-12">
         <strong>{{museum.name}}</strong>
+        <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
+        <span class="badge badge-reduced-admission" ng-if="museum.suggestedDonation"> SUGGESTED DONATION</span>
       </div>
 
       <div class="col-xs-12">

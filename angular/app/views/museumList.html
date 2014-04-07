@@ -15,7 +15,7 @@
   </div>
 </div>
 <section>
-  <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText} | museumCategoryFilter:museumFilters.categories | museumBoroughFilter:museumFilters.boroughs" ng-click="go('/museums/' + museum.name_id)">
+  <div class="row list-item-container" ng-repeat="museum in museums | filter: {name: searchText} | museumCategoryFilter:museumFilters.categories | museumBoroughFilter:museumFilters.boroughs | museumAdmissionFilter:museumFilters.admissionType" ng-click="go('/museums/' + museum.name_id)">
     <hr>
     <article class="list-item col-xs-12">
       <div class="col-xs-12">
@@ -98,6 +98,22 @@
       <div class="modal-checkbox col-sm-2 col-xs-6">
         <input type="checkbox" ng-click="addBorough('Bronx')" ng-checked="museumFilters.boroughs.indexOf('Bronx') !== -1" id="bronx">
         <label class="bronx-checkbox" for="bronx"></label>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-header">
+    <h4>Admission Type</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row admission-row">
+      <div class="modal-checkbox col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-3">
+        <input type="checkbox" ng-click="addAdmissionType('Free')" ng-checked="museumFilters.freeAdmission" id="free">
+        <label class="manhattan-checkbox" for="free"></label>
+      </div>
+      <div class="modal-checkbox col-sm-2 col-xs-3">
+        <input type="checkbox" ng-click="addAdmissionType('Suggested Donation')" ng-checked="museumFilters.suggestedDonation" id="donation">
+        <label class="manhattan-checkbox" for="donation"></label>
       </div>
     </div>
   </div>
