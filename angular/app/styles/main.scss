@@ -250,6 +250,7 @@ header {
 
 section {
     display: block;
+    -webkit-overflow-scrolling: touch;
 }
 
 .section-detail {
