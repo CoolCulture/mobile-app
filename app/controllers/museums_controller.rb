@@ -5,11 +5,13 @@ class MuseumsController < ApplicationController
   # GET /museums.json
   def index
     @museums = Museum.all
+    expires_in 5.minutes, :public => true
   end
 
   # GET /museums/1
   # GET /museums/1.json
   def show
+    expires_in 5.minutes, :public => true
   end
 
   # GET /museums/new
@@ -74,7 +76,7 @@ class MuseumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def museum_params
-      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl, 
+      params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl,
         :imageUrl, :busLines, :wifi, :handicapAccessible, :handsOnActivity, :description,
         :freeAdmission, :suggestedDonation, categories: [], hours: [], subwayLines: [])
     end

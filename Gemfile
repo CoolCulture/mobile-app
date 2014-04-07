@@ -6,6 +6,7 @@ ruby '2.1.0'
 gem 'rails', '4.0.3'
 
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cache'
 
 # Use Heroku 12 Factor app for Heroku support
 gem 'rails_12factor', group: :production
