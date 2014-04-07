@@ -31,7 +31,7 @@ class Museum
 
   validates_uniqueness_of :name
 
-  before_save :remove_empty_hours
+  before_save :remove_empty_hours, :sort_subway_lines
   before_update :assign_slug
 
   def self.import(file)
@@ -73,13 +73,27 @@ class Museum
       attrs[:borough] = BOROUGHS[attrs[:borough]]
 
       created = Museum.create(attrs)
-
     end
+  end
+
+  def sort_subway_lines
+    sortedSubwayLines = []
+
+    SUBWAY_LINES.each do |line|
+      if self.subwayLines.include?(line)
+        sortedSubwayLines.push(line)
+        self.subwayLines = self.subwayLines - [line]
+      end
+    end
+
+    sortedSubwayLines = sortedSubwayLines + self.subwayLines if !self.subwayLines.empty?
+
+    self.subwayLines = sortedSubwayLines
   end
 
   SUBWAY_LINES = [
     "1", "2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M",
-    "G", "J", "Z", "N", "Q", "R", "L", "S", "SIR"
+    "G", "J", "Z", "L", "S", "N", "Q", "R", "SIR"
   ]
 
   CATEGORIES = [

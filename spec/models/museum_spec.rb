@@ -53,5 +53,21 @@ describe Museum do
 
       museum.hours.should == ['9AM-5PM M-F', '10AM-9PM Sat']
     end
+
+    it "should order subway lines" do
+      museum = FactoryGirl.build(:museum, subwayLines: ['A','B','1','7','3','C','D','Z','L','E','F','G'])
+
+      museum.save
+
+      museum.subwayLines.should == ['1','3','7','A','C','E','B','D','F','G','Z','L']
+    end
+
+    it "should return all unrecognized subway lines at end of array" do
+      museum = FactoryGirl.build(:museum, subwayLines: ['A','B','Railway','1','7'])
+
+      museum.save
+
+      museum.subwayLines.should == ['1','7','A','B','Railway']
+    end
   end
 end
