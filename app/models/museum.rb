@@ -117,5 +117,6 @@ class Museum
 
   def assign_slug
     self.slugs[0] = slug_format(self.name)
+    self.name_id = self.slugs[0]
   end
 end

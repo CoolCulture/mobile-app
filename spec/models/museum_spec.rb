@@ -43,6 +43,16 @@ describe Museum do
       museum_after_save = Museum.find("the-museum-of-modern-art")
       museum_after_save.name_id.should == museum.slug
     end
+
+    it "should update name_id when name is changed" do
+      museum = FactoryGirl.create(:museum)
+
+      museum.reload
+      museum.update(name: "The Museum of Modern Art Test")
+
+
+      museum.name_id.should == museum.slug
+    end
   end
 
   describe "before save" do
