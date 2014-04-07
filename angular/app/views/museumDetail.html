@@ -10,100 +10,117 @@
 </header>
 
 <section class="section-detail row" ng-show="museum">
-      <div class="museum-name-detail-view col-xs-12">
-        <strong>{{museum.name}}</strong>
-        <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
-        <span class="badge badge-reduced-admission" ng-if="museum.suggestedDonation"> SUGGESTED DONATION</span>
+  <div class="museum-name-detail-view col-xs-12">
+    <strong>{{museum.name}}</strong>
+    <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
+    <span class="badge badge-reduced-admission" ng-if="museum.suggestedDonation"> SUGGESTED DONATION</span> 
+  </div>
+
+  <div class="col-xs-12">
+    <div class="col-xs-6">
+      <img class="museum-image" ng-src="{{museum.imageUrl}}"/>
+    </div>
+
+    <div class="col-xs-6">
+      <img class="train-icon" src="images/train.svg">
+      <subway-lines lines="museum.subwayLines"></subwayLines>
+    </div>
+
+    <div class="bus-lines col-xs-6" ng-show="museum.busLines">
+      <img src="images/bus.svg" class="bus-lines-icon"></img>
+      <span class="bus-lines-text">{{museum.busLines}}</span>
+    </div>
+
+    <div class="col-xs-1" ng-if="museum.wifi">
+      <img class="wifi-icon" src="images/wifi.svg">
+    </div>
+    <div class="col-xs-1" ng-if="museum.handicapAccessible">
+      <img class="handicap-icon" src="images/handicap.svg">
+    </div>
+    <div class="col-xs-1" ng-if="museum.handsOnActivity">
+      <img class="hands-on-text" src="images/hands-on-text.svg">
+    </div>
+  </div>
+
+  <div class="hours col-xs-12">
+    <div ng-repeat="hour in museum.hours">
+      {{hour}}
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <hr>
+    <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
+      <div class="action">
+        <img class="address-icon address-icon-detail-view" src="images/address.svg">
+        <span class="detail-view-action-text">
+          {{museum.address}}
+        </span>
+        <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
       </div>
+    </a>
+    <hr>
+  </div>
 
-      <div class="col-xs-12">
-        <div class="col-xs-6">
-          <img class="museum-image" ng-src="{{museum.imageUrl}}"/>
-        </div>
-
-        <div class="col-xs-6">
-          <img class="train-icon" src="images/train.svg">
-          <subway-lines lines="museum.subwayLines"></subwayLines>
-        </div>
-
-        <div class="bus-lines col-xs-6" ng-show="museum.busLines">
-          <img src="images/bus.svg" class="bus-lines-icon"></img>
-          <span class="bus-lines-text">{{museum.busLines}}</span>
-        </div>
-
-        <div class="col-xs-1" ng-if="museum.wifi">
-          <img class="wifi-icon" src="images/wifi.svg">
-        </div>
-        <div class="col-xs-1" ng-if="museum.handicapAccessible">
-          <img class="handicap-icon" src="images/handicap.svg">
-        </div>
-        <div class="col-xs-1" ng-if="museum.handsOnActivity">
-          <img class="hands-on-text" src="images/hands-on-text.svg">
-        </div>
+  <div class="col-xs-12">
+    <a href="{{museum.siteUrl | siteUrlFilter}}" target="_blank">
+      <div class="action">
+        <img class="home-icon" src="images/home.svg">
+        <span class="detail-view-action-text">
+          Visit Museum Website
+        </span>
+        <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
       </div>
+    </a>
+    <hr>
+  </div>
 
-      <div class="hours col-xs-12">
-        <div ng-repeat="hour in museum.hours">
-          {{hour}}
-        </div>
+  <div class="col-xs-12">
+    <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
+      <div class="action">
+        <img class="phone-icon" src="images/phone.svg">
+        <span class="detail-view-action-text">
+          Call Now: {{museum.phoneNumber}}
+        </span>
+        <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
       </div>
+    </a>
+    <hr>
+  </div>
 
-      <div class="col-xs-12">
-        <hr>
-        <a href="http://maps.google.com/?q={{museum.address}}, New York City" target="_blank">
-          <div class="action">
-            <img class="address-icon address-icon-detail-view" src="images/address.svg">
-            <span class="detail-view-action-text">
-              {{museum.address}}
-            </span>
-            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
-          </div>
-        </a>
-        <hr>
-      </div>
+  <div class="col-xs-12">
+    <button ng-click="go('/museums/checkin/' + museum.name_id)" class="btn btn-checkin">
+      CHECK IN TO MUSEUM
+    </button>
+    <hr>
+  </div>
 
-      <div class="col-xs-12">
-        <a href="{{museum.siteUrl | siteUrlFilter}}" target="_blank">
-          <div class="action">
-            <img class="home-icon" src="images/home.svg">
-            <span class="detail-view-action-text">
-              Visit Museum Website
-            </span>
-            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
-          </div>
-        </a>
-        <hr>
-      </div>
+  <div class="col-xs-12">
+    <div class="description-title">
+      More Information
+    </div>
+    <hr>
+    <div class="description-text">
+      {{museum.description}}
+    </div>
+  </div>
 
-      <div class="col-xs-12">
-        <a href="tel:1{{museum.phoneNumber | phoneNumberFilter }}">
-          <div class="action">
-            <img class="phone-icon" src="images/phone.svg">
-            <span class="detail-view-action-text">
-              Call Now: {{museum.phoneNumber}}
-            </span>
-            <span class="glyphicon glyphicon-chevron-right pull-right center-vertical"></span>
-          </div>
-        </a>
-        <hr>
+    <div class="col-xs-12" ng-if="museum.activities">
+    <hr>
+    <img class="hands-on-icon" src="images/hands-on-icon.svg">    
+    <div class="activities-title">
+      Events and Activities
+    </div>
+    <hr>
+    <div class="col-xs-12 activity-text" ng-repeat="activity in museum.activities">
+      <div>
+        {{activity.name}}: {{activity.time}}
       </div>
-
-      <div class="col-xs-12">
-        <button ng-click="go('/museums/checkin/' + museum.name_id)" class="btn btn-checkin">
-          CHECK IN TO MUSEUM
-        </button>
-        <hr>
+      <div>
+        {{activity.description}}
       </div>
-
-      <div class="col-xs-12">
-        <div class="description-title">
-          More Information
-        </div>
-        <hr>
-        <div class="description-text">
-          {{museum.description}}
-        </div>
-      </div>
+    </div>
+  </div>
 
 </section>
 
