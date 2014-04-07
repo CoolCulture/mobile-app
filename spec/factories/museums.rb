@@ -14,6 +14,8 @@ FactoryGirl.define do
     wifi true
     handicapAccessible true
     handsOnActivity false
+    freeAdmission true
+    suggestedDonation false
     description "A Sample Description"
   end
 end

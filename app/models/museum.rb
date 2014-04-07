@@ -19,6 +19,8 @@ class Museum
   field :handicapAccessible, type: Boolean
   field :handsOnActivity, type: Boolean
   field :description, type: String
+  field :freeAdmission, type: Boolean
+  field :suggestedDonation, type: Boolean
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
@@ -26,8 +28,7 @@ class Museum
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :imageUrl, :hours, :subwayLines, :categories,
-               :wifi, :handicapAccessible, :handsOnActivity
+  						 :siteUrl, :imageUrl, :hours, :subwayLines, :categories
 
   validates_uniqueness_of :name
 
@@ -48,6 +49,8 @@ class Museum
                               wheelchair_accessible: :handicapAccessible,
                               hands_on_activity: :handsOnActivity,
                               museum_description: :description,
+                              free: :freeAdmission,
+                              suggested_admission: :suggestedDonation,
                               seasonal_hours: nil,
                               closed: nil,
                               wifi_notes: nil,
@@ -61,6 +64,8 @@ class Museum
       attrs[:subwayLines] = attrs[:subwayLines].to_s.split(' ')
       attrs[:categories] = attrs[:categories].split(' ')
       attrs[:wifi] = human_to_boolean(attrs[:wifi])
+      attrs[:freeAdmission] = human_to_boolean(attrs[:freeAdmission])
+      attrs[:suggestedDonation] = human_to_boolean(attrs[:suggestedDonation])
 
       hours = [attrs[:hours_1], attrs[:hours_2], attrs[:hours_3], attrs[:hours_4]]
       hours.reject!{|hour| hour == ""}

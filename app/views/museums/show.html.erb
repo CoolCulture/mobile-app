@@ -56,6 +56,16 @@
 </p>
 
 <p>
+  <strong>Free Admission?</strong>
+  <%= boolean_to_human(@museum.freeAdmission) %>
+</p>
+
+<p>
+  <strong>Suggested Donation?</strong>
+  <%= boolean_to_human(@museum.suggestedDonation) %>
+</p>
+
+<p>
   <strong>Handicap Accessible?</strong>
   <%= boolean_to_human(@museum.handicapAccessible) %>
 </p>

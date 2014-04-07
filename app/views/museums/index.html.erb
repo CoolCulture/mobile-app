@@ -15,6 +15,8 @@
       <th>Buslines</th>
       <th>Categories</th>
       <th>Has Wifi?</th>
+      <th>Free Admission?</th>
+      <th>Suggested Donation?</th>
       <th>Handicap Accessible?</th>
       <th>Hands-On Activity?</th>
       <th></th>
@@ -37,6 +39,8 @@
         <td><%= museum.busLines %></td>
         <td><%= museum.categories %></td>
         <td><%= boolean_to_human(museum.wifi) %></td>
+        <td><%= boolean_to_human(museum.freeAdmission) %></td>
+        <td><%= boolean_to_human(museum.suggestedDonation) %></td>
         <td><%= boolean_to_human(museum.handicapAccessible) %></td>
         <td><%= boolean_to_human(museum.handsOnActivity) %></td>
         <td><%= link_to 'Show', museum %></td>
