@@ -24,6 +24,7 @@ module.exports = function(config) {
       'app/bower_components/angular-animate/angular-animate.js',
       'app/bower_components/angular-touch/angular-touch.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'app/bower_components/angular-cache/dist/angular-cache.js',
       // 'app/bower_components/angular-scenario/angular-scenario.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
