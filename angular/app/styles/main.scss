@@ -381,7 +381,7 @@ section {
     padding-top: 100px;
 }
 
-$filters: manhattan brooklyn bronx queens staten-island art science nature history other;
+$filters: manhattan brooklyn bronx queens staten-island art science nature history other free donation;
 
 @each $filter in $filters {
     input[type="checkbox"] + label[class="#{$filter}-checkbox"] {
