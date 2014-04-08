@@ -2,7 +2,6 @@ class Museum
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Timestamps
-  extend BooleanHelper
 
   has_many :checkins, dependent: :delete
 
@@ -67,9 +66,6 @@ class Museum
 
       attrs[:subwayLines] = attrs[:subwayLines].to_s.split(' ')
       attrs[:categories] = attrs[:categories].split(' ')
-      attrs[:wifi] = human_to_boolean(attrs[:wifi])
-      attrs[:freeAdmission] = human_to_boolean(attrs[:freeAdmission])
-      attrs[:suggestedDonation] = human_to_boolean(attrs[:suggestedDonation])
 
       hours = [attrs[:hours_1], attrs[:hours_2], attrs[:hours_3], attrs[:hours_4]]
       hours.reject!{|hour| hour == ""}
@@ -82,7 +78,6 @@ class Museum
       attrs[:borough] = BOROUGHS[attrs[:borough]]
 
       museum = Museum.find_or_initialize_by(name_id: Museum.slug_format(attrs[:name]))
-
       museum.update(attrs)
     end
   end
