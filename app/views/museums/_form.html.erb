@@ -82,7 +82,7 @@
       <%= f.check_box :suggestedDonation %> <br />
   </div>
 
-  <%= f.input :description %>
+  <%= f.input :description, as: :text %>
 
   <div class="field">
     <strong><%= label_tag "Activity 1" %><br></strong>
@@ -91,7 +91,7 @@
     <%= label_tag "Time" %><br>
     <%= text_field_tag "museum[activity1][time]", @museum.activity1['time'] %><br>
     <%= label_tag "Description" %><br>
-    <%= text_field_tag "museum[activity1][description]", @museum.activity1['description'] %><br>
+    <%= text_area_tag "museum[activity1][description]", @museum.activity1['description'] %><br>
   </div>
 
   <div class="field">
@@ -101,7 +101,7 @@
     <%= label_tag "Time" %><br>
     <%= text_field_tag "museum[activity2][time]", @museum.activity2['time'] %><br>
     <%= label_tag "Description" %><br>
-    <%= text_field_tag "museum[activity2][description]", @museum.activity2['description'] %><br>
+    <%= text_area_tag "museum[activity2][description]", @museum.activity2['description'] %><br>
   </div>
 
   <div class="field">
@@ -111,7 +111,7 @@
     <%= label_tag "Time" %><br>
     <%= text_field_tag "museum[activity3][time]", @museum.activity3['time'] %><br>
     <%= label_tag "Description" %><br>
-    <%= text_field_tag "museum[activity3][description]", @museum.activity3['description'] %><br>
+    <%= text_area_tag "museum[activity3][description]", @museum.activity3['description'] %><br>
   </div>
 
   <div class="actions">
