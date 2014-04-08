@@ -124,6 +124,10 @@ body {
     margin-left: -5px;
 }
 
+.hands-on-icon {
+    width: 40px;
+}
+
 .subway-lines {
     margin-bottom: 3px;
 }
@@ -158,12 +162,16 @@ body {
     padding-top: 2px;
 }
 
-.description-title, .description-text, .activities-title, .activities-text {
+.description-title, .description-text, .activities-title, .activity-text {
     padding: 10px;
 }
 
-.description-title {
+.description-title, .activities-title {
     font-size: 120%;
+}
+
+.activity-name {
+    font-weight: bold;
 }
 
 .phone-icon {

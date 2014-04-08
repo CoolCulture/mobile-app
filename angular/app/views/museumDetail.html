@@ -105,22 +105,41 @@
     </div>
   </div>
 
-    <div class="col-xs-12" ng-if="museum.activities">
-    <hr>
-    <img class="hands-on-icon" src="images/hands-on-icon.svg">    
-    <div class="activities-title">
-      Events and Activities
-    </div>
-    <hr>
-    <div class="col-xs-12 activity-text" ng-repeat="activity in museum.activities">
-      <div>
-        {{activity.name}}: {{activity.time}}
+    <div class="col-xs-12" ng-if="museum.activity1.name !== '' || museum.activity3.name !== '' || museum.activity3.name !== ''">
+      <hr>
+      <div class="activities-title">
+        <img class="hands-on-icon" src="images/hands-on-image.svg">    
+        Events and Activities
       </div>
-      <div>
-        {{activity.description}}
+      <hr>
+
+      <div class="col-xs-12 activity-text" ng-if="museum.activity1.name !== ''">
+        <div>
+          <span class="activity-name">{{museum.activity1.name}}:</span> {{museum.activity1.time}}
+        </div>
+        <div>
+          {{museum.activity1.description}}
+        </div>
+      </div>
+
+      <div class="col-xs-12 activity-text" ng-if="museum.activity2.name !== ''">
+        <div>
+          <span class="activity-name">{{museum.activity2.name}}:</span> {{museum.activity2.time}}
+        </div>
+        <div>
+          {{museum.activity2.description}}
+        </div>
+      </div>
+
+      <div class="col-xs-12 activity-text" ng-if="museum.activity3.name !== ''">
+        <div>
+          <span class="activity-name">{{museum.activity3.name}}:</span> {{museum.activity3.time}}
+        </div>
+        <div>
+          {{museum.activity3.description}}
+        </div>
       </div>
     </div>
   </div>
-
 </section>
 
