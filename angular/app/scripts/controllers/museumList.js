@@ -27,28 +27,12 @@ angular.module('coolCultureApp')
 	    			$scope.museumFilters.admissionType = [];
 	    			$modalInstance.close();
 	    		};
-	    		$scope.addCategory = function(category) {
-	    			var indexOfCategory = $scope.museumFilters.categories.indexOf(category);
-			    	if (indexOfCategory === -1){
-			    		$scope.museumFilters.categories.push(category);
+	    		$scope.addToFilter = function(filterType, filter) {
+	    			var indexOfFilter = $scope.museumFilters[filterType].indexOf(filter);
+			    	if (indexOfFilter === -1){
+			    		$scope.museumFilters[filterType].push(filter);
 			    	}	else {
-			    		$scope.museumFilters.categories.splice(indexOfCategory, 1);
-			    	}
-			    };
-			    $scope.addBorough = function(borough) {
-	    			var indexOfBorough = $scope.museumFilters.boroughs.indexOf(borough);
-			    	if (indexOfBorough === -1){
-			    		$scope.museumFilters.boroughs.push(borough);
-			    	}	else {
-			    		$scope.museumFilters.boroughs.splice(indexOfBorough, 1);
-			    	}
-			    };
-			    $scope.addAdmissionType = function(admission) {
-			    	var indexOfAdmissionType = $scope.museumFilters.admissionType.indexOf(admission);
-			    	if (indexOfAdmissionType === -1){
-			    		$scope.museumFilters.admissionType.push(admission);
-			    	}	else {
-			    		$scope.museumFilters.admissionType.splice(indexOfAdmissionType, 1);
+			    		$scope.museumFilters[filterType].splice(indexOfFilter, 1);
 			    	}
 			    };
 	    	}],
