@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe MuseumsController do
-  
+
+  include AuthHelper
+  before(:each) do
+    http_login
+  end
+
   describe "import" do
     it "should import CSV and create museums" do
       csv_to_import = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'museums.csv'), "text/csv")
@@ -62,7 +67,7 @@ describe MuseumsController do
     end
   end
 
-  describe "PATCH update" do    
+  describe "PATCH update" do
     it "should update museum and update slug name" do
       museum = FactoryGirl.create(:museum)
       patch :update, id: museum.id, museum: FactoryGirl.attributes_for(:museum, name:"A New Museum Name")
