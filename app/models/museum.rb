@@ -1,6 +1,7 @@
 class Museum
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Timestamps
   extend BooleanHelper
 
   has_many :checkins, dependent: :delete
@@ -27,7 +28,7 @@ class Museum
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
-    museum.slug_format(museum.name)
+    Museum.slug_format(museum.name)
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
@@ -80,7 +81,9 @@ class Museum
 
       attrs[:borough] = BOROUGHS[attrs[:borough]]
 
-      created = Museum.create(attrs)
+      museum = Museum.find_or_initialize_by(name_id: Museum.slug_format(attrs[:name]))
+
+      museum.update(attrs)
     end
   end
 
@@ -114,7 +117,7 @@ class Museum
               "SI" => "Staten Island",
               "Q" => "Queens"}
 
-  def slug_format(name)
+  def self.slug_format(name)
     name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase
   end
 
@@ -124,7 +127,7 @@ class Museum
   end
 
   def assign_slug
-    self.slugs[0] = slug_format(self.name)
+    self.slugs[0] = Museum.slug_format(self.name)
     self.name_id = self.slugs[0]
   end
 end

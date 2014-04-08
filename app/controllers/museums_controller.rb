@@ -5,14 +5,14 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
-    @museums = Museum.all
-    expires_in 5.minutes, :public => true
+    @museums = Museum.scoped
+    fresh_when last_modified: @museums.max(:updated_at), public: true
   end
 
   # GET /museums/1
   # GET /museums/1.json
   def show
-    expires_in 5.minutes, :public => true
+      fresh_when last_modified: @museum.updated_at, public: true
   end
 
   # GET /museums/new
