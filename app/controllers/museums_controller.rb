@@ -6,13 +6,15 @@ class MuseumsController < ApplicationController
   # GET /museums.json
   def index
     @museums = Museum.scoped
+    expires_in 15.minutes
     fresh_when etag: @museums, last_modified: @museums.max(:updated_at), public: true
   end
 
   # GET /museums/1
   # GET /museums/1.json
   def show
-      fresh_when @museum, public: true
+    expires_in 15.minutes
+    fresh_when @museum, public: true
   end
 
   # GET /museums/new
