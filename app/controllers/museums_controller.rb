@@ -1,5 +1,6 @@
 class MuseumsController < ApplicationController
   before_action :set_museum, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: ADMIN_USER, password: ADMIN_PASS, except: [:index, :show]
 
   # GET /museums
   # GET /museums.json
