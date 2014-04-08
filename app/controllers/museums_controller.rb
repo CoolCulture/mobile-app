@@ -6,13 +6,13 @@ class MuseumsController < ApplicationController
   # GET /museums.json
   def index
     @museums = Museum.scoped
-    fresh_when last_modified: @museums.max(:updated_at), public: true
+    fresh_when etag: @museums, last_modified: @museums.max(:updated_at), public: true
   end
 
   # GET /museums/1
   # GET /museums/1.json
   def show
-      fresh_when last_modified: @museum.updated_at, public: true
+      fresh_when @museum, public: true
   end
 
   # GET /museums/new
@@ -80,7 +80,7 @@ class MuseumsController < ApplicationController
       params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl,
         :imageUrl, :busLines, :wifi, :handicapAccessible, :handsOnActivity, :description,
         :freeAdmission, :suggestedDonation, categories: [], hours: [], subwayLines: [],
-        activity1: [:name, :time, :description], activity2: [:name, :time, :description], 
+        activity1: [:name, :time, :description], activity2: [:name, :time, :description],
         activity3: [:name, :time, :description])
     end
 end
