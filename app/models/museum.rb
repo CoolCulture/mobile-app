@@ -103,7 +103,7 @@ class Museum
   ]
 
   CATEGORIES = [
-    "History", "Science", "Art"
+    "History", "Science", "Art", "Nature", "Other"
   ]
 
   BOROUGHS = {"M" => "Manhattan",
