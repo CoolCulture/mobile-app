@@ -118,6 +118,7 @@ body {
     border-radius: 0;
     color: white;
     text-align: left;
+    overflow-y: auto;
 
     hr {
         border-top: 8px solid $white;
