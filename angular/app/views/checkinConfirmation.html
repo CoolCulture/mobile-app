@@ -14,19 +14,19 @@
   </div>
   <div class="col-xs-11 checkin-confirmation-card ">
     <div class="col-xs-11">
-      <strong>{{checkinTicket.museumId | displayMuseumIdFilter }}</strong>
+      <h3>Cool Culture</h3>
+      <h4>FAMILY PASS</h4>
     </div>
     <div class="col-xs-11">
-      <strong>{{checkinTicket.familyCardId}}</strong> | {{checkinTicket.lastName}}
+       NYC EARLY CHILDHOOD PROGRAM
+       <hr>
     </div>
     <div class="col-xs-11">
-      <div class="col-xs-3 col-md-2">
-        <span class="badge badge-group-number-checkin">{{checkinTicket.groupNumber}}</span>
-      </div>
-      <div class="checkin-date col-xs-7">
-        people checked in <br>
-        {{checkinTicket.date}}
-      </div>
+       {{checkinTicket.lastName}}
+       <hr>
+    </div>
+    <div class="col-xs-11">
+      {{checkinTicket.familyCardId}}
     </div>
   </div>
 
@@ -34,5 +34,19 @@
     <button ng-click="go('/museums')" class="btn btn-checkin">
         VIEW MUSEUM LIST
   </button>
+  </div>
+  <div class="col-xs-12">
+
+  </div>
+  <div class="disclaimer col-xs-12">
+    <hr>
+    <h4 class="checkin-text">* Please note</h4>
+    <ol>
+      <li> This Pass is for free general admission only and may not provide free entry to special exhibitions or programs</li>
+      <li>This Pass entitles you to receive general admission for a <strong>maximum of five people</strong></li>
+      <li>This Pass cannot be used for group or class visits</li>
+      <li>You may be asked to <strong>present personal identification</strong> to verify your digital pass</li>
+      <li>Your Family Pass can only be used by you or another adult in your family with the last name printed on the card</li>
+    </ol>
   </div>
 </section>

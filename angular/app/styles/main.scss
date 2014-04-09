@@ -350,9 +350,30 @@ section {
 
 .checkin-confirmation-card {
     background: $cool-culture-orange;
+    border-radius: 6px;
     color: $white;
     margin-left: 15px;
     padding: 10px 10px;
+    font-size: 120%;
+    h4 {
+        color: $dark-gray;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.disclaimer {
+    ol {
+        font-size: 90%;
+        color: adjust-lightness($dark-gray, 7);
+    }
+
+    hr {
+        border-bottom: 3px solid $middle-gray;
+    }
 }
 
 .btn-checkin {
