@@ -31,7 +31,7 @@ class Museum
   end
 
   validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :imageUrl, :hours, :subwayLines, :categories
+  						 :siteUrl, :imageUrl, :hours, :categories
 
   validates_uniqueness_of :name
 
@@ -61,6 +61,8 @@ class Museum
                               :"updated_from_2013-2014_family_guide" => nil}
               }
 
+    errors = {}
+
     SmarterCSV.process(file, options) do |row|
       attrs = row.first
 
@@ -77,9 +79,14 @@ class Museum
 
       attrs[:borough] = BOROUGHS[attrs[:borough]]
 
-      museum = Museum.find_or_initialize_by(name_id: Museum.slug_format(attrs[:name]))
-      museum.update(attrs)
+      name_id = Museum.slug_format(attrs[:name])
+      museum = Museum.find_or_initialize_by(name_id: name_id)
+
+      if !museum.update(attrs)
+        errors[name_id] =museum.errors
+      end
     end
+    errors
   end
 
   def sort_subway_lines

@@ -67,8 +67,23 @@ class MuseumsController < ApplicationController
   end
 
   def import
-    Museum.import(params[:file].path)
-    redirect_to museums_url, notice: "Museums imported successfully."
+    @museums = Museum.scoped
+    @warnings = []
+    begin
+      result = Museum.import(params[:file].path)
+      if result.empty?
+        flash.now[:notice] = "Museums imported successfully."
+      else
+        result.each do |name_id, errors|
+          @warnings << "#{name_id} has errors: " + errors.full_messages.join(",") + "\n"
+        end
+      end
+    rescue Mongoid::Errors::UnknownAttribute
+      flash.now[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
+    rescue
+      flash.now[:error] = "The file you have chosen is invalid. Please try again."
+    end
+    render action: :index
   end
 
   private

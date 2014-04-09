@@ -1,5 +1,12 @@
-<h1>Listing museums</h1>
+<% if @warnings.present? %>
+<div class="alert alert-warning fade in">
+  <% @warnings.each do |warning|  %>
+  <%= warning %><br>
+  <% end %>
+</div>
+<% end %>
 
+<h1>Listing museums</h1>
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>

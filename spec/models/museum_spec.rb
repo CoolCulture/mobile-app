@@ -8,7 +8,6 @@ describe Museum do
   it {should validate_presence_of(:siteUrl)}
   it {should validate_presence_of(:imageUrl)}
   it {should validate_presence_of(:hours)}
-  it {should validate_presence_of(:subwayLines)}
   it {should validate_presence_of(:categories)}
 
   it {should validate_uniqueness_of(:name)}

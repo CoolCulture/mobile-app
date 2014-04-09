@@ -22,10 +22,11 @@
     <article class="list-item col-xs-12">
       <div class="col-xs-12">
         <strong>{{museum.name}}</strong>
-        <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
-        <span class="badge badge-reduced-admission" ng-if="museum.suggestedDonation"> SUGGESTED DONATION</span>
       </div>
-
+      <div class="col-xs-12">
+        <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
+          <span class="badge badge-reduced-admission" ng-if="museum.suggestedDonation"> SUGGESTED DONATION</span>
+      </div>
       <div class="col-xs-10">
         <img class="address-icon" src="images/address.svg">
         <span class="museum-address-list-view">{{museum.address}}, {{museum.borough}}</span>
@@ -35,7 +36,7 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
       </div>
 
-      <div class="subway-lines col-xs-9">
+      <div class="subway-lines col-xs-9" ng-show="museum.subwayLines">
         <img src="images/train.svg" class="subway-lines-icon"></img>
         <subway-lines lines="museum.subwayLines"></subwayLines>
       </div>
