@@ -31,6 +31,10 @@ body {
     padding-right: 15px;
 }
 
+.container .jumbotron {
+    border-radius: 0;
+}
+
 /* Custom page header */
 .header {
     border-bottom: 1px solid $cool-culture-orange;
@@ -59,6 +63,7 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 1px solid $cool-culture-orange;
+    padding-top: 40px;
 }
 
 .jumbotron .btn {
@@ -96,6 +101,37 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+.jumbotron p {
+    font-size: 90%;
+    margin-top: 30px;
+}
+
+.welcome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $cool-culture-orange;
+    border-radius: 0;
+    color: white;
+    text-align: left;
+
+    hr {
+        border-top: 8px solid $white;
+        margin-left: -15px;
+    }
+}
+
+.btn.btn-welcome {
+   background: adjust-lightness($cool-culture-orange, -7);
+   margin-top: 30px;
+}
+
+.btn.btn-welcome:active {
+   background: adjust-lightness($cool-culture-orange, -15);
 }
 
 .museum-name-detail-view {
@@ -329,7 +365,6 @@ section {
 .btn {
     background: $cool-culture-orange;
     color: $white;
-    height: 100%;
 }
 
 .btn:active {

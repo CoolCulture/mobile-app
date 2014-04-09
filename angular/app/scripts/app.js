@@ -12,6 +12,9 @@ angular.module('coolCultureApp', [
 ])
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/', {
+          templateUrl: 'views/welcome.html'
+      })
       .when('/museums', {
         templateUrl: 'views/museumList.html',
         controller: 'MuseumListCtrl'
