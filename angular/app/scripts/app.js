@@ -34,4 +34,7 @@ angular.module('coolCultureApp', [
       .otherwise({
         redirectTo: '/museums'
       });
-  });
+  })
+    .run(function(){
+      FastClick.attach(document.body);
+    });
