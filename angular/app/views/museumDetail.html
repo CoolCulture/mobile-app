@@ -105,7 +105,7 @@
     </div>
   </div>
 
-    <div class="col-xs-12" ng-if="museum.activity1.name|| museum.activity2.name || museum.activity3.name">
+    <div class="col-xs-12" ng-if="museum.activities[0].name || museum.activities[1].name || museum.activities[2].name">
       <hr>
       <div class="activities-title">
         <img class="hands-on-icon" src="images/hands-on-image.svg">    
@@ -113,30 +113,14 @@
       </div>
       <hr>
 
-      <div class="col-xs-12 activity-text" ng-if="museum.activity1.name">
-        <div>
-          <span class="activity-name">{{museum.activity1.name}}:</span> {{museum.activity1.time}}
-        </div>
-        <div>
-          {{museum.activity1.description}}
-        </div>
-      </div>
-
-      <div class="col-xs-12 activity-text" ng-if="museum.activity2.name">
-        <div>
-          <span class="activity-name">{{museum.activity2.name}}:</span> {{museum.activity2.time}}
-        </div>
-        <div>
-          {{museum.activity2.description}}
-        </div>
-      </div>
-
-      <div class="col-xs-12 activity-text" ng-if="museum.activity3.name">
-        <div>
-          <span class="activity-name">{{museum.activity3.name}}:</span> {{museum.activity3.time}}
-        </div>
-        <div>
-          {{museum.activity3.description}}
+      <div ng-repeat="activity in museum.activities">
+        <div class="col-xs-12 activity-text" ng-if="activity.name">
+          <div>
+            <span class="activity-name">{{activity.name}}:</span> {{activity.time}}
+          </div>
+          <div>
+            {{activity.description}}
+          </div>
         </div>
       </div>
     </div>
