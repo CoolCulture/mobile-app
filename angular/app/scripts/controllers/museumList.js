@@ -11,7 +11,7 @@ angular.module('coolCultureApp')
     	categories: [],
     	boroughs: [],
     	admissionType: []
-        };
+    };
 
     $scope.openFilterModal = function() {
     	$modal.open({
@@ -25,7 +25,6 @@ angular.module('coolCultureApp')
 	    			$scope.museumFilters.boroughs = [];
 	    			$scope.museumFilters.categories = [];
 	    			$scope.museumFilters.admissionType = [];
-	    			$modalInstance.close();
 	    		};
 	    		$scope.addToFilter = function(filterType, filter) {
 	    			var indexOfFilter = $scope.museumFilters[filterType].indexOf(filter);
