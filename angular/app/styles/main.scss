@@ -119,6 +119,7 @@ body {
     color: white;
     text-align: left;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     hr {
         border-top: 8px solid $white;
