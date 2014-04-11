@@ -4,5 +4,7 @@ FactoryGirl.define do
     pass_id 10000
     id 10000
     expiration Date.new(2020, 1, 1)
+    center_name '1199SEIU Child Care Corporation'
+    school_type 'ECC 1'
   end
 end

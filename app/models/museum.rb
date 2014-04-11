@@ -38,6 +38,7 @@ class Museum
 
   def self.import(file)
     options = {col_sep: "\t",
+                force_simple_split: true,
                 remove_empty_values: false,
                 key_mapping: {cip: :name,
                               phone: :phoneNumber,

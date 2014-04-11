@@ -1,0 +1,20 @@
+<% if @warnings.present? %>
+<div class="alert alert-warning fade in">
+  <% @warnings.each do |warning|  %>
+  <%= warning %><br>
+  <% end %>
+</div>
+<% end %>
+
+<%= link_to 'Back to Museum List', museums_path %>
+
+<h2>
+  Number of Family Cards: <%=@family_cards.count %>
+</h2>
+
+<h2>Import Family Cards</h2>
+
+<%= form_tag import_family_cards_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import Museums" %>
+<% end %>

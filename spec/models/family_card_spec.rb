@@ -3,6 +3,9 @@ require 'spec_helper'
 describe FamilyCard do
   it {should validate_presence_of(:last_name)}
   it {should validate_presence_of(:pass_id)}
+  it {should validate_presence_of(:expiration)}
+  it {should validate_presence_of(:center_name)}
+  it {should validate_presence_of(:school_type)}
 
   it {should validate_uniqueness_of(:pass_id)}
 
