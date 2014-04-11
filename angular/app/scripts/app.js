@@ -8,7 +8,7 @@ angular.module('coolCultureApp', [
   'ngRoute',
   'ui.bootstrap',
   'ngTouch',
-  'jmdobry.angular-cache'
+  'jmdobry.angular-cache',
 ])
   .config(function ($routeProvider) {
     $routeProvider
