@@ -7,18 +7,36 @@ describe FamilyCard do
   it {should validate_uniqueness_of(:pass_id)}
 
   describe "valid_last_name" do
-    it "should return true if last name matches family card" do
-      family_card = FactoryGirl.build(:family_card)
+    context "matches family card last name" do
+      it "should return true" do
+        family_card = FactoryGirl.build(:family_card)
 
-      valid = family_card.valid_last_name("Cooling")
-      valid.should == true
+        valid = family_card.valid_last_name("Cooling")
+        valid.should == true
+      end
+
+      it "should return true for case-insensitive" do
+        family_card = FactoryGirl.build(:family_card)
+
+        valid = family_card.valid_last_name("cooling")
+        valid.should == true
+      end
     end
 
-    it "should return false if last name does not match family card" do
-      family_card = FactoryGirl.build(:family_card)
+    context "does not match family card last name" do
+      it "should return false" do
+        family_card = FactoryGirl.build(:family_card)
 
-      valid = family_card.valid_last_name("Cooly")
-      valid.should == false
+        valid = family_card.valid_last_name("Cooly")
+        valid.should == false
+      end
+
+      it "should return false if last name is nil" do
+        family_card = FactoryGirl.build(:family_card, last_name: nil)
+
+        valid = family_card.valid_last_name("Cooly")
+        valid.should == false
+      end
     end
   end
 end

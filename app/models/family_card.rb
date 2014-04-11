@@ -13,7 +13,11 @@ class FamilyCard
   validates_uniqueness_of :pass_id
 
   def valid_last_name(name)
-    last_name == name ? true : false
+    if last_name
+      last_name.downcase == name.downcase ? true : false
+    else
+      false
+    end
   end
 
 end
