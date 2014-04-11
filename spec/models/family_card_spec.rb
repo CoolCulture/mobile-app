@@ -26,6 +26,15 @@ describe FamilyCard do
       end
     end
 
+    context "matches family card with two last names" do
+      it "should return true if the last name matches one of the registered names" do
+        family_card = FactoryGirl.build(:family_card, last_name: 'Socool/ Cultu')
+
+        valid = family_card.valid_last_name("Cultu")
+        valid.should == true
+      end
+    end
+
     context "does not match family card last name" do
       it "should return false" do
         family_card = FactoryGirl.build(:family_card)
