@@ -43,7 +43,7 @@ class FamilyCard
 
   def self.import(file)
     options = {
-      chunk_size: 500,
+      chunk_size: 5000,
       key_mapping: {
         adult_last: :last_name,
         :"pass_id_no." => :pass_id,
@@ -61,6 +61,12 @@ class FamilyCard
       # if !family_card.update(attrs)
       #   errors[attrs[:pass_id]] =family_card.errors
       # end
+
+      chunk.each do |family_card|
+        if family_card[:pass_id]
+          family_card[:_id] = family_card[:pass_id]
+        end
+      end
 
       FamilyCard.collection.insert(chunk)
 
