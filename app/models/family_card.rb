@@ -66,6 +66,7 @@ class FamilyCard
         if family_card[:pass_id]
           family_card[:_id] = family_card[:pass_id]
         end
+        family_card[:expiration] = Date.new(2014, 10, 31) if !family_card[:expiration].present?
       end
 
       FamilyCard.collection.insert(chunk)
