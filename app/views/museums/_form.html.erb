@@ -84,18 +84,36 @@
 
   <%= f.input :description, as: :text %>
 
-  <% 3.times do |activity_index|%>
-    <div class="field">
-      <strong><%= label_tag "Activity #{activity_index + 1}" %><br></strong>
-      <%= label_tag "Name" %><br>
-      <%= text_field_tag "museum[activities][][name]", @museum.new_record? ? "" : @museum.activities[activity_index]['name'] %><br>
-      <%= label_tag "Time" %><br>
-      <%= text_field_tag "museum[activities][][time]", @museum.new_record? ? "" : @museum.activities[activity_index]['time'] %><br>
-      <%= label_tag "Description" %><br>
-      <%= text_area_tag "museum[activities][][description]", @museum.new_record? ? "" : @museum.activities[activity_index]['description'] %><br>
-    </div>
-  <% end %>
-  
+  <div class="field">
+    <strong><%= label_tag "Activity 1" %><br></strong>
+    <%= label_tag "Name" %><br>
+    <%= text_field_tag "museum[activity1][name]", @museum.activity1['name'] %><br>
+    <%= label_tag "Time" %><br>
+    <%= text_field_tag "museum[activity1][time]", @museum.activity1['time'] %><br>
+    <%= label_tag "Description" %><br>
+    <%= text_area_tag "museum[activity1][description]", @museum.activity1['description'] %><br>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag "Activity 2" %><br></strong>
+    <%= label_tag "Name" %><br>
+    <%= text_field_tag "museum[activity2][name]", @museum.activity2['name'] %><br>
+    <%= label_tag "Time" %><br>
+    <%= text_field_tag "museum[activity2][time]", @museum.activity2['time'] %><br>
+    <%= label_tag "Description" %><br>
+    <%= text_area_tag "museum[activity2][description]", @museum.activity2['description'] %><br>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag "Activity 3" %><br></strong>
+    <%= label_tag "Name" %><br>
+    <%= text_field_tag "museum[activity3][name]", @museum.activity3['name'] %><br>
+    <%= label_tag "Time" %><br>
+    <%= text_field_tag "museum[activity3][time]", @museum.activity3['time'] %><br>
+    <%= label_tag "Description" %><br>
+    <%= text_area_tag "museum[activity3][description]", @museum.activity3['description'] %><br>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

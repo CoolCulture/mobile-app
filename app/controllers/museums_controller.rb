@@ -97,6 +97,7 @@ class MuseumsController < ApplicationController
       params.require(:museum).permit(:name, :phoneNumber, :address, :borough, :siteUrl,
         :imageUrl, :busLines, :wifi, :handicapAccessible, :handsOnActivity, :description,
         :freeAdmission, :suggestedDonation, categories: [], hours: [], subwayLines: [],
-        activities: [[:name, :time, :description], [:name, :time, :description], [:name, :time, :description]])
+        activity1: [:name, :time, :description], activity2: [:name, :time, :description],
+        activity3: [:name, :time, :description])
     end
 end
