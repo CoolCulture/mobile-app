@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, CheckinService) {
+  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, CheckinService) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
       museum_id: $routeParams.id,
@@ -11,6 +11,10 @@ angular.module('coolCultureApp')
         number_of_children: 0,
         number_of_adults: 0
       }
+    }
+
+    $scope.enableCheckin = function() {
+      return $scope.checkinData.checkin.number_of_adults < 1 || $scope.checkinData.checkin.number_of_children < 1
     }
 
     $scope.checkin = function() {
@@ -27,5 +31,8 @@ angular.module('coolCultureApp')
         };
       });
     }
+
+    $window.scrollTo(0,0);
+
 
   });

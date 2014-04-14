@@ -47,9 +47,9 @@
   </div>
 
   <div class="col-xs-12">
-    <button ng-click="checkin()" ng-disabled="checkinData.checkin.number_of_adults < 1 || checkinData.checkin.number_of_children < 1" class="btn btn-checkin">
+    <button ng-click="checkin()" ng-disabled="enableCheckin()" class="btn btn-checkin">
         CHECK IN
-  </button>
+    </button>
   </div>
 
 
