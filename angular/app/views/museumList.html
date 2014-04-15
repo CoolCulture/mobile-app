@@ -1,4 +1,4 @@
-<header>
+<header class="cool-culture-header">
   <div class="filter-btn-container">
     <button ng-click="openFilterModal()" class="btn filter-btn">
       <img class="filter-icon" src="images/filter.svg">
@@ -66,11 +66,11 @@
         <input type="checkbox" ng-click="addToFilter('categories', 'Nature')" ng-checked="museumFilters.categories.indexOf('Nature') !== -1" id="nature">
         <label class="nature-checkbox" for="nature">Nature</label>
       </div>
-      <div class="modal-checkbox col-sm-2 col-xs-6">
+      <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('categories', 'Science')" ng-checked="museumFilters.categories.indexOf('Science') !== -1" id="science">
         <label class="science-checkbox" for="science">Science</label>
       </div>
-      <div class="modal-checkbox col-sm-2 col-xs-6">
+      <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('categories', 'Other')" ng-checked="museumFilters.categories.indexOf('Other') !== -1" id="other">
         <label class="other-checkbox" for="other">Other</label>
       </div>
@@ -94,11 +94,11 @@
         <input type="checkbox" ng-click="addToFilter('boroughs', 'Brooklyn')" ng-checked="museumFilters.boroughs.indexOf('Brooklyn') !== -1" id="brooklyn">
         <label class="brooklyn-checkbox" for="brooklyn"></label>
       </div>
-      <div class="modal-checkbox col-sm-2 col-xs-6">
+      <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('boroughs', 'Staten Island')" ng-checked="museumFilters.boroughs.indexOf('Staten Island') !== -1" id="staten-island">
         <label class="staten-island-checkbox" for="staten-island"></label>
       </div>
-      <div class="modal-checkbox col-sm-2 col-xs-6">
+      <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('boroughs', 'Bronx')" ng-checked="museumFilters.boroughs.indexOf('Bronx') !== -1" id="bronx">
         <label class="bronx-checkbox" for="bronx"></label>
       </div>
@@ -110,7 +110,7 @@
   </div>
   <div class="modal-body">
     <div class="row admission-row">
-      <div class="modal-checkbox col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-4">
+      <div class="modal-checkbox col-sm-2 col-sm-offset-1 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('admissionType', 'Free')" ng-checked="museumFilters.admissionType.indexOf('Free') !== -1" id="free">
         <label class="free-checkbox" for="free"></label>
       </div>
