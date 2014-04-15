@@ -20,6 +20,6 @@ describe('Directive: groupNumber', function () {
     element = $compile(element)(scope);
     scope.$digest();
 
-    expect(element.find('a').eq(1).hasClass('active')).toBe(true);
+    expect(element.find('div').eq(1).hasClass('active')).toBe(true);
   }));
 });
