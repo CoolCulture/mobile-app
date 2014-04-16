@@ -10,6 +10,7 @@ $cool-culture-orange: #F5623C;
 @import 'slider';
 @import 'badges';
 @import 'loading';
+@import 'filter_modal';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -415,42 +416,6 @@ section {
     width: 70px;
     margin-top: -10px;
     margin-left: -12px;
-}
-
-.categories-row {
-    margin-bottom: 20px;
-}
-
-.modal-checkbox {
-    display: inline-block;
-}
-
-.modal-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.modal-checkbox label{
-    height: 100px;
-    display: block;
-    text-align: center;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.categories-row label {
-    padding-top: 85px;
-    margin-bottom: 12px;
-}
-
-$filters: manhattan brooklyn bronx queens staten-island art science nature history other free donation;
-
-@each $filter in $filters {
-    input[type="checkbox"] + label[class="#{$filter}-checkbox"] {
-        background-image: url('../images/#{$filter}-unselected.svg');
-    }
-    input[type="checkbox"]:checked + label[class="#{$filter}-checkbox"] {
-        background-image: url('../images/#{$filter}-selected.svg');
-    }
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */

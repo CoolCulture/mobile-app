@@ -1,0 +1,50 @@
+.categories-row {
+    margin-bottom: 20px;
+}
+
+.modal-checkbox {
+    display: inline-block;
+}
+
+.modal-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.modal-checkbox label{
+    height: 100px;
+    display: block;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.modal-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.modal-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.categories-row label {
+    padding-top: 85px;
+    margin-bottom: 12px;
+}
+
+$filters: manhattan brooklyn bronx queens staten-island art science nature history other free donation;
+
+@each $filter in $filters {
+    input[type="checkbox"] + label[class="#{$filter}-checkbox"] {
+        background-image: url('../images/#{$filter}-unselected.svg');
+    }
+    input[type="checkbox"]:checked + label[class="#{$filter}-checkbox"] {
+        background-image: url('../images/#{$filter}-selected.svg');
+    }
+}
+
+.filter-header {
+    font-size: 80%;
+    color: $middle-gray;
+}
