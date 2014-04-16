@@ -11,4 +11,6 @@ angular.module('coolCultureApp')
           $scope.slide = 'slide-left';
           $location.url(path);
         };
+
+        $rootScope.loading = false;
       });

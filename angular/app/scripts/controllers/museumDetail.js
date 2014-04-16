@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('MuseumDetailCtrl', function ($scope, $routeParams, $window, MuseumService) {
+  .controller('MuseumDetailCtrl', function ($scope, $rootScope, $routeParams, $window, MuseumService) {
+    $rootScope.loading = true;
+
     MuseumService.requestMuseum($routeParams.id).success(function(data){
       $scope.museum = data;
+
+      $rootScope.loading = false;
 
       (function () {
       var articleId = fyre.conv.load.makeArticleId($scope.museum.name);
@@ -19,9 +23,9 @@ angular.module('coolCultureApp')
           }
         }], function() {});
       }());
+
     });
 
     $window.scrollTo(0,0);
-
 
   });
