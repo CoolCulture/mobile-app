@@ -42,6 +42,8 @@ gem 'simple_form'
 
 gem 'smarter_csv'
 
+gem 'angular_rails_csrf'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CheckinController do
+describe CheckinsController do
   describe "checkin" do
     let(:family_card) { FactoryGirl.create(:family_card) }
     let(:museum) { FactoryGirl.create(:museum) }
@@ -84,7 +84,7 @@ describe CheckinController do
     describe "GET show" do
       it "should return success" do
         checkin = FactoryGirl.create(:checkin, { date: Date.today })
-        get :show, museum_name_id: checkin.museum.name_id, family_card_id: checkin.family_card_id
+        get :show, id: checkin.slug
         response.should be_ok
         response.body.should == checkin.to_json
       end

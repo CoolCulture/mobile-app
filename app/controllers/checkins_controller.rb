@@ -1,5 +1,7 @@
-class CheckinController < ApplicationController
-  before_action :set_checkin, only: [:show]
+class CheckinsController < ApplicationController
+  def index
+    render json: Checkin.all
+  end
 
   # POST /checkin
   # POST /checkin.json
@@ -27,14 +29,11 @@ class CheckinController < ApplicationController
   end
 
   def show
-    render json: @checkin
+    checkin = Checkin.find(params[:id])
+    render json: checkin
   end
 
   private
-  def set_checkin
-      museum = Museum.find(params[:museum_name_id])
-      @checkin = Checkin.find_by(museum_id: museum.id, family_card_id: params[:family_card_id], date: Date.today)
-  end
 
   def checkin_params
       params.require(:checkin).permit(:number_of_adults, :number_of_children)

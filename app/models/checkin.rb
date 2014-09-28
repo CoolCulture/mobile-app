@@ -2,8 +2,11 @@ class Checkin
   include Mongoid::Document
   include Mongoid::Slug
 
+  slug do |checkin|
+    "#{checkin.family_card.pass_id}+#{checkin.museum.name}+#{checkin.date}"
+  end
+
   belongs_to :museum
-  slug scope: :museum
 
   belongs_to :family_card
   field :last_name
