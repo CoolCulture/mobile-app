@@ -43,6 +43,7 @@ gem 'simple_form'
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'
+gem 'devise'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
