@@ -84,9 +84,10 @@ describe CheckinsController do
     describe "GET show" do
       it "should return success" do
         checkin = FactoryGirl.create(:checkin, { date: Date.today })
-        get :show, id: checkin.slug
+        get :show, id: checkin.slug, format: :json
         response.should be_ok
-        response.body.should == checkin.to_json
+        resp = JSON.parse(response.body)
+        resp['lastName'].should == checkin.last_name
       end
     end
   end

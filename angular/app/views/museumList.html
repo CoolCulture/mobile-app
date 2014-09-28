@@ -27,7 +27,7 @@
     </div>
 </section>
 <section ng-if="museums">
-  <div class="row list-item-container" ng-repeat="museum in museums | orderBy: 'name' | filter: {name: searchText} | museumCategoryFilter:museumFilters.categories | museumBoroughFilter:museumFilters.boroughs | museumAdmissionFilter:museumFilters.admissionType" ng-click="go('/museums/' + museum.name_id)">
+  <div class="row list-item-container" ng-repeat="museum in museums | orderBy: 'name' | filter: {name: searchText} | museumCategoryFilter:museumFilters.categories | museumBoroughFilter:museumFilters.boroughs | museumAdmissionFilter:museumFilters.admissionType" ng-click="go('/museums/' + museum.nameId)">
     <hr>
     <article class="list-item col-xs-12">
       <div class="col-xs-12">

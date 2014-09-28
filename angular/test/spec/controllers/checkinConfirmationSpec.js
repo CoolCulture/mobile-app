@@ -8,6 +8,13 @@ describe('Controller: CheckinConfirmationCtrl', function () {
   var CheckinConfirmationCtrl,
     scope, routeParams;
 
+  var CheckinsMock = {
+      get : function(data) {
+        return {museumId: 'museum-modern-art',
+                familyCardId: '10000'};
+      }
+    }
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
@@ -15,12 +22,13 @@ describe('Controller: CheckinConfirmationCtrl', function () {
 
     CheckinConfirmationCtrl = $controller('CheckinConfirmationCtrl', {
       $scope: scope,
-      $routeParams: routeParams
+      $routeParams: routeParams,
+      Checkins: CheckinsMock
     });
   }));
 
   it('should assign group number and museum id', function(){
     expect(scope.checkinTicket.museumId).toBe('museum-modern-art');
-    expect(scope.checkinTicket.familyCardId).toBe(10000);
+    expect(scope.checkinTicket.familyCardId).toBe('10000');
   });
 });
