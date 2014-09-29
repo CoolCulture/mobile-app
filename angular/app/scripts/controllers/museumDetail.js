@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('MuseumDetailCtrl', function ($scope, $rootScope, $routeParams, $window, MuseumService) {
+  .controller('MuseumDetailCtrl', function ($scope, $rootScope, $routeParams, $window, Museums) {
     $rootScope.loading = true;
 
-    MuseumService.requestMuseum($routeParams.id).success(function(data){
-      $scope.museum = data;
+    Museums.get({id: $routeParams.id}, function(museum){
+      $scope.museum = museum;
 
       $rootScope.loading = false;
 

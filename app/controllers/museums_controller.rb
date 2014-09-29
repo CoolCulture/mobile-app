@@ -5,7 +5,7 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
-    @museums = Museum.scoped
+    @museums = Museum.all
     expires_in 15.minutes
     fresh_when etag: @museums, last_modified: @museums.max(:updated_at), public: true
   end
@@ -67,7 +67,7 @@ class MuseumsController < ApplicationController
   end
 
   def import
-    @museums = Museum.scoped
+    @museums = Museum.all
     @warnings = []
     begin
       result = Museum.import(params[:file].path)
