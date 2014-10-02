@@ -1,8 +1,16 @@
 class FamilyCardsController < ApplicationController
-  http_basic_authenticate_with name: ADMIN_USER, password: ADMIN_PASS
+  before_action :set_user, only: [:show]
+  http_basic_authenticate_with name: ADMIN_USER, password: ADMIN_PASS, except: [:show]
 
   def index
     @family_cards = FamilyCard.all
+  end
+
+  # GET /family_card/1
+  # GET /family_card/1.json
+  def show
+    expires_in 15.minutes
+    render json: { user: @user, family_card: @user.family_card }
   end
 
   def import
@@ -23,5 +31,12 @@ class FamilyCardsController < ApplicationController
       flash.now[:error] = "The file you have chosen is invalid. Please try again."
     end
     render action: :index
+  end
+
+  private
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
   end
 end

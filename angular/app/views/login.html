@@ -1,0 +1,40 @@
+<header class="cool-culture-header">
+  <div class="back-btn-container">
+    <button ng-click="back()" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </button>
+  </div>
+  <div class="header-text">
+    Cool Culture <i class="beta">Beta</i>
+  </div>
+</header>
+
+<section class="row section-detail ">
+  <div class="col-xs-12 alert alert-danger" ng-show="errors">
+    {{errors}}
+  </div>
+
+  <div class="col-xs-12">
+    <h4>Login with your email and password</h4>
+    <input class="login-input" placeholder="Your Email" ng-model="sessionData.email"/>
+  </div>
+
+  <div class="col-xs-12">
+    <input class="login-input" type="password" placeholder="Your Password" ng-model="sessionData.password"/>
+  </div>
+  <div class="col-xs-12 login-header-row">
+    <hr>
+  </div>
+
+  <div class="col-xs-12">
+    <button ng-click="login()" class="btn btn-checkin">
+        LOG IN
+    </button>
+  </div>
+
+  <div class="col-xs-12">
+    <button ng-click="logout()" class="btn btn-checkin">
+        LOG OUT
+    </button>
+  </div>
+</section>

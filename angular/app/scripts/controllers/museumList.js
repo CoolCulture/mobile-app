@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('MuseumListCtrl', function($scope, $rootScope, $modal, MuseumService) {
+  .controller('MuseumListCtrl', function($scope, $rootScope, $modal, Museums) {
     $rootScope.loading = true;
 
-    MuseumService.requestAllMuseums().success(function(data){
-        $scope.museums = data;
+    Museums.list({}, function(museums){
+        $scope.museums = museums;
         $rootScope.loading = false;
     });
 
