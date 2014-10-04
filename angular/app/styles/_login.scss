@@ -1,0 +1,18 @@
+#login {
+  text-align: center;
+  
+  .login-view, .logged-in-view {
+    margin-top: 50px;
+  }
+
+  .login-input {
+    @include input-style;
+  }
+
+  .login-header {
+    color: $cool-culture-orange; 
+    font-size: 24px;
+    margin-bottom: 25px;
+    @media screen and (min-width: 768px) { font-size: 36px; }
+  }  
+}
