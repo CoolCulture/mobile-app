@@ -20,6 +20,10 @@ angular.module('coolCultureApp', [
         templateUrl: 'views/login.html',
         controller: 'SessionCtrl'
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
+      })
       .when('/museums', {
         templateUrl: 'views/museumList.html',
         controller: 'MuseumListCtrl'

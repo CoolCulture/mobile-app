@@ -14,6 +14,12 @@ angular.module('coolCultureApp')
             return response;
           });
         return request;
+        },
+      requestCheckins : function(user_id) {
+        var request = $http.get('/api/family_cards/'+user_id+'.json?checkins=true', { cache: familyCardCache }).success(function(response) {
+            return response;
+          });
+        return request;
         }
     };
   });

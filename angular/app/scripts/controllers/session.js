@@ -41,13 +41,4 @@ angular.module('coolCultureApp').
     $scope.$on('devise:new-session', function(event, currentUser) {
       // nothing for now
     });
-
-    $scope.logout = function() {
-      Auth.logout().then(function(oldUser) { console.log('logged out'); });
-    };
-
-    $scope.$on('devise:logout', function(event, oldCurrentUser) {
-      $scope.loggedIn = false;
-      $scope.errors = '';
-    });
   });

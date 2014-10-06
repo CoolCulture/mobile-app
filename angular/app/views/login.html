@@ -4,12 +4,17 @@
       <img class="back-icon" src="images/arrow.svg">
     </button>
   </div>
+  <div ng-show="loggedIn" class="profile-btn-container">
+    <button ng-click="go('/profile')" class="btn back-btn">
+      <img class="profile-icon" src="images/user.svg">
+    </button>
+  </div>
   <div class="header-text">
     Cool Culture <i class="beta">Beta</i>
   </div>
 </header>
 
-<section id="login" class="row section-detail ">
+<section id="login" class="row section-detail">
   <div class='login-view' ng-show="!loggedIn">
     <div class="col-xs-12">
       <h2 class="login-header">Hello there, <br/>welcome to CoolCulture!</h2>
@@ -42,12 +47,6 @@
     
     <button ng-click="go('/museums')" class="btn btn-lg btn-checkin">
         VIEW MUSEUMS
-    </button>
-
-    <p>Or, you can:</p>
-
-    <button ng-click="logout()" class="btn btn-lg btn-checkin">
-        LOG OUT
     </button>
   </div>
 </section>

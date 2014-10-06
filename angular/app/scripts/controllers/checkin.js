@@ -14,13 +14,13 @@ angular.module('coolCultureApp')
     }
 
     Auth.currentUser().then(function(user) {
-        FamilyCardService.requestFamilyCard(user._id.$oid).success(function(data){
-          var family_card = data.family_card;
-          if(family_card) {
-            $scope.checkinData.family_card_id = family_card.pass_id;
-            $scope.checkinData.last_name = family_card.last_name;
-          }
-        });
+      FamilyCardService.requestFamilyCard(user._id.$oid).success(function(data){
+        var family_card = data.family_card;
+        if(family_card) {
+          $scope.checkinData.family_card_id = family_card.pass_id;
+          $scope.checkinData.last_name = family_card.last_name;
+        }
+      });
     }, function(error) {
         // unauthenticated error
     });

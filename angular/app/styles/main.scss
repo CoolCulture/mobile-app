@@ -15,6 +15,7 @@ $cool-culture-orange: #F5623C;
 // Individual pages styles go here
 @import 'mixins';
 @import 'login';
+@import 'profile';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -414,9 +415,20 @@ section {
     position: absolute;
 }
 
+.profile-btn-container {
+  position: absolute;
+  right: 0px;
+}
+
 .back-icon {
     width: 70px;
     margin-top: -10px;
+    margin-left: -12px;
+}
+
+.profile-icon {
+    width: 70px;
+    margin-top: -9px;
     margin-left: -12px;
 }
 
