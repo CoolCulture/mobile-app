@@ -1,6 +1,7 @@
 class CheckinsController < ApplicationController
+
   def index
-    render json: Checkin.all
+    @checkins = Checkin.all
   end
 
   # POST /checkin
@@ -29,9 +30,9 @@ class CheckinsController < ApplicationController
   end
 
   def show
-    checkin = Checkin.find(params[:id])
-    render json: checkin
+    @checkin = Checkin.find(params[:id])
   end
+
 
   private
 

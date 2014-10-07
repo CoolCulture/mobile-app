@@ -6,21 +6,21 @@ describe('Controller: CheckinCtrl', function () {
   beforeEach(module('coolCultureApp'));
 
   var CheckinCtrl,
-    scope, routeParams, CheckinServiceMock, deferred, data;
+    scope, routeParams, CheckinsMock, deferred, data;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
     routeParams = {id: 'museum-modern-art'};
 
-    CheckinServiceMock = {
-      checkin : function(data) {
+    CheckinsMock = {
+      get : function(data) {
       }
     };
 
     CheckinCtrl = $controller('CheckinCtrl', {
       $scope: scope,
-      CheckinService: CheckinServiceMock,
+      Checkins: CheckinsMock,
       $routeParams: routeParams
     });
   }));
@@ -44,11 +44,11 @@ describe('Controller: CheckinCtrl', function () {
       }
     };
 
-    spyOn(CheckinServiceMock, 'checkin').andCallThrough();
+    spyOn(CheckinsMock, 'checkin').andCallThrough();
 
     scope.checkin();
 
-    expect(CheckinServiceMock.checkin).toHaveBeenCalled();
+    expect(CheckinsMock.get).toHaveBeenCalled();
   });
 
 });

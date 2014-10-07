@@ -10,6 +10,6 @@ MobileApp::Application.routes.draw do
       collection { post :import }
     end
 
-    resources :checkins, only: [:show, :create]
+    resources :checkins, only: [:show, :create, :index]
   end
 end
