@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, CheckinService, FamilyCardService, Auth) {
+  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, CheckinService, FamilyCardService, UserFactory, Auth) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
       museum_id: $routeParams.id,
@@ -13,16 +13,19 @@ angular.module('coolCultureApp')
       }
     }
 
-    Auth.currentUser().then(function(user) {
-      FamilyCardService.requestFamilyCard(user._id.$oid).success(function(data){
-        var family_card = data.family_card;
-        if(family_card) {
-          $scope.checkinData.family_card_id = family_card.pass_id;
-          $scope.checkinData.last_name = family_card.last_name;
+    Auth.currentUser().then(function(user){
+      UserFactory.setUser(user);
+      
+      $scope.user = UserFactory.currentUser;
+
+      FamilyCardService.get( {id: $scope.user.user_id}, function(data){
+        if(data.family_card) {
+          $scope.checkinData.last_name = data.family_card.last_name;
+          $scope.checkinData.family_card_id = data.family_card.pass_id
         }
       });
     }, function(error) {
-        // unauthenticated error
+      // if there's no user on the page when you arrive, that's cool.
     });
 
     $scope.enableCheckin = function() {

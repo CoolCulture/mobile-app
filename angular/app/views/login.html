@@ -1,10 +1,10 @@
 <header class="cool-culture-header">
   <div class="back-btn-container">
-    <button ng-click="back()" class="btn back-btn">
+    <button ng-click="go('/museums')" class="btn back-btn">
       <img class="back-icon" src="images/arrow.svg">
     </button>
   </div>
-  <div ng-show="loggedIn" class="profile-btn-container">
+  <div class="profile-btn-container">
     <button ng-click="go('/profile')" class="btn back-btn">
       <img class="profile-icon" src="images/user.svg">
     </button>
@@ -15,7 +15,7 @@
 </header>
 
 <section id="login" class="row section-detail">
-  <div class='login-view' ng-show="!loggedIn">
+  <div class='login-view' ng-show="!user.loggedIn">
     <div class="col-xs-12">
       <h2 class="login-header">Hello there, <br/>welcome to CoolCulture!</h2>
       <h4>Please enter your email and password</h4>
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class='logged-in-view' ng-show="loggedIn" class="col-xs-12">
+  <div class='logged-in-view' ng-show="user.loggedIn" class="col-xs-12">
     <div class="col-xs-12">
       <h2 class="login-header">Success,<br/>Thank you {{ lastName }} Family!</h2>
     </div>
