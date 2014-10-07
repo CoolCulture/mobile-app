@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, CheckinService, FamilyCardService, UserFactory, Auth) {
+  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins, FamilyCardService, UserFactory, Auth) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
       museum_id: $routeParams.id,
