@@ -13,6 +13,11 @@ angular.module('coolCultureApp').
       remember_me: true
     };
 
+    $scope.passwordResetData = {
+      showIt: false,
+      email: ''
+    };
+
     Auth.currentUser().then(function(user){
       UserFactory.setUser(user);
       
@@ -39,4 +44,12 @@ angular.module('coolCultureApp').
         $scope.errors = "Something went wrong. Please try logging in again."
       });
     };
+
+    $scope.resetPassword = function() {
+      var email = $scope.passwordResetData.email;
+      UserFactory.resetPassword(email);
+      $scope.passwordResetData.email = '';
+      $scope.passwordResetData.showIt = false;
+      $scope.passwordResetData.message = 'An email was sent to ' + email + '. Please check your inbox.';
+    }
   });

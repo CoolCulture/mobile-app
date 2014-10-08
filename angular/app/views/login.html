@@ -15,7 +15,12 @@
 </header>
 
 <section id="login" class="row section-detail">
-  <div class='login-view' ng-show="!user.loggedIn">
+  
+  <div class="alert alert-success" ng-show="passwordResetData.message">
+    <p>{{ passwordResetData.message }}</p>
+  </div>
+
+  <div class='login-view' ng-show="!user.loggedIn" ng-hide="passwordResetData.showIt">
     <div class="col-xs-12">
       <h2 class="login-header">Hello there, <br/>welcome to CoolCulture!</h2>
       <h4>Please enter your email and password</h4>
@@ -37,6 +42,23 @@
       <button ng-click="login()" class="btn btn-lg btn-checkin">
           LOG IN
       </button>
+    </div>
+  </div>
+
+  <div class="forgot-password-view" ng-show="!user.loggedIn">
+    <a ng-click="passwordResetData.showIt = true" ng-show="!passwordResetData.showIt">I Forgot My Password</a>
+    
+    <div class="submit-email" ng-show="passwordResetData.showIt" class="col-xs-12">
+      <div class="col-xs-12">
+        <h2 class="login-header">Reset your password.</h2>
+        <h4>Enter your email below to receive password reset instructions.</h4>
+        <form ng-submit="resetPassword()">
+          <input class="login-input" placeholder="Your Email" type="text" ng-model="passwordResetData.email" name="email" />
+          <input class="btn btn-lg btn-checkin" type="submit" id="submit" value="Reset My Password" />
+        </form>
+        <p>Still having issues? Contact <a href="#">CoolCulture</a>.</p>
+        <p>You can also <a ng-click="passwordResetData.showIt = false">go back</a> to logging in.</p>
+      </div>
     </div>
   </div>
 
