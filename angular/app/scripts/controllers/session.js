@@ -47,9 +47,10 @@ angular.module('coolCultureApp').
 
     $scope.resetPassword = function() {
       var email = $scope.passwordResetData.email;
-      UserFactory.resetPassword(email);
+      UserFactory.sendResetPassword(email);
       $scope.passwordResetData.email = '';
       $scope.passwordResetData.showIt = false;
+      $scope.errors = '';
       $scope.passwordResetData.message = 'An email was sent to ' + email + '. Please check your inbox.';
     }
   });

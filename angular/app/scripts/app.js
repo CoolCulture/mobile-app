@@ -17,8 +17,12 @@ angular.module('coolCultureApp', [
           templateUrl: 'views/welcome.html'
       })
       .when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/sessions/login.html',
         controller: 'SessionCtrl'
+      })
+      .when('/password_reset', {
+        templateUrl: 'views/sessions/password_reset.html',
+        controller: 'PasswordResetCtrl'
       })
       .when('/profile', {
         templateUrl: 'views/profile.html',

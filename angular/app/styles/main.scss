@@ -339,7 +339,7 @@ section {
     margin-top: 2px;
 }
 
-.checkin-input {
+.checkin-input, .password-input {
   @include input-style;
 }
 
