@@ -96,6 +96,7 @@ GEM
       connection_pool (~> 1.2)
       optionable (~> 0.2.0)
     multi_json (1.9.2)
+    newrelic_rpm (3.9.5.251)
     optionable (0.2.0)
     origin (2.1.0)
     polyglot (0.3.4)
@@ -200,6 +201,7 @@ DEPENDENCIES
   mongoid!
   mongoid-rspec
   mongoid_slug
+  newrelic_rpm
   pry
   rack-cache
   rack-cors
