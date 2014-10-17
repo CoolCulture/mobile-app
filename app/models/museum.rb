@@ -25,6 +25,8 @@ class Museum
   field :activity2, type: Hash, default: {}
   field :activity3, type: Hash, default: {}
   field :name_id, type: String, default:-> { slug }
+  field :twitter, type: String
+  field :facebook, type: String
 
   slug do |museum|
     Museum.slug_format(museum.name)

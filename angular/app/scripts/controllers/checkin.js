@@ -22,7 +22,7 @@ angular.module('coolCultureApp')
       Checkins.save($scope.checkinData, function(checkin) {
         var path = 'museums/checkinConfirmation/' + checkin.slug;
         $rootScope.go(path);
-
+        
       }, function(response) {
         if (response.data.limit) {
           $scope.errors = response.data.limit[0];
