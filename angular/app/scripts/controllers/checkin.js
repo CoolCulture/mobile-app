@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins, FamilyCardService, UserFactory, Auth) {
+  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins, FamilyCards, UserFactory, Auth) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
-      museum_id: $routeParams.id,
-      family_card_id: '',
-      last_name: '',
+      museumId: $routeParams.id,
+      familyCardId: '',
+      lastName: '',
       checkin: {
-        number_of_children: 0,
-        number_of_adults: 0
+        numberOfChildren: 0,
+        numberOfAdults: 0
       }
     }
 
@@ -18,10 +18,10 @@ angular.module('coolCultureApp')
       
       $scope.user = UserFactory.currentUser;
 
-      FamilyCardService.get( {id: $scope.user.user_id}, function(data){
+      FamilyCards.get( {id: $scope.user.user_id}, function(data){
         if(data.family_card) {
-          $scope.checkinData.last_name = data.family_card.last_name;
-          $scope.checkinData.family_card_id = data.family_card.pass_id
+          $scope.checkinData.lastName = data.family_card.last_name;
+          $scope.checkinData.familyCardId = data.family_card.pass_id
         }
       });
     }, function(error) {
@@ -29,7 +29,7 @@ angular.module('coolCultureApp')
     });
 
     $scope.enableCheckin = function() {
-      return $scope.checkinData.checkin.number_of_adults < 1 || $scope.checkinData.checkin.number_of_children < 1
+      return $scope.checkinData.checkin.numberOfAdults < 1 || $scope.checkinData.checkin.numberOfChildren < 1
     }
 
     $scope.checkin = function() {

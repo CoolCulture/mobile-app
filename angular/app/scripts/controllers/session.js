@@ -6,7 +6,7 @@ angular.module('coolCultureApp').
     AuthProvider.loginPath('/api/users/sign_in.json');
     AuthProvider.logoutPath('/api/users/sign_out.json');
   }).
-  controller('SessionCtrl', function ($scope, $rootScope, Auth, UserFactory, FamilyCardService) {    
+  controller('SessionCtrl', function ($scope, $rootScope, Auth, UserFactory, FamilyCards) {    
     $scope.sessionData = {
       email: '',
       password: '',
@@ -23,7 +23,7 @@ angular.module('coolCultureApp').
       
       $scope.user = UserFactory.currentUser;
 
-      FamilyCardService.get( {id: $scope.user.user_id}, function(data){
+      FamilyCards.get( {id: $scope.user.user_id}, function(data){
         if(data.family_card) { $scope.lastName = data.family_card.last_name; }
       });
     }, function(error) {
@@ -37,7 +37,7 @@ angular.module('coolCultureApp').
         UserFactory.setUser(user);
         $scope.user = UserFactory.currentUser;
 
-        FamilyCardService.get( {id: UserFactory.currentUser.user_id}, function(data){
+        FamilyCards.get( {id: UserFactory.currentUser.user_id}, function(data){
           if(data.family_card) { $scope.lastName = data.family_card.last_name; }
         });
       }, function(error) {

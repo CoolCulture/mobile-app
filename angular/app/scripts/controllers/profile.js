@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('ProfileCtrl', function ($scope, $rootScope, $window, Auth, FamilyCardService, UserFactory) {
+  .controller('ProfileCtrl', function ($scope, $rootScope, $window, Auth, FamilyCards, UserFactory) {
     Auth.currentUser().then(function(user) {
       UserFactory.setUser(user);
       $scope.user = UserFactory.currentUser;
 
-      FamilyCardService.withCheckins({id: $scope.user.user_id}, function(data){
+      FamilyCards.withCheckins({id: $scope.user.user_id}, function(data){
         if(data.family_card && data.checkins) {
           $scope.familyCard = data.family_card;
           $scope.checkins = data.checkins;
