@@ -1,0 +1,59 @@
+#profile {
+  .family-card-info {
+    margin-top: 50px;
+    .heading {
+      margin-bottom: 25px;
+
+      h1 { text-align: center; }
+      h4.org-details {
+        color: $middle-gray;
+        font-weight: 300;
+        letter-spacing: 1px;
+        text-align: center;
+        text-transform: uppercase;
+      }  
+    }
+  }
+
+  #checkins {
+    margin-top: 50px;
+    
+    .row {
+      margin-bottom: 25px;
+    }
+
+    h4 {
+      margin-bottom: 25px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    
+    img {
+      border-radius: 50%;
+      float: right;
+    }
+    
+    p {
+      color: $dark-gray; 
+      span {
+        color: $cool-culture-orange;
+        font-weight: 600;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .row, p, h3 { text-align: center; }
+      
+      img {
+        display: block;
+        float: none;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  #logout-button {
+    display: block;
+    margin: 0 auto;
+  }
+}

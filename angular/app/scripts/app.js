@@ -9,11 +9,24 @@ angular.module('coolCultureApp', [
   'ui.bootstrap',
   'ngTouch',
   'jmdobry.angular-cache',
+  'Devise'
 ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
           templateUrl: 'views/welcome.html'
+      })
+      .when('/login', {
+        templateUrl: 'views/sessions/login.html',
+        controller: 'SessionCtrl'
+      })
+      .when('/password_reset', {
+        templateUrl: 'views/sessions/password_reset.html',
+        controller: 'PasswordResetCtrl'
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       })
       .when('/museums', {
         templateUrl: 'views/museumList.html',

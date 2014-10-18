@@ -1,20 +1,35 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins) {
+  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins, FamilyCards, UserFactory, Auth) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
-      museum_id: $routeParams.id,
-      family_card_id: '',
-      last_name: '',
+      museumId: $routeParams.id,
+      familyCardId: '',
+      lastName: '',
       checkin: {
-        number_of_children: 0,
-        number_of_adults: 0
+        numberOfChildren: 0,
+        numberOfAdults: 0
       }
     }
 
+    Auth.currentUser().then(function(user){
+      UserFactory.setUser(user);
+      
+      $scope.user = UserFactory.currentUser;
+
+      FamilyCards.get( {id: $scope.user.user_id}, function(data){
+        if(data.family_card) {
+          $scope.checkinData.lastName = data.family_card.last_name;
+          $scope.checkinData.familyCardId = data.family_card.pass_id
+        }
+      });
+    }, function(error) {
+      // if there's no user on the page when you arrive, that's cool.
+    });
+
     $scope.enableCheckin = function() {
-      return $scope.checkinData.checkin.number_of_adults < 1 || $scope.checkinData.checkin.number_of_children < 1
+      return $scope.checkinData.checkin.numberOfAdults < 1 || $scope.checkinData.checkin.numberOfChildren < 1
     }
 
     $scope.checkin = function() {
@@ -33,6 +48,4 @@ angular.module('coolCultureApp')
     }
 
     $window.scrollTo(0,0);
-
-
   });

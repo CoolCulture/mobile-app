@@ -1,0 +1,24 @@
+#login {
+  text-align: center;
+  
+  .login-view, .logged-in-view, .submit-email {
+    margin-top: 50px;
+  }
+
+  .login-input {
+    @include input-style;
+  }
+
+  .login-header {
+    color: $cool-culture-orange; 
+    font-size: 30px;
+    margin-bottom: 25px;
+    @media screen and (min-width: 768px) { font-size: 36px; }
+  }  
+}
+
+#password-reset {
+  #password-reset-view h2 {
+    margin-top: 50px;
+  }
+}

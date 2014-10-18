@@ -1,4 +1,6 @@
 class MuseumsController < ApplicationController
+  skip_filter :deep_snake_case_params!
+
   before_action :set_museum, only: [:show, :edit, :update, :destroy]
   http_basic_authenticate_with name: ADMIN_USER, password: ADMIN_PASS, except: [:index, :show]
 
