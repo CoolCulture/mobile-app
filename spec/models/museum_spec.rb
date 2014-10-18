@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Museum do
   it {should validate_presence_of(:name)}
-  it {should validate_presence_of(:phoneNumber)}
+  it {should validate_presence_of(:phone_number)}
   it {should validate_presence_of(:address)}
   it {should validate_presence_of(:borough)}
-  it {should validate_presence_of(:siteUrl)}
-  it {should validate_presence_of(:imageUrl)}
+  it {should validate_presence_of(:site_url)}
+  it {should validate_presence_of(:image_url)}
   it {should validate_presence_of(:hours)}
   it {should validate_presence_of(:categories)}
 
@@ -61,19 +61,19 @@ describe Museum do
     end
 
     it "should order subway lines" do
-      museum = FactoryGirl.build(:museum, subwayLines: ['A','B','1','7','3','C','D','Z','L','E','F','G'])
+      museum = FactoryGirl.build(:museum, subway_lines: ['A','B','1','7','3','C','D','Z','L','E','F','G'])
 
       museum.save
 
-      museum.subwayLines.should == ['1','3','7','A','C','E','B','D','F','G','Z','L']
+      museum.subway_lines.should == ['1','3','7','A','C','E','B','D','F','G','Z','L']
     end
 
     it "should return all unrecognized subway lines at end of array" do
-      museum = FactoryGirl.build(:museum, subwayLines: ['A','B','Railway','1','7'])
+      museum = FactoryGirl.build(:museum, subway_lines: ['A','B','Railway','1','7'])
 
       museum.save
 
-      museum.subwayLines.should == ['1','7','A','B','Railway']
+      museum.subway_lines.should == ['1','7','A','B','Railway']
     end
   end
 end
