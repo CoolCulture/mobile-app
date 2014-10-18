@@ -1,8 +1,13 @@
 <header class="cool-culture-header">
   <div class="back-btn-container">
-    <button ng-click="back()" class="btn back-btn">
+    <a ng-click="back()" class="btn back-btn">
       <img class="back-icon" src="images/arrow.svg">
-    </button>
+    </a>
+  </div>
+  <div class="profile-btn-container">
+    <a href="#/profile" class="btn back-btn">
+      <img class="profile-icon" src="images/user.svg">
+    </a>
   </div>
   <div class="header-text">
     Cool Culture <i class="beta">Beta</i>
@@ -11,7 +16,7 @@
 
 <section class="row section-detail ">
   <div class="col-xs-12">
-    <h2 class="checkin-text">Check In</h2>
+    <h2 class="checkin-header">Check In</h2>
     <div class="checkin-museum-text">
       <strong>{{checkinData.museumId | displayMuseumIdFilter }}</strong>
     </div>
@@ -23,11 +28,11 @@
 
   <div class="col-xs-12">
     <h4>Please enter your Family ID number and your Last Name</h4>
-    <input class="checkin-input" type="tel" placeholder="Family Card ID" ng-model="checkinData.family_card_id"/>
+    <input class="checkin-input" type="tel" placeholder="Family Card ID" ng-model="checkinData.familyCardId"/>
   </div>
 
   <div class="col-xs-12">
-    <input class="checkin-input" placeholder="Last Name" ng-model="checkinData.last_name"/>
+    <input class="checkin-input" placeholder="Last Name" ng-model="checkinData.lastName"/>
   </div>
   <div class="col-xs-12 checkin-header-row">
     <hr>
@@ -36,14 +41,14 @@
 
   <div class="col-xs-12">
     <h4>How many children are in your group?</h4>
-    <group-number options="options" number="checkinData.checkin.number_of_children"></group-number>
+    <group-number options="options" number="checkinData.checkin.numberOfChildren"></group-number>
     <hr class="checkin-header-row">
   </div>
 
 
   <div class="col-xs-12">
     <h4>How many adults are in your group?</h4>
-    <group-number options="options" number="checkinData.checkin.number_of_adults"></group-number>
+    <group-number options="options" number="checkinData.checkin.numberOfAdults"></group-number>
   </div>
 
   <div class="col-xs-12">

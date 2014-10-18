@@ -12,6 +12,11 @@ $cool-culture-orange: #F5623C;
 @import 'loading';
 @import 'filter_modal';
 
+// Individual pages styles go here
+@import 'mixins';
+@import 'login';
+@import 'profile';
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -334,21 +339,15 @@ section {
     margin-top: 2px;
 }
 
-.checkin-input {
-    border: solid 2px;
-    height: 50px;
-    width: 80%;
-    font-size: 150%;
-    color: $dark-gray;
-    margin-top: 2px;
-    padding-left: 10px;
+.checkin-input, .password-input {
+  @include input-style;
 }
 
 .checkin-header-row {
     margin-top: 30px;
 }
 
-.checkin-text {
+.checkin-header {
     color: $cool-culture-orange;
 }
 
@@ -416,9 +415,20 @@ section {
     position: absolute;
 }
 
+.profile-btn-container {
+  position: absolute;
+  right: 0px;
+}
+
 .back-icon {
     width: 70px;
     margin-top: -10px;
+    margin-left: -12px;
+}
+
+.profile-icon {
+    width: 70px;
+    margin-top: -9px;
     margin-left: -12px;
 }
 
