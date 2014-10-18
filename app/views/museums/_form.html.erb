@@ -82,15 +82,17 @@
       <%= f.check_box :suggestedDonation %> <br />
   </div>
 
-  <p>
-    <strong>Activities</strong>
-    <ul>
-      <% @museum.activities.each do   |activity| %>
-        <%= render partial: 'activity', locals: {activity: activity} %>
-      <% end %>
-    </ul>
-    <%= link_to 'New', new_museum_activity_path(@museum) %>
-  </p>
+  <% if @museum.slug %>
+    <p>
+      <strong>Activities</strong>
+      <ul>
+        <% @museum.activities.each do   |activity| %>
+          <%= render partial: 'activity', locals: {activity: activity} %>
+        <% end %>
+      </ul>
+      <%= link_to 'New', new_museum_activity_path(@museum) %>
+    </p>
+  <% end %>
 
   <%= f.input :description, as: :text %>
 
