@@ -5,6 +5,8 @@ angular.module('coolCultureApp')
     $rootScope.loading = true;
 
     $scope.formatActivityTime = function (activity) {
+      if (activity.date == null)
+        return null;
       var date = new Date(activity.date);
       var str = date.getUTCMonth()+1 + '/' + date.getUTCDate() + '/' + date.getUTCFullYear();
       if (activity.startTime) {

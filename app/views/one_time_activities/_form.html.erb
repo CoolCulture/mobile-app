@@ -1,0 +1,39 @@
+<%= simple_form_for([@museum, @activity], format: 'html', html: {class: 'form-vertical' }) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+      <% @activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name %>
+  <%= f.input :description, as: :text %>
+  <div class='control-group'>
+    <%= f.label :date %>
+    <%= f.text_field :date, data: {provide: 'datepicker'} %>
+  </div>
+  <div class='control-group'>
+    <%= f.label :start_time %>
+    <div class='input-append bootstrap-timepicker-component' style='display: inline;'>
+      <%= f.text_field :start_time, class: 'dateselect-time input-small timepicker' %>
+      <span class='add-on'><i class='icon-time'></i></span>
+    </div>
+  </div>
+  <div class='control-group'>
+    <%= f.label :end_time %>
+    <div class='input-append bootstrap-timepicker-component' style='display: inline;'>
+      <%= f.text_field :end_time, class: 'dateselect-time input-small timepicker' %>
+      <span class='add-on'><i class='icon-time'></i></span>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

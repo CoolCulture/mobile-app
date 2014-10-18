@@ -15,8 +15,6 @@ class MuseumsController < ApplicationController
   # GET /museums/1
   # GET /museums/1.json
   def show
-    expires_in 15.minutes
-    fresh_when @museum, public: true
   end
 
   # GET /museums/new
