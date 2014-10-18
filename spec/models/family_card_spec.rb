@@ -1,54 +1,51 @@
 require 'spec_helper'
 
 describe FamilyCard do
-  it {should validate_presence_of(:last_name)}
-  it {should validate_presence_of(:pass_id)}
-  it {should validate_presence_of(:expiration)}
-  it {should validate_presence_of(:center_name)}
-  it {should validate_presence_of(:school_type)}
+  it { should validate_presence_of(:pass_id) }
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
+  it { should validate_presence_of(:organization_name) }
 
-  it {should validate_uniqueness_of(:pass_id)}
+  it { should validate_uniqueness_of(:pass_id) }
 
-  describe "valid_last_name" do
-    context "matches family card last name" do
-      it "should return true" do
-        family_card = FactoryGirl.build(:family_card)
-
-        valid = family_card.valid_last_name("Cooling")
-        valid.should == true
-      end
-
-      it "should return true for case-insensitive" do
-        family_card = FactoryGirl.build(:family_card)
-
-        valid = family_card.valid_last_name("cooling")
-        valid.should == true
+  describe ".import" do
+    before :each do
+      @file = Tempfile.new('users.csv')
+      CSV.open(@file.path, 'w') do |csv|
+        csv << ["pass_id","first_name","last_name","expiration","organization_name","language","email"]
+        10.times do |i|
+          csv << ["1000#{i}","First#{i}","Last#{i}","","BlueRidge Foundation","","temp#{i}@gmail.com"]
+        end
       end
     end
 
-    context "matches family card with two last names" do
-      it "should return true if the last name matches one of the registered names" do
-        family_card = FactoryGirl.build(:family_card, last_name: 'Socool/ Cultu')
-
-        valid = family_card.valid_last_name("Cultu")
-        valid.should == true
-      end
+    after :each do
+      @file.unlink
     end
 
-    context "does not match family card last name" do
-      it "should return false" do
-        family_card = FactoryGirl.build(:family_card)
+    it 'should create new users when a valid CSV is imported' do
+      FamilyCard.import(@file)
+      FamilyCard.count.should eq 10
+    end
 
-        valid = family_card.valid_last_name("Cooly")
-        valid.should == false
+    it 'should associate users and CSVs correctly' do
+      FamilyCard.import(@file)
+      family_card = FamilyCard.find(10001)
+      family_card.user.email.should eq "temp1@gmail.com"
+    end
+
+    it 'should not allow duplicates' do
+      same_users = Tempfile.new('same_users.csv')
+      CSV.open(same_users.path, 'w') do |csv|
+        csv << ["pass_id","first_name","last_name","expiration","organization_name","language","email"]
+        csv << ["10001","First1","Last1","","BlueRidge Foundation","","temp1@gmail.com"]
       end
+      FamilyCard.import(@file)
 
-      it "should return false if last name is nil" do
-        family_card = FactoryGirl.build(:family_card, last_name: nil)
-
-        valid = family_card.valid_last_name("Cooly")
-        valid.should == false
-      end
+      errors = FamilyCard.import(same_users)
+      errors.count.should eq 1
+      
+      same_users.unlink
     end
   end
 end

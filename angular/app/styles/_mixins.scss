@@ -1,0 +1,9 @@
+@mixin input-style {
+  border: solid 2px;
+  height: 50px;
+  width: 80%;
+  font-size: 150%;
+  color: $dark-gray;
+  margin-top: 2px;
+  padding-left: 10px;
+}

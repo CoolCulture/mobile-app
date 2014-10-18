@@ -21,7 +21,7 @@ describe FamilyCardsController do
       post :import, file: csv_to_import
 
       flash[:notice].should eq("Family Cards imported successfully.")
-      FamilyCard.count.should == 5
+      FamilyCard.count.should == 2
     end
   end
 

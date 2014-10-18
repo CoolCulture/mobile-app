@@ -43,6 +43,10 @@ gem 'simple_form'
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'
+gem 'devise'
+
+gem 'newrelic_rpm'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -55,6 +59,7 @@ end
 
 group :development, :test do
   gem 'pry'
+  gem 'letter_opener'
 end
 
 group :test do

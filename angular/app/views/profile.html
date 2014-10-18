@@ -1,0 +1,40 @@
+<header class="cool-culture-header">
+  <div class="back-btn-container">
+    <button ng-click="back()" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </button>
+  </div>
+  <div class="header-text">
+    Cool Culture <i class="beta">Beta</i>
+  </div>
+</header>
+
+<section id="profile" class="row section-detail">
+  <div class="family-card-info" class="col-xs-12">
+    <div class="heading">
+      <h1>{{ familyCard.first_name }} {{ familyCard.last_name }}</h1>
+      <h4 class="org-details">{{ familyCard.organization_name }}</h4>
+      <h4 class="org-details">Pass ID {{ familyCard.pass_id }} - Expires On {{ familyCard.expiration }}</h4>
+    </div>
+
+    <div id="checkins">
+      <h4>Previous Checkins</h4>
+      <div ng-repeat="checkin in checkins">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3">
+            <img src="{{ checkin.image }}">  
+          </div>
+          
+          <div class="col-xs-12 col-sm-9">
+            <h3>{{ checkin.museum }}</h3>
+            <p>Checked-in on <span>{{ checkin.date }}</span>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="logout-button" ng-click="logout()" class="btn btn-lg btn-checkin">
+        LOG OUT
+    </button>
+  </div>
+</section>

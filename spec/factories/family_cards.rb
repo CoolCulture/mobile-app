@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :family_card do
-    last_name 'Cooling'
+    first_name 'John'
+    last_name 'Smith'
     pass_id 10000
     id 10000
     expiration Date.new(2020, 1, 1)
-    center_name '1199SEIU Child Care Corporation'
-    school_type 'ECC 1'
+    organization_name 'BlueRidge Foundation'
+    language 'en'
   end
 end
