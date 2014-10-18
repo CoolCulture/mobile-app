@@ -1,5 +1,7 @@
 <li>
-  <%= activity.name %> - <%= activity.description %>
+  <%= activity.name %> <%= "- #{activity.date}" if activity.date %>
+  <%= ", #{activity.start_time} - #{activity.end_time}" if activity.start_time %>
+  <p><%= activity.description %></p>
   <%= link_to 'Edit', edit_museum_activity_path(activity.museum, activity) %>
-  <%= link_to 'Delete', museum_activity_path(activity.museum, activity), method: :delete, confirm: true %>
+  <%= link_to 'Delete', museum_activity_path(activity.museum, activity), method: :delete, confirm: "Really delete #{activity.name}?" %>
 </li>
