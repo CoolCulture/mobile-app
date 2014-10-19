@@ -120,6 +120,16 @@
     </div>
   </div>
 
+  <div class="col-xs-12" ng-show="museum.additionalDirectionalInfo">
+    <div class="description-title">
+      Additional Directions
+    </div>
+    <hr>    
+    <div class="description-text">
+      {{ museum.additionalDirectionalInfo }}
+    </div>
+  </div>
+
     <div class="col-xs-12" ng-if="museum.activity1.name|| museum.activity2.name || museum.activity3.name">
       <hr>
       <div class="activities-title">
