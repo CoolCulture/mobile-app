@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_admin?
+    if request.path_parameters[:format] == 'json' || !current_user.try(:admin?)
+      redirect_to("#/login") 
+    end
+  end
+
   respond_to :html, :json
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

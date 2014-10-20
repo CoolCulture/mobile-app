@@ -1,0 +1,31 @@
+<h4><%= link_to 'Go to Family Card Import', family_cards_path %></h4>
+<h4><%= link_to 'Go to Museums Import', museums_path %></h4>
+
+<h1>Listing museums</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Family Card ID</th>
+        <th>Last Name</th>
+        <th># of Children</th>
+        <th># of Adults</th>
+        <th>Museum</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= @checkins.each do |checkin| %>
+        <tr>
+          <td><%= checkin.family_card_id %></td>
+          <td><%= checkin.last_name %></td>
+          <td><%= checkin.number_of_children %></td>
+          <td><%= checkin.number_of_adults %></td>
+          <td><%= checkin.museum.name %></td>
+          <td><%= checkin.date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe CheckinsController do
+  before(:each) do
+    request.stub(:path_parameters).and_return({format: 'html'})
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    user = FactoryGirl.create(:user)
+    user.update_attributes(admin: true)
+    sign_in user
+  end
+  
   describe "checkin" do
     let(:family_card) { FactoryGirl.create(:family_card) }
     let(:museum) { FactoryGirl.create(:museum) }

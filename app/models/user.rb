@@ -36,5 +36,8 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  ## Admin
+  field :admin, type: Boolean, default: false
+
   has_one :family_card, dependent: :delete
 end
