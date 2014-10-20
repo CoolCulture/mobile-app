@@ -43,20 +43,20 @@
     <% @museums.each do |museum| %>
       <tr>
         <td><%= museum.name %></td>
-        <td><%= museum.phoneNumber %></td>
+        <td><%= museum.phone_number %></td>
         <td><%= museum.address %></td>
         <td><%= museum.borough %></td>
-        <td><%= museum.siteUrl %></td>
-        <td><%= museum.imageUrl %></td>
+        <td><%= museum.site_url %></td>
+        <td><%= museum.image_url %></td>
         <td><%= museum.hours %></td>
-        <td><%= museum.subwayLines %></td>
-        <td><%= museum.busLines %></td>
+        <td><%= museum.subway_lines %></td>
+        <td><%= museum.bus_lines %></td>
         <td><%= museum.categories %></td>
         <td><%= boolean_to_human(museum.wifi) %></td>
-        <td><%= boolean_to_human(museum.freeAdmission) %></td>
-        <td><%= boolean_to_human(museum.suggestedDonation) %></td>
-        <td><%= boolean_to_human(museum.handicapAccessible) %></td>
-        <td><%= boolean_to_human(museum.handsOnActivity) %></td>
+        <td><%= boolean_to_human(museum.free_admission) %></td>
+        <td><%= boolean_to_human(museum.suggested_donation) %></td>
+        <td><%= boolean_to_human(museum.handicap_accessible) %></td>
+        <td><%= boolean_to_human(museum.hands_on_activity) %></td>
         <td><%= link_to 'Show', museum %></td>
         <td><%= link_to 'Edit', edit_museum_path(museum) %></td>
         <td><%= link_to 'Destroy', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>

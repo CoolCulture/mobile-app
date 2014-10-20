@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CheckinsController do
   describe "checkin" do
@@ -33,7 +33,7 @@ describe CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-        }.to_not change(Checkin, :count).by(1)
+        }.to change(Checkin, :count).by(0)
       end
 
       context "with invalid family_card id" do
@@ -48,7 +48,7 @@ describe CheckinsController do
                   number_of_adults: 2
                 },
                 format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
       end
 
@@ -76,7 +76,7 @@ describe CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
       end
     end
@@ -85,9 +85,9 @@ describe CheckinsController do
       it "should return success" do
         checkin = FactoryGirl.create(:checkin, { date: Date.today })
         get :show, id: checkin.slug, format: :json
-        response.should be_ok
+        expect(response).to be_ok
         resp = JSON.parse(response.body)
-        resp['lastName'].should == checkin.last_name
+        expect(resp['lastName']).to eq(checkin.last_name)
       end
     end
   end

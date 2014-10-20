@@ -7,29 +7,29 @@ class Museum
   embeds_many :activities
 
   field :name, type: String
-  field :phoneNumber, type: String
+  field :phone_number, type: String
   field :address, type: String
   field :borough, type: String
-  field :siteUrl, type: String
-  field :imageUrl, type: String
+  field :site_url, type: String
+  field :image_url, type: String
   field :hours, type: Array, default: []
-  field :subwayLines, type: Array, default: []
-  field :busLines, type: String
+  field :subway_lines, type: Array, default: []
+  field :bus_lines, type: String
   field :categories, type: Array, default: []
   field :wifi, type: Boolean
-  field :handicapAccessible, type: Boolean
-  field :handsOnActivity, type: Boolean
+  field :handicap_accessible, type: Boolean
+  field :hands_on_activity, type: Boolean
   field :description, type: String
-  field :freeAdmission, type: Boolean
-  field :suggestedDonation, type: Boolean
+  field :free_admission, type: Boolean
+  field :suggested_donation, type: Boolean
   field :name_id, type: String, default:-> { slug }
 
   slug do |museum|
     Museum.slug_format(museum.name)
   end
 
-  validates_presence_of :name, :phoneNumber, :address, :borough,
-  						 :siteUrl, :imageUrl, :hours, :categories
+  validates_presence_of :name, :phone_number, :address, :borough,
+  						 :site_url, :image_url, :hours, :categories
 
   validates_uniqueness_of :name
 
@@ -41,18 +41,18 @@ class Museum
                 force_simple_split: true,
                 remove_empty_values: false,
                 key_mapping: {cip: :name,
-                              phone: :phoneNumber,
+                              phone: :phone_number,
                               location: :address,
-                              website: :siteUrl,
-                              subway: :subwayLines,
-                              bus: :busLines,
-                              photo_url: :imageUrl,
+                              website: :site_url,
+                              subway: :subway_lines,
+                              bus: :bus_lines,
+                              photo_url: :image_url,
                               :"wi-fi" => :wifi,
-                              wheelchair_accessible: :handicapAccessible,
-                              hands_on_activity: :handsOnActivity,
+                              wheelchair_accessible: :handicap_accessible,
+                              hands_on_activity: :hands_on_activity,
                               museum_description: :description,
-                              free: :freeAdmission,
-                              suggested_admission: :suggestedDonation,
+                              free: :free_admission,
+                              suggested_admission: :suggested_donation,
                               seasonal_hours: nil,
                               closed: nil,
                               wifi_notes: nil,
@@ -65,7 +65,7 @@ class Museum
     SmarterCSV.process(file, options) do |row|
       attrs = row.first
 
-      attrs[:subwayLines] = attrs[:subwayLines].to_s.split(' ')
+      attrs[:subway_lines] = attrs[:subway_lines].to_s.split(' ')
       attrs[:categories] = attrs[:categories].split(' ')
 
       hours = [attrs[:hours_1], attrs[:hours_2], attrs[:hours_3], attrs[:hours_4]]
@@ -89,18 +89,18 @@ class Museum
   end
 
   def sort_subway_lines
-    sortedSubwayLines = []
+    sorted_subway_lines = []
 
     SUBWAY_LINES.each do |line|
-      if self.subwayLines.include?(line)
-        sortedSubwayLines.push(line)
-        self.subwayLines = self.subwayLines - [line]
+      if self.subway_lines.include?(line)
+        sorted_subway_lines.push(line)
+        self.subway_lines = self.subway_lines - [line]
       end
     end
 
-    sortedSubwayLines = sortedSubwayLines + self.subwayLines if !self.subwayLines.empty?
+    sorted_subway_lines = sorted_subway_lines + self.subway_lines if !self.subway_lines.empty?
 
-    self.subwayLines = sortedSubwayLines
+    self.subway_lines = sorted_subway_lines
   end
 
   SUBWAY_LINES = [

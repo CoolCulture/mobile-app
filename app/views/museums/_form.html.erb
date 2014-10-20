@@ -12,11 +12,11 @@
   <% end %>
 
   <%= f.input :name %>
-  <%= f.input :phoneNumber %>
+  <%= f.input :phone_number %>
   <%= f.input :address %>
   <%= f.input :borough, collection: ["Brooklyn", "Bronx", "Manhattan", "Queens", "Staten Island"], prompt: "Select a Borough" %>
-  <%= f.input :siteUrl %>
-  <%= f.input :imageUrl %>
+  <%= f.input :site_url %>
+  <%= f.input :image_url %>
 
   <div class="field">
     <%= label_tag :hours_1 %><br>
@@ -39,13 +39,13 @@
   <div class="field">
     <% Museum::SUBWAY_LINES.each do |line| %>
       <%= line %>
-      <%= check_box_tag "museum[subwayLines][]", line,
-       @museum.subwayLines.include?(line) ? true : false,
+      <%= check_box_tag "museum[subway_lines][]", line,
+       @museum.subway_lines.include?(line) ? true : false,
         include_hidden: false %>
     <% end %>
   </div>
 
-  <%= f.input :busLines %>
+  <%= f.input :bus_lines %>
 
   <%= label_tag "Categories" %>
   <div class="field">
@@ -64,22 +64,22 @@
 
   <div class="field">
       <%= f.label "Handicap Accessible" %> <br />
-      <%= f.check_box :handicapAccessible %> <br />
+      <%= f.check_box :handicap_accessible %> <br />
   </div>
 
   <div class="field">
       <%= f.label "Hands-On Activity" %> <br />
-      <%= f.check_box :handsOnActivity %> <br />
+      <%= f.check_box :hands_on_activity %> <br />
   </div>
 
    <div class="field">
       <%= f.label "Free Admission" %> <br />
-      <%= f.check_box :freeAdmission %> <br />
+      <%= f.check_box :free_admission %> <br />
   </div>
 
    <div class="field">
       <%= f.label "Suggested Donation" %> <br />
-      <%= f.check_box :suggestedDonation %> <br />
+      <%= f.check_box :suggested_donation %> <br />
   </div>
 
   <% if @museum.slug %>

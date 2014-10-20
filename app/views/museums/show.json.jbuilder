@@ -1,4 +1,3 @@
-json.extract! @museum, :id, :name, :phoneNumber, :address, :borough, :siteUrl, :imageUrl, :hours, :subwayLines, :busLines, :categories, :name_id, :wifi, :freeAdmission, :suggestedDonation, :handicapAccessible, :handsOnActivity, :description, :activities
-
+json.extract! @museum, :id, :name, :phone_number, :address, :borough, :site_url, :image_url, :hours, :subway_lines, :bus_lines, :categories, :name_id, :wifi, :free_admission, :suggested_donation, :handicap_accessible, :hands_on_activity, :description, :activities
 
 json.activities @museum.activities, partial: 'activity', as: :activity

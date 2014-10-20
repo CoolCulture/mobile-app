@@ -1,7 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe FamilyCardsController do
-
   include AuthHelper
   before(:each) do
     http_login
@@ -20,8 +19,8 @@ describe FamilyCardsController do
       csv_to_import = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'family_cards.csv'), "text/csv")
       post :import, file: csv_to_import
 
-      flash[:notice].should eq("Family Cards imported successfully.")
-      FamilyCard.count.should == 2
+      expect(flash[:notice]).to eq("Family Cards imported successfully.")
+      expect(FamilyCard.count).to eq(2)
     end
   end
 
