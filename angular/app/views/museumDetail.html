@@ -120,14 +120,19 @@
     </div>
   </div>
 
-  <div id="activities">
-    <h2>Activities</h2>
-    <div class="activity" ng-repeat="activity in museum.activities">
-      <h2>{{ activity.name }}</h3>
-      <h3>{{ formatActivityTime(activity) }}</h3>
-      <p>{{ activity.description }}</p>
+  <div class="col-xs-12">
+    <div class="description-title">
+      Activities
     </div>
-  </div>
+    <hr>
+    <div ng-repeat="activity in museum.activities" class="description-text">
+      <p>
+        <strong>{{ activity.name }}</strong><br/>
+        {{ formatActivityTime(activity) }}<br/>
+        {{ activity.description }}
+      </p>
+    </div>
+  </div>  
 </section>
 
 <hr class="livefyre-header">
