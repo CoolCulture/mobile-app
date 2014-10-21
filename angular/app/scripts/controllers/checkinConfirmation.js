@@ -6,28 +6,27 @@ angular.module('coolCultureApp')
       return "https://twitter.com/home?status=Visiting%20The%20" + museumTitle + "%20thanks%20to%20@coolculture!";
     }
 
-    $scope.setSocial = function (museum) {
-      var facebookBase = "https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/";
-      if(museum && museum.facebook) {
-        $scope.facebookUrl = facebookBase + museum.facebook;
+    $scope.setTwitter = function (twitter, museumName) {      
+      if(twitter && museumName) {
+        return $scope.twitterUrl(twitter);
       } else {
-        $scope.facebookUrl = facebookBase + "CoolCulture";
-      }
-      
-      if(museum && museum.twitter) {
-        $scope.twitterUrl = $scope.twitterUrl(museum.twitter);
-      } else {
-        var name = museum.name.split(" ").join("%20");
-        $scope.twitterUrl = $scope.twitterUrl(name);
+        var name = museumName.split(" ").join("%20");
+        return $scope.twitterUrl(name);
       }
     }
 
-    var museumId = $routeParams.id.split("+")[1].split(" ").join("-").toLowerCase();
-    Museums.get({ id: museumId }, function(museum) {
-      $scope.museum = museum;
-      
-      $scope.setSocial(museum);
-    });
+    $scope.setFacebook = function (facebook) {
+      var facebookBase = "https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/";
+      if(facebook) {
+        return facebookBase + facebook;
+      } else {
+        return facebookBase + "CoolCulture";
+      }
+    }
 
-    $scope.checkinTicket = Checkins.get({id: $routeParams.id});
+    Checkins.get({id: $routeParams.id}, function(checkinTicket) {
+      $scope.checkinTicket = checkinTicket;
+      $scope.twitterUrl = $scope.setTwitter(checkinTicket.museum.twitter, checkinTicket.museum.name);
+      $scope.facebookUrl = $scope.setFacebook(checkinTicket.museum.facebook);
+    });
   });
