@@ -1,5 +1,5 @@
 class CheckinsController < ApplicationController
-  before_action :is_admin?, except: [:show]
+  before_action :is_admin?
   
   def index
     @checkins = Checkin.all

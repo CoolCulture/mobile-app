@@ -1,6 +1,6 @@
 class FamilyCardsController < ApplicationController
   before_action :set_user, only: [:show]
-  before_action :is_admin?, except: [:show]
+  before_action :is_admin?
 
   def index
     @family_cards = FamilyCard.all
