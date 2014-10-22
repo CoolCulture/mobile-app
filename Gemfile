@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.6'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-cache'
@@ -34,11 +34,11 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'compass'
 
-gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', '~> 4.0.0'
 gem "mongoid_slug"
 
 gem 'bootstrap-sass'
-gem 'simple_form'
+gem 'simple_form', github: 'plataformatec/simple_form'
 
 gem 'smarter_csv'
 
