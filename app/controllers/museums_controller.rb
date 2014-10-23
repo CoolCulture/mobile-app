@@ -1,6 +1,4 @@
 class MuseumsController < ApplicationController
-  skip_filter :deep_snake_case_params!
-
   before_action :set_museum, only: [:show, :edit, :update, :destroy]
   http_basic_authenticate_with name: ADMIN_USER, password: ADMIN_PASS, except: [:index, :show]
 
@@ -95,7 +93,8 @@ class MuseumsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def museum_params
       params.require(:museum).permit(:name, :phone_number, :address, :borough, :site_url,
-        :image_url, :bus_lines, :wifi, :handicap_accessible, :hands_on_activity, :description,
+        :image_url, :bus_lines, :additional_directional_info,
+        :wifi, :handicap_accessible, :hands_on_activity, :description,
         :free_admission, :suggested_donation, categories: [], hours: [], subway_lines: [])
     end
 end

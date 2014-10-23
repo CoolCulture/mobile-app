@@ -15,6 +15,7 @@ class Museum
   field :hours, type: Array, default: []
   field :subway_lines, type: Array, default: []
   field :bus_lines, type: String
+  field :additional_directional_info, type: String
   field :categories, type: Array, default: []
   field :wifi, type: Boolean
   field :handicap_accessible, type: Boolean
