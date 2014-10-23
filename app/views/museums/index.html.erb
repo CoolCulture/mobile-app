@@ -59,9 +59,6 @@
         <td><%= boolean_to_human(museum.suggested_donation) %></td>
         <td><%= boolean_to_human(museum.handicap_accessible) %></td>
         <td><%= boolean_to_human(museum.hands_on_activity) %></td>
-        <td><%= museum.activity1 %></td>
-        <td><%= museum.activity2 %></td>
-        <td><%= museum.activity3 %></td>
         <td><%= link_to 'Show', museum %></td>
         <td><%= link_to 'Edit', edit_museum_path(museum) %></td>
         <td><%= link_to 'Destroy', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>

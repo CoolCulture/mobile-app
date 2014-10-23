@@ -4,6 +4,7 @@ class Museum
   include Mongoid::Timestamps
 
   has_many :checkins, dependent: :delete
+  embeds_many :activities
 
   field :name, type: String
   field :phone_number, type: String
@@ -20,9 +21,6 @@ class Museum
   field :handicap_accessible, type: Boolean
   field :hands_on_activity, type: Boolean
   field :description, type: String
-  field :activity1, type: Hash, default: {}
-  field :activity2, type: Hash, default: {}
-  field :activity3, type: Hash, default: {}
   field :free_admission, type: Boolean
   field :suggested_donation, type: Boolean
   field :name_id, type: String, default:-> { slug }

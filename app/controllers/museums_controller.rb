@@ -13,8 +13,6 @@ class MuseumsController < ApplicationController
   # GET /museums/1
   # GET /museums/1.json
   def show
-    expires_in 15.minutes
-    fresh_when @museum, public: true
   end
 
   # GET /museums/new
@@ -95,10 +93,8 @@ class MuseumsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def museum_params
       params.require(:museum).permit(:name, :phone_number, :address, :borough, :site_url,
-        :image_url, :bus_lines, :additional_directional_info, 
+        :image_url, :bus_lines, :additional_directional_info,
         :wifi, :handicap_accessible, :hands_on_activity, :description,
-        :free_admission, :suggested_donation, categories: [], hours: [], subway_lines: [],
-        activity1: [:name, :time, :description], activity2: [:name, :time, :description],
-        activity3: [:name, :time, :description])
+        :free_admission, :suggested_donation, categories: [], hours: [], subway_lines: [])
     end
 end
