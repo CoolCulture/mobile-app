@@ -15,7 +15,7 @@ class FamilyCardsController < ApplicationController
     if params["checkins"]
       response[:checkins] = @user.family_card.checkins.map do |checkin|
         { date: checkin.date.to_date.strftime("%B %d, %Y"), museum: checkin.museum.name,
-          image: checkin.museum.imageUrl }
+          image: checkin.museum.image_url }
       end
     end
     
