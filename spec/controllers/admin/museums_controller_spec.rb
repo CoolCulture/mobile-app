@@ -1,6 +1,7 @@
 require 'spec_helper'
+include ActionDispatch::TestProcess
 
-describe MuseumsController do
+describe Admin::MuseumsController do
 
   before(:each) do
     request.stub(:path_parameters).and_return({format: 'html'})
@@ -42,14 +43,20 @@ describe MuseumsController do
   end
 
   describe "POST create" do
-    subject{post :create, museum: FactoryGirl.attributes_for(:museum)}
+    subject{ post :create,
+             museum: {:name => "fake museum", :phone_number => "(555) 555-555", 
+                      :address => "123 Fakey Fake St., Brooklyn, NY 00000", 
+                      :borough => "Brooklyn", :site_url => "http://fake.com",
+                      :image_url => "http://image.fake.is/fake.png",
+                      :hours => ["fake"], :categories => ["category"]}, 
+             format: :json }
 
     it "should create museum" do
       expect{subject}.to change(Museum, :count).by(1)
     end
 
     it "should redirect to show page for museum with create success message" do
-      subject.should redirect_to assigns(:museum)
+      subject.should redirect_to admin_museum_path(Museum.first)
       flash[:notice].should eq("Museum was successfully created.")
     end
   end
@@ -77,7 +84,7 @@ describe MuseumsController do
       museum.reload
       museum.name.should eq("A New Museum Name")
       museum.slug.should eq("a-new-museum-name")
-      response.should redirect_to assigns(:museum)
+      response.should redirect_to admin_museum_path(museum)
 
     end
   end

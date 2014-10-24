@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    if request.path_parameters[:format] == 'json' || !current_user.try(:admin?)
+    unless current_user.try(:admin?)
       redirect_to("#/login") 
     end
   end

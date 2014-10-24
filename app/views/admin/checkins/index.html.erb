@@ -1,5 +1,4 @@
-<h4><%= link_to 'Go to Family Card Import', family_cards_path %></h4>
-<h4><%= link_to 'Go to Museums Import', museums_path %></h4>
+<%= render partial: 'admin/shared/nav' %>
 
 <h1>Listing museums</h1>
 
@@ -16,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= @checkins.each do |checkin| %>
+      <% @checkins.each do |checkin| %>
         <tr>
           <td><%= checkin.family_card_id %></td>
           <td><%= checkin.last_name %></td>

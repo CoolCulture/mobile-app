@@ -1,6 +1,7 @@
 require 'spec_helper'
+include ActionDispatch::TestProcess
 
-describe FamilyCardsController do
+describe Admin::FamilyCardsController do
 
   before(:each) do
     request.stub(:path_parameters).and_return({format: 'html'})
