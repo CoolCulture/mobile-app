@@ -2,7 +2,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -13,6 +12,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Mongoid::Matchers, type: :model
   config.include Devise::TestHelpers, :type => :controller
+
+  config.infer_spec_type_from_file_location!
   
   # ## Mock Framework
   #

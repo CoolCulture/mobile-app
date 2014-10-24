@@ -76,15 +76,18 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @museum.description %>
+  <strong>Activities</strong>
+  <ul>
+    <% @museum.activities.each do   |activity| %>
+      <%= render partial: 'activity', locals: {activity: activity} %>
+    <% end %>
+  </ul>
+  <%= link_to 'New', new_admin_museum_activity_path(@museum) %>
 </p>
 
 <p>
-  <strong>Activities:</strong>
-  <%= @museum.activity1 %>
-  <%= @museum.activity2 %>
-  <%= @museum.activity3 %>
+  <strong>Description:</strong>
+  <%= @museum.description %>
 </p>
 
 

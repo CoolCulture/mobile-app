@@ -22,6 +22,7 @@
       <th>Hours</th>
       <th>Subwaylines</th>
       <th>Buslines</th>
+      <th>Additional Directions</th>
       <th>Categories</th>
       <th>Has Wifi?</th>
       <th>Free Admission?</th>
@@ -49,15 +50,13 @@
         <td><%= museum.hours %></td>
         <td><%= museum.subway_lines %></td>
         <td><%= museum.bus_lines %></td>
+        <td><%= museum.additional_directional_info %></td>
         <td><%= museum.categories %></td>
         <td><%= boolean_to_human(museum.wifi) %></td>
         <td><%= boolean_to_human(museum.free_admission) %></td>
         <td><%= boolean_to_human(museum.suggested_donation) %></td>
         <td><%= boolean_to_human(museum.handicap_accessible) %></td>
         <td><%= boolean_to_human(museum.hands_on_activity) %></td>
-        <td><%= museum.activity1 %></td>
-        <td><%= museum.activity2 %></td>
-        <td><%= museum.activity3 %></td>
         <td><%= link_to 'Show', admin_museum_path(museum) %></td>
         <td><%= link_to 'Edit', edit_admin_museum_path(museum) %></td>
         <td><%= link_to 'Destroy', admin_museum_path(museum), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -46,6 +46,8 @@ gem 'angular_rails_csrf'
 gem 'devise'
 
 gem 'newrelic_rpm'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 
 
 group :doc do

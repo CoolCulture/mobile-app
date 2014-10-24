@@ -4,9 +4,21 @@ angular.module('coolCultureApp')
   .controller('MuseumDetailCtrl', function ($scope, $rootScope, $routeParams, $window, Museums) {
     $rootScope.loading = true;
 
-    Museums.get({id: $routeParams.id}, function(museum){
-      $scope.museum = museum;
+    $scope.formatActivityTime = function (activity) {
+      if (activity.date == null)
+        return null;
+      var date = new Date(activity.date);
+      var str = date.getUTCMonth()+1 + '/' + date.getUTCDate() + '/' + date.getUTCFullYear();
+      if (activity.startTime) {
+        str += ", " + activity.startTime;
+        if (activity.endTime) {
+          str += " - " + activity.endTime;
+        }
+      }
+      return str;
+    };
 
+    $scope.museum = Museums.get({id: $routeParams.id}, function(museum){
       $rootScope.loading = false;
 
       (function () {

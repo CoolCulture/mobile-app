@@ -1,8 +1,8 @@
 require 'spec_helper'
+include ActionDispatch::TestProcess
 
 describe Admin::CheckinsController do
   before(:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
     user = FactoryGirl.create(:user, admin: true)
     sign_in user
   end
@@ -39,7 +39,7 @@ describe Admin::CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-        }.to_not change(Checkin, :count).by(1)
+        }.to change(Checkin, :count).by(0)
       end
 
       context "with invalid family_card id" do
@@ -54,7 +54,7 @@ describe Admin::CheckinsController do
                   number_of_adults: 2
                 },
                 format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
       end
 
@@ -82,7 +82,7 @@ describe Admin::CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
       end
     end
