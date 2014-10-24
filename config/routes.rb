@@ -6,7 +6,7 @@ MobileApp::Application.routes.draw do
 
     resources :family_cards, only: [:show]
 
-    resources :checkins, only: [:show]
+    resources :checkins, only: [:show, :create]
   end
 
   namespace :admin do
