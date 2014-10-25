@@ -32,7 +32,7 @@ angular.module('coolCultureApp').
       // if there's no user on the page when you arrive, that's cool.
     });
 
-    $rootScope.loading = true;
+    $rootScope.loading = false;
 
     $scope.login = function() {
       $scope.errors = ''
