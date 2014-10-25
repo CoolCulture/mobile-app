@@ -17,6 +17,13 @@
   }  
 }
 
+a.text-link {
+  color: $cool-culture-orange;
+  &:hover {
+    color: darken($cool-culture-orange, 20%);
+  }
+}
+
 #password-reset {
   #password-reset-view h2 {
     margin-top: 50px;

@@ -14,8 +14,18 @@
   </div>
 </header>
 
-<section id="login" class="row section-detail">
-  
+<section ng-if="loading">
+  <div class="spinner">
+    <h5>Loading Login Page...</h5>
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+</section>
+
+<section id="login" class="row section-detail" ng-if="!loading">
   <div class="alert alert-success" ng-show="passwordResetData.message">
     <p>{{ passwordResetData.message }}</p>
   </div>
@@ -30,34 +40,34 @@
       {{errors}}
     </div>
 
-    <div class="col-xs-12">
-      <input class="login-input" placeholder="Your Email" ng-model="sessionData.email"/>
-    </div>
+    <form ng-submit="login()">
+      <div class="col-xs-12">
+        <input class="login-input" placeholder="Your Email" ng-model="sessionData.email"/>
+      </div>
 
-    <div class="col-xs-12">
-      <input class="login-input" type="password" placeholder="Your Password" ng-model="sessionData.password"/>
-    </div>
+      <div class="col-xs-12">
+        <input class="login-input" type="password" placeholder="Your Password" ng-model="sessionData.password"/>
+      </div>
 
-    <div class="col-xs-12">
-      <button ng-click="login()" class="btn btn-lg btn-checkin">
-          LOG IN
-      </button>
-    </div>
+      <div class="col-xs-12">
+        <input class="btn btn-lg btn-checkin" type="submit" id="submit" value="LOG IN" />
+      </div>
+    </form>
   </div>
 
   <div class="forgot-password-view" ng-show="!user.loggedIn">
-    <a ng-click="passwordResetData.showIt = true" ng-show="!passwordResetData.showIt">I Forgot My Password</a>
+    <a class="text-link" ng-click="passwordResetData.showIt = true" ng-show="!passwordResetData.showIt">Forgot your Password?</a>
     
     <div class="submit-email" ng-show="passwordResetData.showIt" class="col-xs-12">
       <div class="col-xs-12">
-        <h2 class="login-header">Reset your password.</h2>
+        <h2 class="login-header">Forgot your Password?</h2>
         <h4>Enter your email below to receive password reset instructions.</h4>
         <form ng-submit="resetPassword()">
           <input class="login-input" placeholder="Your Email" type="text" ng-model="passwordResetData.email" name="email" />
           <input class="btn btn-lg btn-checkin" type="submit" id="submit" value="Reset My Password" />
         </form>
-        <p>Still having issues? Contact <a href="#">CoolCulture</a>.</p>
-        <p>You can also <a ng-click="passwordResetData.showIt = false">go back</a> to logging in.</p>
+        <p>Still having issues? Contact <a class="text-link" href="#">CoolCulture</a>.</p>
+        <p>You can also <a class="text-link" ng-click="passwordResetData.showIt = false">go back</a> to logging in.</p>
       </div>
     </div>
   </div>

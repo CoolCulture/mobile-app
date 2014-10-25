@@ -2,6 +2,8 @@
 
 angular.module('coolCultureApp')
   .controller('ProfileCtrl', function ($scope, $rootScope, $window, Auth, FamilyCards, UserFactory) {
+    $rootScope.loading = true;
+
     Auth.currentUser().then(function(user) {
       UserFactory.setUser(user);
       $scope.user = UserFactory.currentUser;
@@ -10,6 +12,7 @@ angular.module('coolCultureApp')
         if(data.family_card && data.checkins) {
           $scope.familyCard = data.family_card;
           $scope.checkins = data.checkins;
+          $rootScope.loading = false;
         }
       });
     }, function(error) {
