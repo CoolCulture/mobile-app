@@ -82,7 +82,7 @@
       <%= render partial: 'activity', locals: {activity: activity} %>
     <% end %>
   </ul>
-  <%= link_to 'New', new_museum_activity_path(@museum) %>
+  <%= link_to 'New', new_admin_museum_activity_path(@museum) %>
 </p>
 
 <p>
@@ -90,5 +90,6 @@
   <%= @museum.description %>
 </p>
 
-<%= link_to 'Edit', edit_museum_path(@museum) %> |
-<%= link_to 'Back', museums_path %>
+
+<%= link_to 'Edit', edit_admin_museum_path(@museum) %> |
+<%= link_to 'Back', admin_museums_path %>

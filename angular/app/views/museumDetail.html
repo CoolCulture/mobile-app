@@ -121,16 +121,18 @@
   </div>
 
   <div class="col-xs-12" ng-show="museum.additionalDirectionalInfo">
+    <hr>
     <div class="description-title">
       Additional Directions
     </div>
-    <hr>    
+    <hr>
     <div class="description-text">
       {{ museum.additionalDirectionalInfo }}
     </div>
   </div>
 
-  <div class="col-xs-12">
+  <div class="col-xs-12" ng-show="museum.activities.length > 0">
+    <hr>
     <div class="description-title">
       Activities
     </div>

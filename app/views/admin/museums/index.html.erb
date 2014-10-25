@@ -6,9 +6,7 @@
 </div>
 <% end %>
 
-<h4>
-  <%= link_to 'Go to Family Card Import', family_cards_path %>
-</h4>
+<%= render partial: 'admin/shared/nav' %>
 
 <h1>Listing museums</h1>
 <div class="table-responsive">
@@ -59,9 +57,9 @@
         <td><%= boolean_to_human(museum.suggested_donation) %></td>
         <td><%= boolean_to_human(museum.handicap_accessible) %></td>
         <td><%= boolean_to_human(museum.hands_on_activity) %></td>
-        <td><%= link_to 'Show', museum %></td>
-        <td><%= link_to 'Edit', edit_museum_path(museum) %></td>
-        <td><%= link_to 'Destroy', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_museum_path(museum) %></td>
+        <td><%= link_to 'Edit', edit_admin_museum_path(museum) %></td>
+        <td><%= link_to 'Destroy', admin_museum_path(museum), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -70,12 +68,11 @@
 
 <br>
 
-<%= link_to 'New Museum', new_museum_path %>
-
+<%= link_to 'New Museum', new_admin_museum_path %>
 
 <h2>Import Museums</h2>
 
-<%= form_tag import_museums_path, multipart: true do %>
+<%= form_tag import_admin_museums_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import Museums" %>
 <% end %>

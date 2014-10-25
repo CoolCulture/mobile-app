@@ -6,17 +6,15 @@
 </div>
 <% end %>
 
-<h4>
-  <%= link_to 'Back to Museum List', museums_path %>
-</h4>
+<%= render partial: 'admin/shared/nav' %>
 
 <h2>
-  Number of Family Cards: <%=@family_cards.count %>
+  Number of Family Cards: <%= @family_cards.count %>
 </h2>
 
 <h2>Import Family Cards</h2>
 
-<%= form_tag import_family_cards_path, multipart: true do %>
+<%= form_tag import_admin_family_cards_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import Museums" %>
 <% end %>

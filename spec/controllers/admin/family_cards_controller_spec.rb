@@ -1,9 +1,11 @@
-require 'rails_helper'
+require 'spec_helper'
+include ActionDispatch::TestProcess
 
-describe FamilyCardsController do
-  include AuthHelper
+describe Admin::FamilyCardsController do
   before(:each) do
-    http_login
+    user = FactoryGirl.create(:user)
+    user.update_attributes(admin: true)
+    sign_in user
   end
 
   describe "GET index" do
@@ -23,5 +25,4 @@ describe FamilyCardsController do
       expect(FamilyCard.count).to eq(2)
     end
   end
-
 end

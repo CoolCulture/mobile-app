@@ -1,4 +1,4 @@
-<%= simple_form_for(@museum, html: {class: 'form-vertical' }) do |f| %>
+<%= simple_form_for([:admin, @museum], html: {class: 'form-vertical' }) do |f| %>
   <% if @museum.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@museum.errors.count, "error") %> prohibited this museum from being saved:</h2>
@@ -92,7 +92,7 @@
           <%= render partial: 'activity', locals: {activity: activity} %>
         <% end %>
       </ul>
-      <%= link_to 'New', new_museum_activity_path(@museum) %>
+      <%= link_to 'New', new_admin_museum_activity_path(@museum) %>
     </p>
   <% end %>
 

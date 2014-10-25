@@ -1,7 +1,15 @@
 MobileApp::Application.routes.draw do
   scope "/api" do
     devise_for :users, defaults: { format: :json }
+    
+    resources :museums, only: [:index, :show]
 
+    resources :family_cards, only: [:show]
+
+    resources :checkins, only: [:show, :create]
+  end
+
+  namespace :admin do
     resources :museums do
       collection { post :import }
       resources :activities, controller: 'one_time_activities'

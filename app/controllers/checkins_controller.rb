@@ -1,11 +1,9 @@
 class CheckinsController < ApplicationController
 
-  def index
-    @checkins = Checkin.all
+  def show
+    @checkin = Checkin.find(params[:id])
   end
 
-  # POST /checkin
-  # POST /checkin.json
   def create
     museum = Museum.find(params[:museum_id])
     family_card = FamilyCard.find_or_initialize_by(id: params[:family_card_id])
@@ -29,15 +27,9 @@ class CheckinsController < ApplicationController
     end
   end
 
-  def show
-    @checkin = Checkin.find(params[:id])
-  end
-
-
   private
 
   def checkin_params
-      params.require(:checkin).permit(:number_of_adults, :number_of_children)
+    params.require(:checkin).permit(:number_of_adults, :number_of_children)
   end
-
 end
