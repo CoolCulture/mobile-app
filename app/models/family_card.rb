@@ -31,15 +31,15 @@ class FamilyCard
         password = Devise.friendly_token.first(10)
 
         card = FamilyCard.new(attributes)
-        user = User.new(email: family_card[:email],
-                        admin: admin,
-                        password: Devise.friendly_token.first(10))
+        user = User.new(email: family_card[:email], admin: admin,
+                        password: password, password_confirmation: password)
 
         if card.valid? && user.valid?
           user.save
           card.user = user
           card.save
-          created_users[card.pass_id] = { email: family_card[:email], password: password }
+          created_users[card.pass_id] = { first_name: card.first_name, last_name: card.last_name,
+                                          email: user.email, password: password }
         else
           key = family_card[:pass_id_number] || family_card[:email] || password
           errors[key] = {}
