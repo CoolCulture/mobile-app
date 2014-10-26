@@ -34,12 +34,16 @@ class FamilyCard
         user = User.new(email: family_card[:email], admin: admin,
                         password: password, password_confirmation: password)
 
-        if card.valid? && user.valid?
+        if user.valid? && card.valid?
           user.save
           card.user = user
           card.save
           created_users[card.pass_id] = { first_name: card.first_name, last_name: card.last_name,
                                           email: user.email, password: password }
+        elsif card.valid? && !family_card[:email]
+          card.save
+          created_users[card.pass_id] = { first_name: card.first_name, last_name: card.last_name,
+                                          email: "NO EMAIL PROVIDED", password: "NO EMAIL PROVIDED" }
         else
           key = family_card[:pass_id_number] || family_card[:email] || password
           errors[key] = {}

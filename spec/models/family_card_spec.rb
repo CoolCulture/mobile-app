@@ -95,7 +95,18 @@ describe FamilyCard do
       same_users.unlink
     end
 
-    it 'should require family passes' do
+    it 'should allow for family card creation without user creation' do
+      no_email = create_tmp_file(["N/A","FAMILY","PROGRAM NAME","SECOND LINE","90000",
+                                  "First Adult","Last Adult","","","","",""]) 
+
+      FamilyCard.import(no_email)
+      expect(FamilyCard.count).to eq(1)
+      expect(User.count).to eq(0)
+      
+      no_email.unlink
+    end
+
+    it 'should require family pass IDs' do
       no_pass_id = create_tmp_file(["N/A","FAMILY","PROGRAM NAME","SECOND LINE","",
                                     "First Adult","Last Adult","","","","context@gmail.com",""])
 
