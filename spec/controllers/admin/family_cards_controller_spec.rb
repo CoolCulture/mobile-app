@@ -21,8 +21,19 @@ describe Admin::FamilyCardsController do
       csv_to_import = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'family_cards.csv'), "text/csv")
       post :import, file: csv_to_import
 
-      expect(flash[:notice]).to eq("Family Cards imported successfully.")
-      expect(FamilyCard.count).to eq(2)
+      expect(flash[:notice]).to eq("3 Family Cards imported successfully.")
+      expect(FamilyCard.count).to eq(3)
+      expect(assigns(:warnings)).to be_nil
+    end
+
+    it "should report errors in the csv when there are any" do
+      csv_to_import = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'family_cards_with_errors.csv'), "text/csv")
+
+      post :import, file: csv_to_import
+
+      expect(flash[:notice]).to eq("1 Family Cards imported successfully.")
+      expect(FamilyCard.count).to eq(1)
+      expect(assigns(:warnings).count).to eq 1
     end
   end
 end
