@@ -49,6 +49,7 @@ gem 'newrelic_rpm'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 
+gem 'mandrill-api'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
