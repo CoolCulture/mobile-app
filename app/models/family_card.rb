@@ -3,11 +3,11 @@ class FamilyCard
   include Mongoid::Timestamps
 
   has_many :checkins, dependent: :delete
-  belongs_to :user
+  belongs_to :user, dependent: :delete
 
   field :first_name, type: String
   field :last_name, type: String
-  field :expiration, type: Date, default: ->{ Date.new(2014, 10, 31) }
+  field :expiration, type: Date
   field :organization_name, type: String
   field :language, type: String, default: ->{ "en" }
   field :pass_id, type: Integer
@@ -71,7 +71,7 @@ class FamilyCard
     names = format_names(family_card[:adult_1], family_card[:adult_2], pass_id)
     organization_name = format_organization_name(family_card[:"program_name_(1st_line)"], 
                                                  family_card[:"program_name_(2nd_line)"])
-    expiration = family_card[:expiration] || Date.new(2015,10,31)
+    expiration = family_card[:expiration] || EXPIRATION_DATE
     language = family_card[:language] || "en"
     
     {
