@@ -18,17 +18,6 @@ class FamilyCard
 
   validates_uniqueness_of :pass_id
 
-  def valid_last_name(name)
-    valid = false
-    if last_name
-      last_names = last_name.downcase.sub(' ','').split('/')
-      if last_names.include? name.downcase
-        valid = true
-      end
-    end
-    valid
-  end
-
   def self.import(file)
     options = { chunk_size: 5000 }
 
