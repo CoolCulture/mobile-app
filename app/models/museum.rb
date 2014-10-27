@@ -4,7 +4,7 @@ class Museum
   include Mongoid::Timestamps
 
   has_many :checkins, dependent: :delete
-  embeds_many :activities
+  has_many :activities
 
   field :name, type: String
   field :phone_number, type: String
