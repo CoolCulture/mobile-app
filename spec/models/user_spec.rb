@@ -17,15 +17,15 @@ describe User do
 
     it 'should throw an error if email is missing' do
       file = create_tmp_file(["", "90000",""])
-      errors = User.import(file)
-      expect(errors.count).to eq 1
+      results = User.import(file)
+      expect(results[:errors].count).to eq 1
       expect(User.count).to eq 0
     end
 
     it 'should throw an error if pass id is missing' do
       file = create_tmp_file(["temp1@gmail.com", "",""])
-      errors = User.import(file)
-      expect(errors.count).to eq 1
+      results = User.import(file)
+      expect(results[:errors].count).to eq 1
       expect(User.count).to eq(0)
     end
 
@@ -34,8 +34,8 @@ describe User do
                   family_card_id: 90000, admin: false)
 
       file = create_tmp_file(["temp1@gmail.com", "90000",""])
-      errors = User.import(file)
-      expect(errors.count).to eq 1
+      results = User.import(file)
+      expect(results[:errors].count).to eq 1
       expect(User.count).to eq(1)
     end
 

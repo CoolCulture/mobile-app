@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pass ID:</strong>
+  <%= @family_card.pass_id %>
+</p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @family_card.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @family_card.last_name %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @family_card.expiration.strftime("%B %d, %Y") %>
+</p>
+
+<p>
+  <strong>Organization Name:</strong>
+  <%= @family_card.organization_name %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @family_card.language %>
+</p>
+
+<p>
+  <strong>User Account:</strong>
+  <%= @family_card.user ? link_to("User Account", admin_user_path(@family_card.user)) : "N/A" %>
+</p>
+
+<%= link_to 'Edit', edit_admin_family_card_path(@family_card) %> |
+<%= link_to 'Back', admin_family_cards_path %>

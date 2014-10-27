@@ -60,7 +60,9 @@ class FamilyCard
       last_name: names[:last_name],
       expiration: expiration,
       organization_name: organization_name,
-      language: language
+      language: language,
+      created_at: DateTime.now,
+      updated_at: DateTime.now
     }
   end
 

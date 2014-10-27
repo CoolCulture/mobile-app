@@ -17,8 +17,8 @@
         Unfortunately, some users couldn't be uploaded for a variety of reasons. Please separate out these users into a new spreadsheet and try re-importing:
       </p>
       <ul>
-        <% @errors.each do |error| %>
-          <li><%= error %></li>
+        <% @errors.each do |pass_id, error| %>
+          <li><%= pass_id %>: <%= error %></li>
         <% end %>
       </ul>
     <% end %>

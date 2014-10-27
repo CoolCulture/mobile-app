@@ -40,6 +40,8 @@ gem "mongoid_slug"
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
 
+gem 'kaminari'
+
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'

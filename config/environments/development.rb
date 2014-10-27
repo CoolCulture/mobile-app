@@ -28,15 +28,15 @@ MobileApp::Application.configure do
   # Send emails through Mandrill. This should be commented out in Development
   # but if you want to test emails directly, uncomment the lines below.
   # config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.mandrillapp.com',
-    port:                 587,
-    domain:               'localhost',
-    user_name:            ENV['MANDRILL_USERNAME'],
-    password:             ENV['MANDRILL_APIKEY'],
-    authentication:       :plain,
-    :enable_starttls_auto => true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.mandrillapp.com',
+  #   port:                 587,
+  #   domain:               'localhost',
+  #   user_name:            ENV['MANDRILL_USERNAME'],
+  #   password:             ENV['MANDRILL_APIKEY'],
+  #   authentication:       :plain,
+  #   :enable_starttls_auto => true
+  # }
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  belongs_to :family_card, dependent: :delete
+  belongs_to :family_card
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :registerable and :omniauthable
@@ -51,10 +51,9 @@ class User
     options = { chunk_size: 5000 }
 
     errors = {}
+    created_users = {}
 
     SmarterCSV.process(file, options) do |chunk|
-      new_chunk = []
-
       chunk.each do |user|
         attributes = format_attributes(user)
         user = User.new(attributes)
@@ -64,20 +63,24 @@ class User
 
         if family_card && user.valid?
           if family_card.user.nil?
-            new_chunk << attributes
+            created_users[attributes[:family_card_id]] = { 
+              email: attributes[:email],
+              password: attributes[:password],
+              admin: attributes[:admin]
+            }
+            
+            user.save
           else
             errors[key] = { user: "already exists for the family card provided" }
           end
         else
           errors[key] = user.errors.messages if !user.valid?
-          errors[key] = { family_card: "does not exist" }
+          errors[key] = { family_card: "something went wrong with the user for this family card." }
         end
       end
-
-      User.collection.insert(new_chunk) unless new_chunk.empty?
     end
 
-    errors
+    { errors: errors, created_users: created_users }
   end
 
   private
