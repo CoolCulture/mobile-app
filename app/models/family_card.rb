@@ -3,7 +3,7 @@ class FamilyCard
   include Mongoid::Timestamps
 
   has_many :checkins, dependent: :delete
-  belongs_to :user, dependent: :delete
+  has_one :user, dependent: :delete
 
   field :first_name, type: String
   field :last_name, type: String
@@ -11,7 +11,6 @@ class FamilyCard
   field :organization_name, type: String
   field :language, type: String, default: ->{ "en" }
   field :pass_id, type: Integer
-  field :user_id, type: String
   field :_id, type: Integer, default: ->{ pass_id }
 
   validates_presence_of :first_name, :last_name, :pass_id, :organization_name
@@ -22,49 +21,29 @@ class FamilyCard
     options = { chunk_size: 5000 }
 
     errors = {}
-    created_users = {}
 
     SmarterCSV.process(file, options) do |chunk|
+      new_chunk = []
+
       chunk.each do |family_card|
         attributes = format_attributes(family_card)
-        admin = format_admin(family_card[:admin])
-        password = Devise.friendly_token.first(10)
-
         card = FamilyCard.new(attributes)
-        user = User.new(email: family_card[:email], admin: admin,
-                        password: password, password_confirmation: password)
 
-        if user.valid? && card.valid?
-          user.save
-          card.user = user
-          card.save
-          created_users[card.pass_id] = { first_name: card.first_name, last_name: card.last_name,
-                                          email: user.email, password: password }
-        elsif card.valid? && !family_card[:email]
-          card.save
-          created_users[card.pass_id] = { first_name: card.first_name, last_name: card.last_name,
-                                          email: "NO EMAIL PROVIDED", password: "NO EMAIL PROVIDED" }
+        if card.valid?
+          new_chunk << attributes
         else
-          key = family_card[:pass_id_number] || family_card[:email] || password
-          errors[key] = {}
-          errors[key][:user] = user.errors.messages if !user.valid?
-          errors[key][:family_card] = card.errors.messages if !card.valid?
+          key = family_card[:pass_id_number] || family_card[:family_name]
+          errors[key] = card.errors.messages
         end
       end
+
+      FamilyCard.collection.insert(new_chunk) unless new_chunk.empty?
     end
-    
-    format_response(errors, created_users)
+
+    errors
   end
 
   private
-
-  def self.format_response(errors, created_users)
-    response = {}
-    response[:errors] = errors if errors.present?
-    response[:created_users] = created_users if created_users.present?
-
-    response
-  end
 
   def self.format_attributes(family_card)
     pass_id = family_card[:pass_id_number]
@@ -75,6 +54,7 @@ class FamilyCard
     language = family_card[:language] || "en"
     
     {
+      _id: pass_id,
       pass_id: pass_id,
       first_name: names[:first_name],
       last_name: names[:last_name],
@@ -82,10 +62,6 @@ class FamilyCard
       organization_name: organization_name,
       language: language
     }
-  end
-
-  def self.format_admin(admin)
-    true if ["yes", "true", "y"].include?(admin.try(:downcase))
   end
 
   def self.format_organization_name(first_line, second_line)
@@ -101,9 +77,7 @@ class FamilyCard
 
   def self.format_names(adult1, adult2, pass_id)
     if adult1 && adult2
-      adult_1_names = adult1.split(" ")
-      adult_2_names = adult2.split(" ")
-      return format_last_name(adult_1_names, adult_2_names)
+      return format_last_name(adult1, adult2)
     elsif adult1 || adult2
       adult_names = adult1.split(" ") if adult1
       adult_names = adult2.split(" ") if adult2
@@ -118,7 +92,10 @@ class FamilyCard
     { first_name: first_name, last_name: last_name }
   end
 
-  def self.format_last_name(adult_1_names, adult_2_names)  
+  def self.format_last_name(adult1, adult2)  
+    adult_1_names = adult1.split(" ")
+    adult_2_names = adult2.split(" ")
+
     sorted = [adult_1_names, adult_2_names].sort_by { |names| names.last }
     
     first_name = sorted.map(&:first).join("/")

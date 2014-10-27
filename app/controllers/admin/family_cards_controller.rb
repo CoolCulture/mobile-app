@@ -13,13 +13,10 @@ class Admin::FamilyCardsController < ApplicationController
     @family_cards = FamilyCard.scoped
     
     begin
-      results = FamilyCard.import(params[:file].path)
-      success = results[:created_users].count
+      errors = FamilyCard.import(params[:file].path)
 
-      flash.now[:notice] = "#{success} Family Cards imported successfully." if success > 0
-      @warnings = format_errors(results[:errors]) if results[:errors]
-      
-      AdminMailer.family_card_upload_report(current_user, results[:created_users], @warnings).deliver
+      flash.now[:notice] = "Family Cards imported successfully."
+      @warnings = errors if errors.present?
     rescue Mongoid::Errors::UnknownAttribute
       flash.now[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
     rescue
@@ -31,23 +28,6 @@ class Admin::FamilyCardsController < ApplicationController
 
   private
   
-  def format_errors(results)
-    response = []
-    results.each do |key, all_errors|
-      message = ["(#{key})"]
-      all_errors.each do |model, error_messages|
-        message << "#{model} has an error:"
-        error_messages.each do |kind, messages|
-          message << "#{kind} #{messages.join(',')};"
-        end
-      end
-
-      response << message.join(" ")
-    end
-
-    response
-  end
-
   def set_user
     @user = User.find(params[:id])
   end
