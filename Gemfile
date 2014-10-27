@@ -40,6 +40,8 @@ gem "mongoid_slug"
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
 
+gem 'kaminari'
+
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'
@@ -49,6 +51,7 @@ gem 'newrelic_rpm'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 
+gem 'mandrill-api'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

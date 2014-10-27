@@ -9,7 +9,7 @@ class CheckinsController < ApplicationController
     family_card = FamilyCard.find_or_initialize_by(id: params[:family_card_id])
 
     respond_to do |format|
-      if family_card.valid_last_name(params[:last_name])
+      if family_card.last_name == params[:last_name]
         @checkin = Checkin.new(checkin_params)
         @checkin.museum = museum
         @checkin.family_card = family_card

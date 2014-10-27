@@ -1,0 +1,24 @@
+<%= simple_form_for([:admin, @family_card], html: {class: 'form-vertical' }) do |f| %>
+  <% if @family_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@family_card.errors.count, "error") %> prohibited this family card from being saved:</h2>
+
+      <ul>
+      <% @family_card.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :pass_id, readonly: true %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :expiration %>
+  <%= f.input :organization_name %>
+  <%= f.input :language %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

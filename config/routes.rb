@@ -16,6 +16,11 @@ MobileApp::Application.routes.draw do
       resources :one_time_activities
     end
 
+    resources :users do
+      collection { post :import }
+      member { post :reset_password }
+    end
+
     resources :family_cards do
       collection { post :import }
     end
