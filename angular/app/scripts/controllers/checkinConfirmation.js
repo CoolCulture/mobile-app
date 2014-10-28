@@ -8,10 +8,9 @@ angular.module('coolCultureApp')
 
     $scope.setTwitter = function (twitter, museumName) {      
       if(twitter && museumName) {
-        return $scope.twitterUrl(twitter);
+        return $scope.twitterUrl(encodeURIComponent(twitter));
       } else {
-        var name = museumName.split(" ").join("%20");
-        return $scope.twitterUrl(name);
+        return $scope.twitterUrl(encodeURIComponent(museumName));
       }
     }
 
