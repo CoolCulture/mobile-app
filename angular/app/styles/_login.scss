@@ -11,9 +11,12 @@
 
   .login-header {
     color: $cool-culture-orange; 
-    font-size: 30px;
+    font-size: 36px;
     margin-bottom: 25px;
-    @media screen and (min-width: 768px) { font-size: 36px; }
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+      span { font-size: 24px; }
+    }
   }  
 }
 
