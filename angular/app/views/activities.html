@@ -1,0 +1,62 @@
+<header class="cool-culture-header">
+  <div class="back-btn-container">
+    <a ng-click="back()" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </a>
+  </div>
+  <div class="profile-btn-container">
+    <a href="#/profile" class="btn back-btn">
+      <img class="profile-icon" src="images/user.svg">
+    </a>
+  </div>
+  <div class="header-text">
+    Cool Culture <i class="beta">Beta</i>
+  </div>
+
+</header>
+<main>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+  </div>
+  <section ng-if="activities==null">
+    <div class="spinner">
+      <h5>Loading Activities...</h5>
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </section>
+  <section class="section-detail row">
+    <div class="col-xs-12" ng-if="activities.length > 0">
+      <hr>
+      <div class="description-title">
+        Activities
+      </div>
+      <hr>
+      <div ng-repeat="activity in activities" class="description-text">
+        <p>
+          <strong>{{ activity.name }}</strong><br/>
+          {{ formatActivityTime(activity) }}<br/>
+          {{ activity.description }}
+        </p>
+      </div>
+    </div>
+    <div class="col-xs-12" ng-if="activities.length == 0">
+      <hr>
+      <div class="description-title">
+        No activities found for selected date
+      </div>
+      <hr>
+    </div>  
+  </section>
+</main>
+
