@@ -8,8 +8,8 @@ angular.module('coolCultureApp')
      return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
     };
 
-    function upcoming(date) {
-      return activities.upcoming({date: dateToParam(date)});
+    function upcoming(start, end) {
+      return activities.upcoming({start_date: dateToParam(start), end_date: end ? dateToParam(end) : null});
     }
 
     return {upcoming: upcoming};

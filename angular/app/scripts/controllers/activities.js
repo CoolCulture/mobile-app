@@ -30,8 +30,15 @@ angular.module('coolCultureApp')
       $scope.opened = true;
     };
 
+    function daysAfter(date, days) {
+      var newDate = new Date(date);
+      newDate.setDate(date.getDate()+days)
+      return newDate;
+    }
+
     $scope.$watch('date', function(newValue, oldValue) {
-      $scope.activities = Activities.upcoming(newValue);
+      $scope.activitiesByDay = Activities.upcoming(newValue);
+      console.log($scope.activitiesByDay);
     });
 
  });

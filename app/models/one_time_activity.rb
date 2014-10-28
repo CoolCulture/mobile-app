@@ -7,7 +7,7 @@ class OneTimeActivity < Activity
 
   validates_presence_of :name, :description, :date
 
-  scope :upcoming, ->(date=Date.today) do
-    where(date: date...(date + 7.days)).asc(:date)
+  scope :upcoming, ->(start_date, end_date) do
+    where(date: start_date..end_date).asc(:date)
   end
 end
