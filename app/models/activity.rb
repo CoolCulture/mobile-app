@@ -9,5 +9,5 @@ class Activity
   belongs_to :museum
 
   scope :one_time, ->(){ where(_type: "OneTimeActivity") }
-  scope :upcoming, ->(start_date=Date.today, end_date=(Date.today+67.days)){ OneTimeActivity.upcoming(start_date, end_date) }
+  scope :upcoming, ->(start_date=Date.today, end_date=(Date.today+6.days)){ OneTimeActivity.upcoming(start_date, end_date) }
 end
