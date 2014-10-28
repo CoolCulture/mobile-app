@@ -79,7 +79,7 @@
   </div>
   <div class="modal-body">
     <div class="row categories-row">
-      <div class="modal-checkbox col-sm-2 col-sm-offset-1 col-xs-4">
+      <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('categories','Art')" ng-checked="museumFilters.categories.indexOf('Art') !== -1" id="art">
         <label class="art-checkbox" for="art">Art</label>
       </div>
@@ -98,6 +98,10 @@
       <div class="modal-checkbox col-sm-2 col-xs-4">
         <input type="checkbox" ng-click="addToFilter('categories', 'Other')" ng-checked="museumFilters.categories.indexOf('Other') !== -1" id="other">
         <label class="other-checkbox" for="other">Other</label>
+      </div>
+      <div class="modal-checkbox col-sm-2 col-xs-4">
+        <input type="checkbox" ng-click="addToFilter('categories', 'Featured')" ng-checked="museumFilters.categories.indexOf('Featured') !== -1" id="featured">
+        <label class="featured-checkbox" for="featured">Featured</label>
       </div>
     </div>
   </div>
