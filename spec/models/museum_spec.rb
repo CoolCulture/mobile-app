@@ -1,17 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Museum do
-  it {should validate_presence_of(:name)}
-  it {should validate_presence_of(:phone_number)}
-  it {should validate_presence_of(:address)}
-  it {should validate_presence_of(:borough)}
-  it {should validate_presence_of(:site_url)}
-  it {should validate_presence_of(:image_url)}
-  it {should validate_presence_of(:hours)}
-  it {should validate_presence_of(:categories)}
-
-  it {should validate_uniqueness_of(:name)}
-
   describe "slug" do
     it "should find museum by slug" do
       museum = FactoryGirl.build(:museum)
@@ -19,7 +8,7 @@ describe Museum do
       museum.save
 
       museum_slug = Museum.find("the-museum-of-modern-art")
-      museum_slug.name.should == "The Museum of Modern Art"
+      expect(museum_slug.name).to eq("The Museum of Modern Art")
     end
 
     it "should generate slug with non-alphanumeric characters removed" do
@@ -28,7 +17,7 @@ describe Museum do
       museum.save
 
       museum_slug = Museum.find("new-yorks-museum")
-      museum_slug.name.should == "New York's Museum"
+      expect(museum_slug.name).to eq("New York's Museum")
     end
 
      it "should set name_id to the museum slug" do
@@ -37,7 +26,7 @@ describe Museum do
       museum.save
 
       museum_after_save = Museum.find("the-museum-of-modern-art")
-      museum_after_save.name_id.should == museum.slug
+      expect(museum_after_save.name_id).to eq(museum.slug)
     end
 
     it "should update name_id when name is changed" do
@@ -46,8 +35,7 @@ describe Museum do
       museum.reload
       museum.update(name: "The Museum of Modern Art Test")
 
-
-      museum.name_id.should == museum.slug
+      expect(museum.name_id).to eq(museum.slug)
     end
   end
 
@@ -57,7 +45,7 @@ describe Museum do
 
       museum.save
 
-      museum.hours.should == ['9AM-5PM M-F', '10AM-9PM Sat']
+      expect(museum.hours).to eq(['9AM-5PM M-F', '10AM-9PM Sat'])
     end
 
     it "should order subway lines" do
@@ -65,7 +53,7 @@ describe Museum do
 
       museum.save
 
-      museum.subway_lines.should == ['1','3','7','A','C','E','B','D','F','G','Z','L']
+      expect(museum.subway_lines).to eq(['1','3','7','A','C','E','B','D','F','G','Z','L'])
     end
 
     it "should return all unrecognized subway lines at end of array" do
@@ -73,7 +61,7 @@ describe Museum do
 
       museum.save
 
-      museum.subway_lines.should == ['1','7','A','B','Railway']
+      expect(museum.subway_lines).to eq(['1','7','A','B','Railway'])
     end
   end
 end

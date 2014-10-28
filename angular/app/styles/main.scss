@@ -11,6 +11,7 @@ $cool-culture-orange: #F5623C;
 @import 'badges';
 @import 'loading';
 @import 'filter_modal';
+@import 'museum_detail';
 
 // Individual pages styles go here
 @import 'mixins';
@@ -348,7 +349,11 @@ section {
 }
 
 .checkin-header {
-    color: $cool-culture-orange;
+  color: $cool-culture-orange;
+  margin: 25px 0;
+  span {
+    @media screen and (max-width: 768px) { font-size: 0.5em; }
+  }
 }
 
 .checkin-museum-text {

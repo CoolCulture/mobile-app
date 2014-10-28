@@ -17,11 +17,11 @@ angular.module('coolCultureApp', [
           templateUrl: 'views/welcome.html'
       })
       .when('/login', {
-        templateUrl: 'views/sessions/login.html',
+        templateUrl: 'views/login.html',
         controller: 'SessionCtrl'
       })
       .when('/password_reset', {
-        templateUrl: 'views/sessions/password_reset.html',
+        templateUrl: 'views/password_reset.html',
         controller: 'PasswordResetCtrl'
       })
       .when('/profile', {
@@ -43,10 +43,6 @@ angular.module('coolCultureApp', [
       .when('/museums/checkinConfirmation/:id', {
         templateUrl: 'views/checkinConfirmation.html',
         controller: 'CheckinConfirmationCtrl'
-      })
-      .when('/admin/checkins', {
-        templateUrl: 'views/admin/checkins.html',
-        controller: 'AdminCheckinsCtrl'
       })
       .otherwise({
         redirectTo: '/museums'

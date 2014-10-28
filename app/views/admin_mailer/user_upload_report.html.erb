@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Thanks for uploading new users, <%= @user.family_card.first_name %>.</h3>
+    
+    <% if @success %>
+      <p>
+        Overall, you successfully uploaded <%= @success.count %> new users. Attached you will find a CSV with the new users and their passwords. Please email them out directly.
+      </p>
+    <% end %>
+
+    <% if @errors %>
+      <p>
+        Unfortunately, some users couldn't be uploaded for a variety of reasons. Please separate out these users into a new spreadsheet and try re-importing:
+      </p>
+      <ul>
+        <% @errors.each do |pass_id, error| %>
+          <li><%= pass_id %>: <%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>

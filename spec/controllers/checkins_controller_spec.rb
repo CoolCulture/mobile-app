@@ -1,13 +1,18 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CheckinsController do
+  before(:each) do
+    user = FactoryGirl.create(:user, admin: true)
+    sign_in user
+  end
+  
   describe "checkin" do
     let(:family_card) { FactoryGirl.create(:family_card) }
     let(:museum) { FactoryGirl.create(:museum) }
 
-    context "with valid family card id and last name" do
+    describe "with valid family card id and last name" do
       it "creates new checkin" do
-        expect{
+        expect {
             post :create,
               museum_id: museum.name_id,
               family_card_id: family_card.pass_id,
@@ -33,7 +38,7 @@ describe CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-        }.to_not change(Checkin, :count).by(1)
+        }.to change(Checkin, :count).by(0)
       end
 
       context "with invalid family_card id" do
@@ -48,7 +53,7 @@ describe CheckinsController do
                   number_of_adults: 2
                 },
                 format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
       end
 
@@ -76,18 +81,8 @@ describe CheckinsController do
                 number_of_adults: 2
               },
               format: :json
-          }.to_not change(Checkin, :count).by(1)
+          }.to change(Checkin, :count).by(0)
         end
-      end
-    end
-
-    describe "GET show" do
-      it "should return success" do
-        checkin = FactoryGirl.create(:checkin, { date: Date.today })
-        get :show, id: checkin.slug, format: :json
-        response.should be_ok
-        resp = JSON.parse(response.body)
-        resp['lastName'].should == checkin.last_name
       end
     end
   end

@@ -7,6 +7,8 @@ angular.module('coolCultureApp').
     AuthProvider.logoutPath('/api/users/sign_out.json');
   }).
   controller('SessionCtrl', function ($scope, $rootScope, Auth, UserFactory, FamilyCards) {    
+    $rootScope.loading = true;
+
     $scope.sessionData = {
       email: '',
       password: '',
@@ -29,6 +31,8 @@ angular.module('coolCultureApp').
     }, function(error) {
       // if there's no user on the page when you arrive, that's cool.
     });
+
+    $rootScope.loading = false;
 
     $scope.login = function() {
       $scope.errors = ''

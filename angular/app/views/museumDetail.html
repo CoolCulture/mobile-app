@@ -24,7 +24,7 @@
       <div class="rect5"></div>
     </div>
 </section>
-<section class="section-detail row" ng-if="museum">
+<section class="museum section-detail row" ng-if="museum">
   <div class="museum-name-detail-view col-xs-12">
     <strong>{{museum.name}}</strong>
     <span class="badge badge-reduced-admission" ng-if="museum.freeAdmission"> FREE</span>
@@ -121,51 +121,30 @@
   </div>
 
   <div class="col-xs-12" ng-show="museum.additionalDirectionalInfo">
+    <hr>
     <div class="description-title">
       Additional Directions
     </div>
-    <hr>    
+    <hr>
     <div class="description-text">
       {{ museum.additionalDirectionalInfo }}
     </div>
   </div>
 
-    <div class="col-xs-12" ng-if="museum.activity1.name|| museum.activity2.name || museum.activity3.name">
-      <hr>
-      <div class="activities-title">
-        <img class="hands-on-icon" src="images/hands-on-image.svg">
-        Events and Activities
-      </div>
-      <hr>
-
-      <div class="col-xs-12 activity-text" ng-if="museum.activity1.name">
-        <div>
-          <span class="activity-name">{{museum.activity1.name}}:</span> {{museum.activity1.time}}
-        </div>
-        <div>
-          {{museum.activity1.description}}
-        </div>
-      </div>
-
-      <div class="col-xs-12 activity-text" ng-if="museum.activity2.name">
-        <div>
-          <span class="activity-name">{{museum.activity2.name}}:</span> {{museum.activity2.time}}
-        </div>
-        <div>
-          {{museum.activity2.description}}
-        </div>
-      </div>
-
-      <div class="col-xs-12 activity-text" ng-if="museum.activity3.name">
-        <div>
-          <span class="activity-name">{{museum.activity3.name}}:</span> {{museum.activity3.time}}
-        </div>
-        <div>
-          {{museum.activity3.description}}
-        </div>
-      </div>
+  <div class="col-xs-12" ng-show="museum.activities.length > 0">
+    <hr>
+    <div class="description-title">
+      Activities
     </div>
-  </div>
+    <hr>
+    <div ng-repeat="activity in museum.activities" class="description-text">
+      <p>
+        <strong>{{ activity.name }}</strong><br/>
+        {{ formatActivityTime(activity) }}<br/>
+        {{ activity.description }}
+      </p>
+    </div>
+  </div>  
 </section>
 
 <hr class="livefyre-header">

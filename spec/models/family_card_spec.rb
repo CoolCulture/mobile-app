@@ -1,20 +1,19 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe FamilyCard do
-  it { should validate_presence_of(:pass_id) }
-  it { should validate_presence_of(:first_name) }
-  it { should validate_presence_of(:last_name) }
-  it { should validate_presence_of(:organization_name) }
-
-  it { should validate_uniqueness_of(:pass_id) }
-
   describe ".import" do
+    let(:headers) { ["family_name","type","program_name_(1st_line)","program_name_(2nd_line)",
+                    "pass_id_number","adult_1","adult_2","child_1","child_2"] }
     before :each do
       @file = Tempfile.new('users.csv')
       CSV.open(@file.path, 'w') do |csv|
-        csv << ["pass_id","first_name","last_name","expiration","organization_name","language","email"]
+        csv << headers
+        
+        letter = "A"
         10.times do |i|
-          csv << ["1000#{i}","First#{i}","Last#{i}","","BlueRidge Foundation","","temp#{i}@gmail.com"]
+          csv << ["N/A","FAMILY","PROGRAM NAME","",
+                  "1000#{i}","First #{letter}","Last #{letter}","WES",""]
+          letter = letter.succ
         end
       end
     end
@@ -23,29 +22,65 @@ describe FamilyCard do
       @file.unlink
     end
 
-    it 'should create new users when a valid CSV is imported' do
+    it 'should create new family cards when a valid CSV is imported' do
       FamilyCard.import(@file)
-      FamilyCard.count.should eq 10
+      expect(FamilyCard.count).to eq(10)
     end
 
-    it 'should associate users and CSVs correctly' do
-      FamilyCard.import(@file)
-      family_card = FamilyCard.find(10001)
-      family_card.user.email.should eq "temp1@gmail.com"
+    it 'should join the second program line with parenthesis if there is one' do
+      second_line = create_tmp_file(["N/A","FAMILY","PROGRAM NAME","SECOND LINE","90000",
+                                     "First Adult","Last Adult","","",])
+
+      FamilyCard.import(second_line)
+      family_card = FamilyCard.find(90000)
+      expect(family_card.organization_name).to eq "PROGRAM NAME (SECOND LINE)"
+
+      second_line.unlink
     end
 
-    it 'should not allow duplicates' do
-      same_users = Tempfile.new('same_users.csv')
-      CSV.open(same_users.path, 'w') do |csv|
-        csv << ["pass_id","first_name","last_name","expiration","organization_name","language","email"]
-        csv << ["10001","First1","Last1","","BlueRidge Foundation","","temp1@gmail.com"]
-      end
-      FamilyCard.import(@file)
+    it 'should alphabetize the last names if there are two adults' do
+      alphabetize = create_tmp_file(["N/A","FAMILY","PROGRAM NAME","","90000",
+                                     "First Adult Smith","Last Adult Jones","",""])
 
-      errors = FamilyCard.import(same_users)
-      errors.count.should eq 1
+      FamilyCard.import(alphabetize)
+      family_card = FamilyCard.find(90000)
       
-      same_users.unlink
+      expect(family_card.last_name).to eq "Jones/Smith"
+      expect(family_card.first_name).to eq "Last/First"
+      
+      alphabetize.unlink
     end
+
+    it 'should create a loaner pass if there are no adults but a pass id' do
+      loaner_pass = create_tmp_file(["LOANER PASS","FAMILY","PROGRAM NAME","","90000",
+                                     "","","",""])
+
+      FamilyCard.import(loaner_pass)
+      family_card = FamilyCard.find(90000)
+      
+      expect(family_card.last_name).to eq "LOANER PASS"
+      expect(family_card.first_name).to eq "LOANER PASS"
+      
+      loaner_pass.unlink
+    end
+
+    it 'should require family pass IDs' do
+      no_pass_id = create_tmp_file(["FAMILY NAME","FAMILY","PROGRAM NAME","SECOND LINE","",
+                                    "First Adult","Last Adult","",""])
+      errors = FamilyCard.import(no_pass_id)
+      expect(errors).to eq({ "FAMILY NAME" => { pass_id: ["can't be blank"] }})
+
+      no_pass_id.unlink
+    end
+  end
+
+  def create_tmp_file(row)
+    temp_file = Tempfile.new('temp_file.csv')
+    CSV.open(temp_file.path, 'w') do |csv|
+      csv << headers
+      csv << row
+    end
+
+    temp_file
   end
 end
