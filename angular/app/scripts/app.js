@@ -8,7 +8,6 @@ angular.module('coolCultureApp', [
   'ngRoute',
   'ui.bootstrap',
   'ngTouch',
-  'jmdobry.angular-cache',
   'Devise'
 ])
   .config(function ($routeProvider) {

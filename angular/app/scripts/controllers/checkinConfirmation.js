@@ -23,8 +23,7 @@ angular.module('coolCultureApp')
       }
     }
 
-    Checkins.get({id: $routeParams.id}, function(checkinTicket) {
-      $scope.checkinTicket = checkinTicket;
+    $scope.checkinTicket = Checkins.get({id: $routeParams.id}, function(checkinTicket) {
       $scope.twitterUrl = $scope.setTwitter(checkinTicket.museum.twitter, checkinTicket.museum.name);
       $scope.facebookUrl = $scope.setFacebook(checkinTicket.museum.facebook);
     });

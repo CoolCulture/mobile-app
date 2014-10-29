@@ -14,7 +14,7 @@ describe('Service: Checkins', function () {
 
   it('with valid last name and family id should checkin to museum', function () {
 
-    httpBackend.expect('POST', '/api/checkins')
+    httpBackend.expect('POST', '/api/checkins.json')
       .respond(201, '{ "numberOfChildren": 3, "numberOfAdults": 2 }');
 
     var museumCheckin = {
@@ -37,7 +37,7 @@ describe('Service: Checkins', function () {
 
    it('with invalid last name and family id should checkin to museum', function () {
 
-    httpBackend.expect('POST', '/api/checkins')
+    httpBackend.expect('POST', '/api/checkins.json')
       .respond(422, null);
 
     var museumCheckin = {
@@ -59,7 +59,7 @@ describe('Service: Checkins', function () {
 
   it('should get specific checkin', function () {
 
-    httpBackend.expect('GET', '/api/checkins/the-slug')
+    httpBackend.expect('GET', '/api/checkins/the-slug.json')
       .respond(200, '{"date":"2014-04-04","family_card_id":10000,"last_name":"Cooling", "number_of_adults":3,"number_of_children":2}');
 
     Checkins.get({id: 'the-slug'}, function(checkin){

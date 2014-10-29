@@ -26,21 +26,21 @@ describe('Controller: CheckinCtrl', function () {
   }));
 
   it('should assign default checkin data with museum id', function(){
-    expect(scope.checkinData.museum_id).toBe('museum-modern-art');
-    expect(scope.checkinData.family_card_id).toBe('');
-    expect(scope.checkinData.last_name).toBe('');
-    expect(scope.checkinData.checkin.number_of_adults).toBe(0);
-    expect(scope.checkinData.checkin.number_of_children).toBe(0);
+    expect(scope.checkinData.museumId).toBe('museum-modern-art');
+    expect(scope.checkinData.familyCardId).toBe('');
+    expect(scope.checkinData.lastName).toBe('');
+    expect(scope.checkinData.checkin.numberOfAdults).toBe(0);
+    expect(scope.checkinData.checkin.numberOfChildren).toBe(0);
   });
 
   xit('should check in to museum family when checkin is called', function() {
     scope.checkinData = {
-      museum_id: 'museum-modern-art',
-      family_card_id: '12345',
-      last_name: 'Cooling',
+      museumId: 'museum-modern-art',
+      familyCardId: '12345',
+      lastName: 'Cooling',
       checkin: {
-        number_of_children: 2,
-        number_of_adults: 3
+        numberOfChildren: 2,
+        numberOfAdults: 3
       }
     };
 

@@ -13,10 +13,10 @@ describe('Directive: groupNumber', function () {
   }));
 
   it('should make list out the list of subwayLines', inject(function ($compile) {
-    scope.number_of_children = 2;
+    scope.numberOfChildren = 2;
     scope.options = ['1','2','3','4','5'];
 
-    element = angular.element('<group-number options="options" number="number_of_children"></group-number>');
+    element = angular.element('<group-number options="options" number="numberOfChildren"></group-number>');
     element = $compile(element)(scope);
     scope.$digest();
 
