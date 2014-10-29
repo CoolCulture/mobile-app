@@ -364,7 +364,6 @@ section {
     background: $cool-culture-orange;
     border-radius: 6px;
     color: $white;
-    margin-left: 15px;
     padding: 10px 10px;
     font-size: 120%;
     h4 {
@@ -378,6 +377,7 @@ section {
 }
 
 .disclaimer {
+    margin-top: 15px;
     ol {
         font-size: 90%;
         color: adjust-lightness($dark-gray, 7);
@@ -389,7 +389,9 @@ section {
 }
 
 .btn-checkin {
-    margin: 15px 0;
+    margin: 15px 0 0;
+    &.facebook { background: #3B5997; }
+    &.twitter { background: #41B7D8; }
 }
 
 .checkin-date {
