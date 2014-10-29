@@ -26,6 +26,7 @@ class Museum
   field :name_id, type: String, default:-> { slug }
   field :twitter, type: String
   field :facebook, type: String
+  field :checkin_url, type: String
 
   slug do |museum|
     Museum.slug_format(museum.name)
