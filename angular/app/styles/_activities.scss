@@ -1,0 +1,59 @@
+#activities {
+  h1 {
+    margin: 0;
+    text-align: center;
+    
+    &.activity-date {
+      margin-bottom: 25px;
+      @media screen and (max-width: 768px) { font-size: 1.4em; }
+    }
+  }
+
+  .no-activity, .activities-list {
+    border-bottom: 1px solid $light-gray;
+    padding: 25px 0;
+  }
+
+  .no-activity h1 {
+    color: $middle-gray;
+    font-size: 1.4em;
+    font-weight: 300;
+    @media screen and (max-width: 768px) { font-size: 1em; }
+  }
+ 
+  .activity {
+    border: 3px solid $dark-gray;
+    margin-top: 25px;
+    padding: 15px;
+    @media screen and (max-width: 768px) { border: none; }
+
+    h2 {
+      margin: 0;
+      @media screen and (max-width: 768px) { font-size: 1.2em; }
+    }
+
+    h3 {
+      color: $dark-gray;
+      font-weight: 300;
+      margin: 10px 0;
+      @media screen and (max-width: 768px) { font-size: 1em; }
+    }
+
+    span.glyphicon-chevron-right {
+      float: right;
+      position: relative;
+      right: 10px;
+    }
+
+    p.activity-description-text {
+      width: 90%;
+    }
+
+    span.museum-name {
+      font-weight: 600;
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+    }
+  }
+}

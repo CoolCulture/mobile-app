@@ -1,0 +1,77 @@
+<header class="cool-culture-header">
+  <div class="back-btn-container">
+    <a ng-click="back()" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </a>
+  </div>
+  <div class="profile-btn-container">
+    <a href="#/profile" class="btn back-btn">
+      <img class="profile-icon" src="images/user.svg">
+    </a>
+  </div>
+  <div class="header-text">
+    Cool Culture <i class="beta">Beta</i>
+  </div>
+</header>
+
+<div class="row">
+  <div class="search-bar col-xs-12">
+      <label for="search">
+        <img class="search-icon" src="images/search.svg"/>
+      </label>
+      <input id="search" class="search-bar-input" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+  </div>
+</div>
+
+<div class="row switch-lists">
+  <div class="col-xs-6 col-xs-push-3">
+    <div>
+      <a class="btn btn-lg btn-block" href="#/museums">Go To Museums</a>
+    </div>    
+  </div>
+</div>
+
+<section ng-if="activitiesByDay==null">
+  <div class="spinner">
+    <h5>Loading Activities...</h5>
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+</section>
+
+<section id="activities" ng-if="activitiesByDay.length > 0">
+  <div ng-repeat="day in activitiesByDay">
+    
+    <!-- No activities for the day -->
+    <article class="row" >
+      <div ng-if="day['activities'].length == 0">
+        <div class="col-xs-12">
+          <div class="no-activity">
+            <h1>No activities for {{ day['date'] | date:'fullDate' }}</h1>
+          </div>
+        </div>
+      </div>
+      
+      <!-- List all activities for the day -->
+      <div class="activities-list" ng-if="day['activities'].length > 0">
+        <h1 class="activity-date">{{ day['date'] | date:'fullDate' }}</h1>
+        <div ng-repeat="activity in day['activities']">
+          <div class="activity" ng-click="go('/museums/' + activity.museum.nameId)">
+            <div>
+              <h2>{{ activity.name }}</h2>
+              <h3>{{ activity.startTime }} - {{ activity.endTime }}</h3>
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <p class="activity-description-text">{{ activity.description }}</p>
+              <img class="address-icon" src="images/address.svg"/>
+              <span class="museum-name">{{ activity.museum.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

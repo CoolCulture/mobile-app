@@ -7,6 +7,8 @@ MobileApp::Application.routes.draw do
     resources :family_cards, only: [:show]
 
     resources :checkins, only: [:show, :create]
+
+    get '/activities/upcoming', to: 'activities#upcoming'
   end
 
   namespace :admin do
