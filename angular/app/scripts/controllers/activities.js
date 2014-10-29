@@ -3,7 +3,7 @@
 angular.module('coolCultureApp')
   .controller('ActivitiesCtrl', function ($scope, Activities) {
     $scope.date = new Date();
-    $scope.format = 'dd-MMMM-yyyy';
+    $scope.format = 'longDate';
     $scope.dateOptions = {
       formatYear: 'yyyy',
       startingDay: 1

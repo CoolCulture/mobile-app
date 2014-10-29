@@ -12,57 +12,66 @@
   <div class="header-text">
     Cool Culture <i class="beta">Beta</i>
   </div>
-
 </header>
-<main>
-  <div class="row">
-    <div class="col-md-6">
-      <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-      </p>
-    </div>
+
+<div class="row">
+  <div class="search-bar col-xs-12">
+      <label for="search">
+        <img class="search-icon" src="images/search.svg"/>
+      </label>
+      <input id="search" class="search-bar-input" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
   </div>
-  <section ng-if="activitiesByDay==null">
-    <div class="spinner">
-      <h5>Loading Activities...</h5>
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
-    </div>
-  </section>
-  <section class="section-detail row">
-    <div class="col-xs-12" ng-if="activitiesByDay.length > 0">
-      <hr>
-      <div class="description-title">
-        Activities
-      </div>
-      <hr>
-      <div ng-repeat="day in activitiesByDay">
-        <h2>{{day['date']}}</h2>
-        <div ng-if="day['activities'].length == 0">
-          <h3>No activities</h3>
+</div>
+
+<div class="row switch-lists">
+  <div class="col-xs-6 col-xs-push-3">
+    <div>
+      <a class="btn btn-lg btn-block" href="#/museums">Go To Museums</a>
+    </div>    
+  </div>
+</div>
+
+<section ng-if="activitiesByDay==null">
+  <div class="spinner">
+    <h5>Loading Activities...</h5>
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+</section>
+
+<section id="activities" ng-if="activitiesByDay.length > 0">
+  <div ng-repeat="day in activitiesByDay">
+    
+    <!-- No activities for the day -->
+    <article class="row" >
+      <div ng-if="day['activities'].length == 0">
+        <div class="col-xs-12">
+          <div class="no-activity">
+            <h1>No activities for {{ day['date'] | date:'fullDate' }}</h1>
+          </div>
         </div>
-        <div ng-repeat="activity in day['activities']" ng-if="day['activities'].length > 0" class="description-text">
-          <p>
-            <strong>{{ activity.name }}</strong><br/>
-            {{ formatActivityTime(activity) }}<br/>
-            {{ activity.description }}
-          </p>
+      </div>
+      
+      <!-- List all activities for the day -->
+      <div class="activities-list" ng-if="day['activities'].length > 0">
+        <h1 class="activity-date">{{ day['date'] | date:'fullDate' }}</h1>
+        <div ng-repeat="activity in day['activities']">
+          <div class="activity" ng-click="go('/museums/' + activity.museum.nameId)">
+            <div>
+              <h2>{{ activity.name }}</h2>
+              <h3>{{ activity.startTime }} - {{ activity.endTime }}</h3>
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <p class="activity-description-text">{{ activity.description }}</p>
+              <img class="address-icon" src="images/address.svg"/>
+              <span class="museum-name">{{ activity.museum.name }}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-12" ng-if="activities.length == 0">
-      <hr>
-      <div class="description-title">
-        No activities found for selected date
-      </div>
-      <hr>
-    </div>  
-  </section>
-</main>
+    </article>
+  </div>
+</section>
 

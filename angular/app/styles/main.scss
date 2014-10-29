@@ -12,9 +12,10 @@ $cool-culture-orange: #F5623C;
 @import 'loading';
 @import 'filter_modal';
 @import 'museum_detail';
+@import 'mixins';
 
 // Individual pages styles go here
-@import 'mixins';
+@import 'activities';
 @import 'login';
 @import 'profile';
 
@@ -342,6 +343,14 @@ section {
     font-size: 150%;
     color: $dark-gray;
     margin-top: 2px;
+}
+
+.switch-lists {
+  border-bottom: 1px solid $light-gray;
+  border-top: 1px solid $light-gray;
+  text-align: center;
+
+  a { margin: 25px 0; }
 }
 
 .checkin-input, .password-input {
