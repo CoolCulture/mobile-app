@@ -6,9 +6,7 @@ angular.module('coolCultureApp').
     AuthProvider.loginPath('/api/users/sign_in.json');
     AuthProvider.logoutPath('/api/users/sign_out.json');
   }).
-  controller('SessionCtrl', function ($scope, $rootScope, Auth, UserFactory, FamilyCards) {    
-    $rootScope.loading = true;
-
+  controller('SessionCtrl', function ($scope, $location, Auth, UserFactory, FamilyCards) {
     $scope.sessionData = {
       email: '',
       password: '',
@@ -21,29 +19,18 @@ angular.module('coolCultureApp').
     };
 
     Auth.currentUser().then(function(user){
-      UserFactory.setUser(user);
-      
-      $scope.user = UserFactory.currentUser;
-
-      FamilyCards.get( {id: $scope.user.user_id}, function(data){
-        if(data.family_card) { $scope.lastName = data.family_card.last_name; }
-      });
-    }, function(error) {
-      // if there's no user on the page when you arrive, that's cool.
+      $location.path('/profile');
     });
-
-    $rootScope.loading = false;
 
     $scope.login = function() {
       $scope.errors = ''
       
       Auth.login($scope.sessionData).then(function(user) {
-        UserFactory.setUser(user);
-        $scope.user = UserFactory.currentUser;
 
-        FamilyCards.get( {id: UserFactory.currentUser.user_id}, function(data){
+        FamilyCards.get( {id: user.user_id}, function(data){
           if(data.family_card) { $scope.lastName = data.family_card.last_name; }
         });
+        $location.path('/profile');
       }, function(error) {
         $scope.errors = "Something went wrong. Please try logging in again."
       });

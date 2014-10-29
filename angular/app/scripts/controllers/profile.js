@@ -1,34 +1,23 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('ProfileCtrl', function ($scope, $rootScope, $window, Auth, FamilyCards, UserFactory) {
-    $rootScope.loading = true;
-
+  .controller('ProfileCtrl', function ($scope, $location, $window, Auth, FamilyCards) {
     Auth.currentUser().then(function(user) {
-      UserFactory.setUser(user);
-      $scope.user = UserFactory.currentUser;
+      $scope.user = user;
 
-      FamilyCards.withCheckins({id: $scope.user.user_id}, function(data){
+      FamilyCards.withCheckins({id: $scope.user.family_card_id}, function(data){
         if(data.family_card && data.checkins) {
           $scope.familyCard = data.family_card;
           $scope.checkins = data.checkins;
-          $rootScope.loading = false;
         }
       });
     }, function(error) {
-      $rootScope.go('/login');
+      $location.path('/login');
     });
 
     $scope.logout = function() {
       Auth.logout().then(function(oldUser) {
-        UserFactory.removeCurrentUser();
-        $scope.user = UserFactory.currentUser;
+        $location.path('/museums');
       });
     };
-
-    $scope.$on('devise:logout', function(event, oldCurrentUser) {
-      $rootScope.go('/login');
-    });
-
-    $window.scrollTo(0,0);
   });

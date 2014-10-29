@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('CheckinCtrl', function ($scope, $rootScope, $routeParams, $window, Checkins, FamilyCards, UserFactory, Auth) {
+  .controller('CheckinCtrl', function ($scope, $location, $routeParams, $window, Checkins, FamilyCards, Auth) {
     $scope.options = [1, 2, 3, 4, 5]
     $scope.checkinData = {
       museumId: $routeParams.id,
@@ -14,11 +14,7 @@ angular.module('coolCultureApp')
     }
 
     Auth.currentUser().then(function(user){
-      UserFactory.setUser(user);
-      
-      $scope.user = UserFactory.currentUser;
-
-      FamilyCards.get( {id: $scope.user.user_id}, function(data){
+      FamilyCards.get( {id: user.family_card_id}, function(data){
         if(data.family_card) {
           $scope.checkinData.lastName = data.family_card.last_name;
           $scope.checkinData.familyCardId = data.family_card.pass_id
@@ -35,8 +31,8 @@ angular.module('coolCultureApp')
     $scope.checkin = function() {
       $scope.errors = "";
       Checkins.save($scope.checkinData, function(checkin) {
-        var path = 'museums/checkinConfirmation/' + checkin.slug;
-        $rootScope.go(path);
+        var path = '/museums/checkinConfirmation/' + checkin.slug;
+        $location.path(path);
         
       }, function(response) {
         if (response.data.limit) {
