@@ -60,7 +60,7 @@ test:
     default:
       database: mobile_app_test
       hosts:
-        - localhost:27017
+        - <%= (ENV['MONGODB_PORT_27017_TCP_ADDR'] || 'localhost') + ':' + (ENV['MONGODB_PORT_27017_TCP_PORT'] || '27017') %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to

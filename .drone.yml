@@ -1,0 +1,10 @@
+image: abevoelker/ruby
+services:
+  - mongodb
+script:
+  - swapon -s
+  - bundle install  --path /tmp/.bundle
+  - bundle exec rake
+  - bundle exec rake angular
+cache:
+  - /tmp/.bundle
