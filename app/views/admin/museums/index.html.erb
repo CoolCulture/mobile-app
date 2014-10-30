@@ -9,6 +9,11 @@
 <%= render partial: 'admin/shared/nav' %>
 
 <h1>Listing museums</h1>
+
+<%= render partial: 'admin/shared/search', 
+           locals: { path: admin_museums_path,
+                     placeholder_text: 'Search by museum name' } %>
+
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>
@@ -68,6 +73,8 @@
   </tbody>
 </table>
 </div>
+
+<%= paginate @museums.page(params[:page]) %>
 
 <br>
 

@@ -9,6 +9,11 @@
 <%= render partial: 'admin/shared/nav' %>
 
 <h1>Listing Users</h1>
+
+<%= render partial: 'admin/shared/search', 
+           locals: { path: admin_users_path,
+                     placeholder_text: 'Search by email' } %>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>

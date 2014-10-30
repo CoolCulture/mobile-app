@@ -3,7 +3,16 @@ class Admin::FamilyCardsController < ApplicationController
   before_filter :is_admin?
 
   def index
-    @family_cards = FamilyCard.asc(:pass_id).page(params[:page])
+    search = params[:search]
+    family_cards =  if search
+                      first = FamilyCard.any_of({ first_name: /.*#{search}.*/i }).ascending(:pass_id).to_a
+                      last = FamilyCard.any_of({ last_name: /.*#{search}.*/i }).ascending(:pass_id).to_a
+                      (first + last).uniq
+                    else 
+                      FamilyCard.all.ascending(:pass_id).to_a
+                    end
+
+    @family_cards = Kaminari.paginate_array(family_cards).page(params[:page])
   end
 
   def update

@@ -3,7 +3,14 @@ class Admin::MuseumsController < ApplicationController
   before_filter :is_admin?
 
   def index
-    @museums = Museum.all
+    search = params[:search]
+    museums = if search
+                Museum.any_of({ name: /.*#{search}.*/i }).ascending(:name).to_a
+              else 
+                Museum.all.ascending(:name).to_a
+              end
+
+    @museums = Kaminari.paginate_array(museums).page(params[:page])
   end
 
   def new

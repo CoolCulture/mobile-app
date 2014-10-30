@@ -9,6 +9,11 @@
 <%= render partial: 'admin/shared/nav' %>
 
 <h1>Listing Family Cards</h1>
+
+<%= render partial: 'admin/shared/search', 
+           locals: { path: admin_family_cards_path,
+                     placeholder_text: 'Search by First Name OR Last Name (not both)' } %>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -45,7 +50,7 @@
   </table>
 </div>
 
-<%= paginate Kaminari.paginate_array(@family_cards).page(params[:page]) %>
+<%= paginate @family_cards.page(params[:page]) %>
 
 <br>
 
