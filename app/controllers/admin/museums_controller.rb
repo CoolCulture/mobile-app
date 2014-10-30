@@ -61,8 +61,7 @@ class Admin::MuseumsController < ApplicationController
   def museum_params
     params.require(:museum).permit(:name, :phone_number, :address, :borough, :site_url,
       :image_url, :bus_lines, :wifi, :handicap_accessible, :hands_on_activity, :description,
-      :free_admission, :suggested_donation, categories: [], hours: [], subway_lines: [],
-      activity1: [:name, :time, :description], activity2: [:name, :time, :description],
-      activity3: [:name, :time, :description])
+      :free_admission, :suggested_donation, :additional_directional_info, :twitter, :facebook,
+      :checkin_url, categories: [], hours: [], subway_lines: [])
   end
 end

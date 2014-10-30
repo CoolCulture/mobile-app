@@ -16,6 +16,9 @@
   <%= f.input :address %>
   <%= f.input :borough, collection: ["Brooklyn", "Bronx", "Manhattan", "Queens", "Staten Island"], prompt: "Select a Borough" %>
   <%= f.input :site_url %>
+  <%= f.input :checkin_url, label: "Special Check-In Link" %>
+  <%= f.input :twitter, placeholder: "eg. @coolculture" %>
+  <%= f.input :facebook, placeholder: "eg. CoolCulture (do not add the full link)" %>
   <%= f.input :image_url %>
 
   <div class="field">

@@ -104,10 +104,10 @@
   </div>
 
   <div class="col-xs-12">
-    <button ng-if="museum.checkinUrl==null" ng-click="go('/museums/checkin/' + museum.nameId)" class="btn go-to-checkin">
+    <button ng-if="!museum.checkinUrl" ng-click="go('/museums/checkin/' + museum.nameId)" class="btn go-to-checkin">
       CHECK IN TO MUSEUM
     </button>
-    <a ng-if="museum.checkinUrl" href="{{ museum.checkinUrl }}" class="btn go-to-checkin">
+    <a ng-if="museum.checkinUrl" href="http://{{ museum.checkinUrl }}" class="btn go-to-checkin">
       REGISTER VIA MUSEUM
     </a>
     <hr>
