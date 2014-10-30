@@ -44,7 +44,7 @@
   </table>
 </div>
 
-<%= paginate Kaminari.paginate_array(@users).page(params[:page]), remote: true %>
+<%= paginate Kaminari.paginate_array(@users).page(params[:page]) %>
 
 <br>
 

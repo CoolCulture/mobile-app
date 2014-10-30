@@ -20,8 +20,6 @@ class Admin::FamilyCardsController < ApplicationController
   end
 
   def import
-    @family_cards = FamilyCard.scoped
-    
     begin
       errors = FamilyCard.import(params[:file].path)
 
@@ -33,6 +31,7 @@ class Admin::FamilyCardsController < ApplicationController
       flash.now[:error] = "The file you have chosen is invalid. Please try again."
     end
     
+    @family_cards = FamilyCard.asc(:pass_id).page(params[:page])
     render :index
   end
 
