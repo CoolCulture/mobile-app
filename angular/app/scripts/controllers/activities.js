@@ -1,13 +1,8 @@
 'use strict';
 
 angular.module('coolCultureApp')
-  .controller('ActivitiesCtrl', function ($scope, Activities) {
-    $scope.date = new Date();
-    $scope.format = 'longDate';
-    $scope.dateOptions = {
-      formatYear: 'yyyy',
-      startingDay: 1
-    };
+  .controller('ActivitiesCtrl', function ($scope, $filter, Activities) {
+    $scope.date = $filter('date')(new Date(), 'dd-MMMM-yyyy');
 
     $scope.formatActivityTime = function (activity) {
       if (activity.date == null)
@@ -37,8 +32,7 @@ angular.module('coolCultureApp')
     }
 
     $scope.$watch('date', function(newValue, oldValue) {
-      $scope.activitiesByDay = Activities.upcoming(newValue);
-      console.log($scope.activitiesByDay);
+      $scope.activitiesByDay = Activities.upcoming(new Date(newValue));
     });
 
  });

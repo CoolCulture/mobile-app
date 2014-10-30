@@ -19,7 +19,7 @@
       <label for="search">
         <img class="search-icon" src="images/search.svg"/>
       </label>
-      <input id="search" class="search-bar-input" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+      <input id="search" type="text" class="search-bar-input"  datepicker-popup="dd-MMMM-yyyy" ng-model="date" is-open="opened" close-text="Close" ng-click="open($event)" />
   </div>
 </div>
 
