@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('coolCultureApp', [
+  'ngSanitize',
   'ngAnimate',
   'ngCookies',
   'ngResource',

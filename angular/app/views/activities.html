@@ -19,7 +19,7 @@
 </div>
 
 <div class="row switch-lists">
-  <div class="col-xs-6 col-xs-push-3">
+  <div class="col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-3">
     <div>
       <a class="btn btn-lg btn-block" href="#/museums">Go To Museums</a>
     </div>    
@@ -59,7 +59,7 @@
               <h2>{{ activity.name }}</h2>
               <h3>{{ activity.startTime }} - {{ activity.endTime }}</h3>
               <span class="glyphicon glyphicon-chevron-right"></span>
-              <p class="activity-description-text">{{ activity.description }}</p>
+              <p class="activity-description-text" ng-bind-html="activity.description"></p>
               <img class="address-icon" src="images/address.svg"/>
               <span class="museum-name">{{ activity.museum.name }}</span>
             </div>

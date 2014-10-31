@@ -118,9 +118,7 @@
       More Information
     </div>
     <hr>
-    <div class="description-text">
-      {{museum.description}}
-    </div>
+    <div class="description-text" ng-bind-html="museum.description"></div>
   </div>
 
   <div class="col-xs-12" ng-show="museum.additionalDirectionalInfo">
@@ -144,7 +142,7 @@
       <p>
         <strong>{{ activity.name }}</strong><br/>
         {{ formatActivityTime(activity) }}<br/>
-        {{ activity.description }}
+        <span ng-bind-html="activity.description"></span>
       </p>
     </div>
   </div>  
