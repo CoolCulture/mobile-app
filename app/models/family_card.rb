@@ -7,7 +7,7 @@ class FamilyCard
 
   field :first_name, type: String
   field :last_name, type: String
-  field :expiration, type: Date
+  field :expiration, type: Date, default: EXPIRATION_DATE
   field :organization_name, type: String
   field :language, type: String, default: ->{ "en" }
   field :pass_id, type: Integer
