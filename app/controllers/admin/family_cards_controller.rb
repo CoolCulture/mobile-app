@@ -32,16 +32,16 @@ class Admin::FamilyCardsController < ApplicationController
     begin
       errors = FamilyCard.import(params[:file].path)
 
-      flash.now[:notice] = "Family Cards imported successfully."
+      flash[:notice] = "Family Cards imported successfully."
       @warnings = errors if errors.present?
     rescue Mongoid::Errors::UnknownAttribute
-      flash.now[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
+      flash[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
     rescue
-      flash.now[:error] = "The file you have chosen is invalid. Please try again."
+      flash[:error] = "The file you have chosen is invalid. Please try again."
     end
     
     @family_cards = FamilyCard.asc(:pass_id).page(params[:page])
-    render :index
+    redirect_to admin_family_cards_path
   end
 
   private

@@ -31,17 +31,17 @@ class Admin::UsersController < ApplicationController
     
     begin
       results = User.import(params[:file].path)
-      flash.now[:notice] = "Users imported successfully."
+      flash[:notice] = "Users imported successfully."
       @warnings = results[:errors] if results[:errors].present?
 
       AdminMailer.user_upload_report(current_user, results[:created_users], @warnings).deliver
     rescue Mongoid::Errors::UnknownAttribute
-      flash.now[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
+      flash[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
     rescue
-      flash.now[:error] = "The file you have chosen is invalid. Please try again."
+      flash[:error] = "The file you have chosen is invalid. Please try again."
     end
     
-    render :index
+    redirect_to admin_users_path
   end
 
   def reset_password
