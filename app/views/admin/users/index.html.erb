@@ -32,13 +32,14 @@
 
     <tbody>
       <% @users.each do |user| %>
+        <% family_card = user.family_card %>
         <tr>
-          <td><%= user.family_card.pass_id %></td>
-          <td><%= user.family_card.first_name %></td>
-          <td><%= user.family_card.last_name %></td>
+          <td><%= family_card ? family_card.pass_id : "N/A" %></td>
+          <td><%= family_card ? family_card.first_name : "N/A" %></td>
+          <td><%= family_card ? family_card.last_name : "N/A" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin? %></td>
-          <td><%= user.family_card ? link_to("Family Card Account", admin_family_card_path(user.family_card)) : "N/A" %></td>
+          <td><%= family_card ? link_to("Family Card Account", admin_family_card_path(family_card)) : "N/A" %></td>
           <td><%= link_to 'Reset Password', reset_password_admin_user_path(user), method: :post %></td>
           <td><%= link_to 'Show', admin_user_path(user) %></td>
           <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
@@ -49,7 +50,7 @@
   </table>
 </div>
 
-<%= paginate Kaminari.paginate_array(@users).page(params[:page]) %>
+<%= paginate @users.page(params[:page]) %>
 
 <br>
 

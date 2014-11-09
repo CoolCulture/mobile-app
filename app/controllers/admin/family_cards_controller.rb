@@ -37,7 +37,9 @@ class Admin::FamilyCardsController < ApplicationController
     rescue Mongoid::Errors::UnknownAttribute
       flash[:error] = 'The CSV had an invalid column. Please check that all columns are valid.'
     rescue
-      flash[:error] = "The file you have chosen is invalid. Please try again."
+      flash[:error] = "Yikes. Something went wrong. The file you have chosen is either invalid
+                       or the data is corrupted. Check for already existing Family Card IDs, a
+                       malformed CSV, or other formatting issues."
     end
     
     @family_cards = FamilyCard.asc(:pass_id).page(params[:page])
