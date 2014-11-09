@@ -22,11 +22,11 @@ describe User do
       expect(User.count).to eq 0
     end
 
-    it 'should throw an error if pass id is missing' do
+    it 'should not throw an error if pass id is missing' do
       file = create_tmp_file(["temp1@gmail.com", "",""])
       results = User.import(file)
-      expect(results[:errors].count).to eq 1
-      expect(User.count).to eq(0)
+      expect(results[:errors].count).to eq 0
+      expect(User.count).to eq(1)
     end
 
     it 'should throw an error if the family card is already associated with another user' do

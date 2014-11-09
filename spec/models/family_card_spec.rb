@@ -68,7 +68,7 @@ describe FamilyCard do
       no_pass_id = create_tmp_file(["FAMILY NAME","FAMILY","PROGRAM NAME","SECOND LINE","",
                                     "First Adult","Last Adult","",""])
       errors = FamilyCard.import(no_pass_id)
-      expect(errors).to eq({ "FAMILY NAME" => { pass_id: ["can't be blank"] }})
+      expect(errors["FAMILY NAME"]).to include("Something about this isn't right: ")
 
       no_pass_id.unlink
     end

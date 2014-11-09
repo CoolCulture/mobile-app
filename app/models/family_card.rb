@@ -27,13 +27,12 @@ class FamilyCard
 
       chunk.each do |family_card|
         attributes = format_attributes(family_card)
-        card = FamilyCard.new(attributes)
 
-        if card.valid?
+        if attributes.select{ |k,v| v.nil? }.empty?
           new_chunk << attributes
         else
           key = family_card[:pass_id_number] || family_card[:family_name]
-          errors[key] = card.errors.messages
+          errors[key] = "Something about this isn't right: #{attributes}"
         end
       end
 

@@ -54,6 +54,8 @@ class User
     created_users = {}
 
     SmarterCSV.process(file, options) do |chunk|
+      record = "AAAAAAAAAA"
+
       chunk.each do |user|
         attributes = format_attributes(user)
         user = User.new(attributes)
@@ -64,6 +66,8 @@ class User
         if family_card && user.valid?
           if family_card.user.nil?
             created_users[attributes[:family_card_id]] = { 
+              last_name: family_card.last_name,
+              organization_name: family_card.organization_name,
               email: attributes[:email],
               password: attributes[:password],
               admin: attributes[:admin]
@@ -73,6 +77,14 @@ class User
           else
             errors[key] = { user: "already exists for the family card provided" }
           end
+        elsif user.valid?
+          created_users[record] = { 
+              email: attributes[:email],
+              password: attributes[:password],
+              admin: attributes[:admin]
+            }
+          record.succ!
+          user.save
         else
           errors[key] = user.errors.messages if !user.valid?
           errors[key] = { family_card: "something went wrong with the user for this family card." }
