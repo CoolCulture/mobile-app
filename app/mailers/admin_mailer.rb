@@ -34,9 +34,9 @@ class AdminMailer < ActionMailer::Base
   def construct_successful_upload_report(success)
     file = Tempfile.new("file.csv")
     CSV.open(file.path, 'w') do |csv|
-      csv << ["Pass ID", "Email", "Password", "Is Admin?"]
+      csv << ["Pass ID", "Last Name", "Organization Name", "Email", "Password", "Is Admin?"]
       success.each do |pass_id, user|
-        csv << [pass_id, user[:email], user[:password], user[:admin]]
+        csv << [pass_id, user[:last_name], user[:organization_name], user[:email], user[:password], user[:admin]]
       end
     end
 
