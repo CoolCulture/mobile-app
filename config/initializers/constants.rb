@@ -3,7 +3,7 @@ BASE_URL =  if Rails.env.development?
             elsif Rails.env.staging?
               "http://cooler-culture.herokuapp.com/"
             elsif Rails.env.production?
-              "http://coolculture.com/"
+              "http://coolcultureapp.org/"
             end
 
 EXPIRATION_DATE = Date.new(2015, 10, 31)
