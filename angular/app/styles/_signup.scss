@@ -1,0 +1,43 @@
+#signup {
+  text-align: center;
+  
+  .signup-view, .logged-in-view, .submit-email {
+    margin-top: 50px;
+  }
+
+  label {
+    font-size: 20px;
+    float: right;
+    padding: 10px 20px 10px 0;
+
+  }
+
+  input {
+    @include input-style;
+    width: 60%;
+    float: right;
+  }
+
+  .signup-header {
+    color: $cool-culture-orange; 
+    font-size: 30px;
+    margin-bottom: 25px;
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+      span { font-size: 24px; }
+    }
+  }  
+}
+
+a.text-link {
+  color: $cool-culture-orange;
+  &:hover {
+    color: darken($cool-culture-orange, 20%);
+  }
+}
+
+#password-reset {
+  #password-reset-view h2 {
+    margin-top: 50px;
+  }
+}

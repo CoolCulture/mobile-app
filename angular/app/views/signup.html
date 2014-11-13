@@ -1,0 +1,55 @@
+<header class="cool-culture-header">
+  <div class="back-btn-container">
+    <a href="#/museums" class="btn back-btn">
+      <img class="back-icon" src="images/arrow.svg">
+    </a>
+  </div>
+  <div class="profile-btn-container">
+    <a href="#/profile" class="btn back-btn">
+      <img class="profile-icon" src="images/user.svg">
+    </a>
+  </div>
+  <div class="header-text">
+    <img class="cool-culture-logo" src="images/logo.svg">
+  </div>
+</header>
+
+<section id="signup" class="row section-detail" ng-if="!loading">
+
+  <div class='login-view' ng-show="!user.loggedIn" ng-hide="passwordResetData.showIt">
+    <div class="col-xs-12">
+      <h2 class="login-header">Hello there, <br/><span>welcome to Cool Culture!</span></h2>
+      <h4>Please enter your information below to create an account.</h4>
+    </div>
+
+    <div class="col-xs-12 alert alert-danger" ng-show="errors">
+      {{errors}}
+    </div>
+
+    <form ng-submit="signup()">
+      <div class="col-xs-12">
+        <input placeholder="Email" ng-model="signup.email"/>
+        <label>Email</label>
+      </div>
+
+      <div class="col-xs-12">
+        <input type="password" placeholder="Password" ng-model="signup.password"/>
+        <label>Password</label>
+      </div>
+
+      <div class="col-xs-12">
+        <input placeholder="Last Name" ng-model="signup.lastName"/>
+        <label>Last Name</label>
+      </div>
+
+      <div class="col-xs-12">
+        <input placeholder="Pass ID" ng-model="signup.passID"/>
+        <label>Pass ID</label>
+      </div>
+
+      <div class="col-xs-12">
+        <button class="btn btn-lg btn-checkin">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</section>
