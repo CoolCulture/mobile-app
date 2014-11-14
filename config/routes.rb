@@ -1,7 +1,9 @@
 MobileApp::Application.routes.draw do
   scope "/api" do
     devise_for :users, defaults: { format: :json }
-    
+
+    resources :users, only: [:create]
+
     resources :museums, only: [:index, :show]
 
     resources :family_cards, only: [:show]

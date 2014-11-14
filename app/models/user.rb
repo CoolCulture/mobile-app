@@ -43,10 +43,6 @@ class User
   
   field :family_card_id, type: Integer
 
-  validates_presence_of :email
-  
-  validates_uniqueness_of :email
-
   def self.import(file)
     options = { chunk_size: 5000 }
 

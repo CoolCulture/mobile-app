@@ -22,33 +22,34 @@
       <h4>Please enter your information below to create an account.</h4>
     </div>
 
-    <div class="col-xs-12 alert alert-danger" ng-show="errors">
-      {{errors}}
+
+    <div class="col-xs-12 alert alert-danger" ng-repeat="error in errors">
+      {{error}}
     </div>
 
-    <form ng-submit="signup()">
+    <form ng-submit="doSignup()">
       <div class="col-xs-12">
-        <input placeholder="Email" ng-model="signup.email"/>
+        <input type="email" placeholder="Email" ng-model="signup.email" required />
         <label>Email</label>
       </div>
 
       <div class="col-xs-12">
-        <input type="password" placeholder="Password" ng-model="signup.password"/>
+        <input type="password" placeholder="Password" ng-model="signup.password" required />
         <label>Password</label>
       </div>
 
       <div class="col-xs-12">
-        <input placeholder="Last Name" ng-model="signup.lastName"/>
+        <input placeholder="Last Name" ng-model="signup.lastName" required />
         <label>Last Name</label>
       </div>
 
       <div class="col-xs-12">
-        <input placeholder="Pass ID" ng-model="signup.passID"/>
+        <input placeholder="Pass ID" ng-model="signup.passID" required />
         <label>Pass ID</label>
       </div>
 
       <div class="col-xs-12">
-        <button class="btn btn-lg btn-checkin">Sign Up</button>
+        <button class="btn btn-lg btn-checkin" ng-enabled="$valid">Sign Up</button>
       </div>
     </form>
   </div>
