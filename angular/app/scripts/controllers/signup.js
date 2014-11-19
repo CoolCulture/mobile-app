@@ -2,7 +2,7 @@
 
 angular.module('coolCultureApp').
   controller('SignupCtrl', function ($scope, Auth, $location, Users) {
-    $scope.signup = {}
+    $scope.signup = {};
 
     Auth.currentUser().then(function(user){
       $location.path('/profile');

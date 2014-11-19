@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def create
-    family_cards = FamilyCard.where(last_name: user_params[:last_name], pass_id: user_params[:pass_id])
+    family_cards = FamilyCard.where(last_name: /#{user_params[:last_name]}/i, pass_id: user_params[:pass_id])
+
     if family_cards.count != 1
       render status: 400, json: ["Invalid Last Name and/or Pass ID"]
     elsif family_cards[0].user
