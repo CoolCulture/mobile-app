@@ -8,7 +8,7 @@ describe Checkin do
       second_checkin = FactoryGirl.build(:checkin, { museum: first_checkin.museum })
       second_checkin.save
 
-      expect(second_checkin.errors.first.last).to eq("You can only Check into the museum once per day")
+      expect(second_checkin.errors.first.last).to eq("You can only check into this museum once per-day")
     end
   end
 

@@ -21,7 +21,7 @@ class Checkin
 
   def checkin_limit
     if Checkin.where({ museum_id: museum_id, family_card_id: family_card_id, date: date }).exists?
-      errors.add(:limit, "You can only Check into the museum once per day")
+      errors.add(:limit, "You can only check into this museum once per-day")
     end
   end
 
