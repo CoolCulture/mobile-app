@@ -17,6 +17,14 @@
     @media screen and (max-width: 768px) { text-align: left; }
   }
 
+  span.notice {
+    display: block;
+    text-align: left;
+    font-style: italic;
+    margin: 5px 0px 5px 2px;
+    color: $dark-gray;
+  }
+
   input {
     @include input-style;
     width: 100%;
