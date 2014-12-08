@@ -44,7 +44,7 @@ class User
   field :family_card_id, type: Integer
 
   def self.import(file)
-    options = { chunk_size: 5000 }
+    options = { chunk_size: 5000, row_sep: "\r" }
 
     errors = {}
     created_users = {}
