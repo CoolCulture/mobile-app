@@ -18,7 +18,7 @@ class FamilyCard
   validates_uniqueness_of :pass_id
 
   def self.import(file)
-    options = { chunk_size: 5000 }
+    options = { chunk_size: 5000, row_sep: :auto }
 
     errors = {}
 
