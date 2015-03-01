@@ -42,6 +42,6 @@ angular.module('coolCultureApp').
       $scope.passwordResetData.email = '';
       $scope.passwordResetData.showIt = false;
       $scope.errors = '';
-      $scope.passwordResetData.message = 'An email was sent to ' + email + '. Please check your inbox.';
+      $scope.passwordResetData.message = 'Please wait at least 15 minutes for your password reset e-mail to arrive at ' + email + '.';
     }
   });
