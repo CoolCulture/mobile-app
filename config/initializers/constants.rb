@@ -7,3 +7,5 @@ BASE_URL =  if Rails.env.development?
             end
 
 EXPIRATION_DATE = Date.new(2015, 10, 31)
+
+MINIMUM_PASS_ID = 10_000
