@@ -4,11 +4,13 @@ class Admin::FamilyCardsController < ApplicationController
 
   def index
     search = params[:search]
-    family_cards =  if search
+    family_cards =  if search.to_i >= MINIMUM_PASS_ID
+                      FamilyCard.find(search.to_i).to_a
+                    elsif search
                       first = FamilyCard.any_of({ first_name: /.*#{search}.*/i }).ascending(:pass_id).to_a
                       last = FamilyCard.any_of({ last_name: /.*#{search}.*/i }).ascending(:pass_id).to_a
                       (first + last).uniq
-                    else 
+                    else
                       FamilyCard.all.ascending(:pass_id).to_a
                     end
 

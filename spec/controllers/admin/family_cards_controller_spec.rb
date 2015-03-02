@@ -14,6 +14,26 @@ describe Admin::FamilyCardsController do
       get :index
       expect(assigns(:family_cards)).to eq([family_card])
     end
+
+    it "assigns @family_cards with the searched for name" do
+      other_family_card = FactoryGirl.create(:family_card)
+      joe_family_card = FactoryGirl.create(:family_card, id: 20000, 
+                                                         pass_id: 20000,
+                                                         first_name: "Joe")
+      
+      get :index, search: "Joe"
+      expect(assigns(:family_cards)).to eq([joe_family_card])
+    end
+
+    it "assigns @family_cards with the searched for id" do
+      other_family_card = FactoryGirl.create(:family_card)
+      joe_family_card = FactoryGirl.create(:family_card, id: 20000, 
+                                                         pass_id: 20000,
+                                                         first_name: "Joe")
+      
+      get :index, search: "20000"
+      expect(assigns(:family_cards)).to eq([joe_family_card])
+    end
   end
 
   describe "import" do
