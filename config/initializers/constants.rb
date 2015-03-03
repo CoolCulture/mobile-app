@@ -9,3 +9,5 @@ BASE_URL =  if Rails.env.development?
 EXPIRATION_DATE = Date.new(2015, 10, 31)
 
 MINIMUM_PASS_ID = 10_000
+
+ADMIN_EMAIL =  Rails.env.production? ? "app@coolculture.org" : "app+local@coolculture.org"

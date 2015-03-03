@@ -19,7 +19,7 @@ class AdminMailer < ActionMailer::Base
     @password = assign_new_password(user)
 
     mail :subject => "Force Password Reset for #{user.email}",
-         :to => current_user.email
+         :to => [current_user.email, ADMIN_EMAIL]
   end
 
   private
