@@ -39,6 +39,7 @@ gem "mongoid_slug"
 
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'recurring_select'
 
 gem 'kaminari'
 
