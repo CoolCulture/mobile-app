@@ -64,6 +64,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'ffaker'
   gem 'pry'
   gem 'letter_opener'
 end

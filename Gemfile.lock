@@ -79,6 +79,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    ffaker (1.32.1)
     fssm (0.2.10)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
@@ -236,6 +237,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  ffaker
   heroku-deflater
   jbuilder (~> 1.2)
   jquery-rails
