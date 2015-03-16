@@ -9,43 +9,15 @@
 <%= render partial: 'admin/shared/nav' %>
 
 <h1>Activities at <%= @museum.name %></h1>
-<div class="table-responsive">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Museum</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= @museum.name %></td>
-        <td><%= activity.name %></td>
-        <td><%= activity.description %></td>
-        <td><%= activity._type %></td>
-        <td><%= activity.date %></td>
-        <td><%= activity.start_time %></td>
-        <td><%= activity.end_time %></td>
-        <td><%= link_to 'Show', admin_museum_one_time_activity_path(@museum, activity) %></td>
-        <td><%= link_to 'Edit', edit_admin_museum_one_time_activity_path(@museum, activity) %></td>
-        <td><%= link_to 'Destroy', admin_museum_one_time_activity_path(@museum, activity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+<h3>Recurring Activities</h3>
+<%= render partial: 'recurring_table', locals: { activities: @activities.recurring } %>
+
+<h3>One Time Activities</h3>
+<%= render partial: 'one_time_table', locals: { activities: @activities.one_time, museum: @museum } %>
 
 <br>
 
-<%= link_to 'New Activity', new_admin_museum_one_time_activity_path(@museum) %>
+<%= link_to 'New One Time Activity', new_admin_museum_one_time_activity_path(@museum) %>
+<%= " | " %>
+<%= link_to 'New Recurring Activity', new_admin_museum_recurring_activity_path(@museum) %>

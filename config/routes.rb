@@ -18,6 +18,7 @@ MobileApp::Application.routes.draw do
       collection { post :import }
       resources :activities, controller: 'one_time_activities'
       resources :one_time_activities
+      resources :recurring_activities, except: [:index, :show]
     end
 
     resources :users do
