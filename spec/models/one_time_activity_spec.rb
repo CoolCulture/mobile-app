@@ -3,9 +3,8 @@ require 'rails_helper'
 describe OneTimeActivity do
   describe "default scope" do
     it "should only return active activities" do
-      museum = FactoryGirl.create(:museum)
-      FactoryGirl.create(:one_time_activity, museum: museum)
-      FactoryGirl.create(:one_time_activity, museum: museum, active: false)
+      FactoryGirl.create(:one_time_activity)
+      FactoryGirl.create(:one_time_activity, active: false)
 
       activities = OneTimeActivity.count
       expect(activities).to eq 1

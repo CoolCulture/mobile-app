@@ -6,6 +6,8 @@ class OneTimeActivity < Activity
   field :end_time, type: String
   field :active, type: Boolean, default: true
 
+  belongs_to :recurring_activity
+
   validates_presence_of :name, :description, :date
 
   default_scope -> { where(active: true) }
