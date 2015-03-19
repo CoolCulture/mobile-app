@@ -23,9 +23,10 @@ class Admin::RecurringActivitiesController < ApplicationController
 
   def create
     @museum = Museum.find(params[:museum_id])
-    @activity = RecurringActivity.new(activity_params.merge(museum: @museum))
+    activity = RecurringActivity.new(activity_params.merge(museum: @museum))
     
-    if @activity.save
+    if activity.save
+      activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }
       redirect_to admin_museum_one_time_activities_path(@museum)
     else
       render action: 'new'
@@ -53,6 +54,6 @@ class Admin::RecurringActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:recurring_activity).permit(:name, :description, :date, :start_time, :end_time, :schedule)
+    params.require(:recurring_activity).permit(:name, :description, :start_time, :end_time, :schedule)
   end
 end
