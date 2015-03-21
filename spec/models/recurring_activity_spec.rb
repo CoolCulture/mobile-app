@@ -22,15 +22,13 @@ describe RecurringActivity do
 
     it "should not duplicate already created one time activities" do
       recurring_activity = FactoryGirl.create(:recurring_activity)
+      recurring_activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }
+      
       activities_count = recurring_activity.generate_upcoming_events.count
       
-      one_time_activity = FactoryGirl.create(:one_time_activity,
-                                              date: Date.today.next_day(4),
-                                              recurring_activity_id: recurring_activity.id)
-
       expect {
-        recurring_activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }  
-      }.to change(OneTimeActivity,:count).by(activities_count - 1)
+        recurring_activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }
+      }.to change(OneTimeActivity,:count).by(0)
     end
   end
 end

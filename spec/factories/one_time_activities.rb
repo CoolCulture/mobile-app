@@ -4,6 +4,7 @@ FactoryGirl.define do
     name 'Watch the stars'
     description 'Just what it says'
     date Date.new(2014, 11, 4)
+    featured false
     active true
   end
 end

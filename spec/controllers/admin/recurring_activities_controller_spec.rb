@@ -20,7 +20,7 @@ describe Admin::RecurringActivitiesController do
       museum = FactoryGirl.create(:museum)
       expect {
         post :create, museum_id: museum.id, recurring_activity: FactoryGirl.attributes_for(:recurring_activity)
-      }.to change(OneTimeActivity, :count).by(4)
+      }.to change(OneTimeActivity, :count).by(1)
     end
   end
 end
