@@ -132,13 +132,28 @@
     </div>
   </div>
 
-  <div class="col-xs-12" ng-show="museum.activities.length > 0">
+  <div class="col-xs-12" ng-show="museum.featuredActivities.length > 0">
+    <hr>
+    <div class="description-title">
+      Featured Activities
+    </div>
+    <hr>
+    <div ng-repeat="activity in museum.featuredActivities" class="description-text featured">
+      <p>
+        <h4>{{ activity.name }}</h4>
+        {{ formatActivityTime(activity) }}<br/>
+        <span ng-bind-html="activity.description"></span>
+      </p>
+    </div>
+  </div>  
+
+  <div class="col-xs-12" ng-show="museum.unfeaturedActivities.length > 0">
     <hr>
     <div class="description-title">
       Activities
     </div>
     <hr>
-    <div ng-repeat="activity in museum.activities" class="description-text">
+    <div ng-repeat="activity in museum.unfeaturedActivities" class="description-text">
       <p>
         <strong>{{ activity.name }}</strong><br/>
         {{ formatActivityTime(activity) }}<br/>

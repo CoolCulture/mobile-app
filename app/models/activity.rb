@@ -9,5 +9,7 @@ class Activity
 
   scope :one_time, ->(){ where(_type: "OneTimeActivity") }
   scope :recurring, ->(){ where(_type: "RecurringActivity") }
-  scope :upcoming, ->(start_date=Date.today, end_date=(Date.today+35.days)){ OneTimeActivity.upcoming(start_date, end_date) }
+  scope :upcoming, ->(start_date=Date.today, end_date=(Date.today+35.days)) do
+    OneTimeActivity.upcoming(start_date, end_date)
+  end
 end

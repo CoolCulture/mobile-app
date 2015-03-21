@@ -13,6 +13,11 @@
 
   <%= f.input :name %>
   <%= f.input :description, as: :text %>
+  
+  <div class='control-group'>
+    <%= f.label :featured %>
+    <%= f.check_box :featured %>
+  </div>
   <div class='control-group'>
     <%= f.label :date %>
     <%= f.text_field :date, data: {provide: 'datepicker', 'date-format' => 'yyyy-mm-dd'} %>

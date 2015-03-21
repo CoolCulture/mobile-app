@@ -50,6 +50,6 @@ class Admin::OneTimeActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:one_time_activity).permit(:name, :description, :date, :start_time, :end_time)
+    params.require(:one_time_activity).permit(:name, :description, :date, :start_time, :end_time, :featured)
   end
 end

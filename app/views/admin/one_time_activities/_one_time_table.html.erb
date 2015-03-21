@@ -5,6 +5,7 @@
       <th>Museum</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Featured</th>
       <th>Type</th>
       <th>Date</th>
       <th>Start Time</th>
@@ -20,6 +21,7 @@
         <td><%= museum.name %></td>
         <td><%= activity.name %></td>
         <td><%= activity.description %></td>
+        <td><%= activity.featured ? "Yes" : "No" %></td>
         <td><%= activity._type %></td>
         <td><%= activity.date %></td>
         <td><%= activity.start_time %></td>

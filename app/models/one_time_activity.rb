@@ -4,11 +4,16 @@ class OneTimeActivity < Activity
   field :date, type: Date
   field :start_time, type: String
   field :end_time, type: String
+  field :featured, type: Boolean, default: false
   field :active, type: Boolean, default: true
 
   belongs_to :recurring_activity
 
   validates_presence_of :name, :description, :date
+
+  after_initialize do |act|
+    act.update_attributes(featured: false) if act.featured.nil?
+  end
 
   default_scope -> { where(active: true) }
 
