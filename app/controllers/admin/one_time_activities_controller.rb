@@ -38,7 +38,7 @@ class Admin::OneTimeActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy
+    @activity.update_attributes(active: false)
     redirect_to admin_museum_one_time_activities_path(@museum)
   end
 
