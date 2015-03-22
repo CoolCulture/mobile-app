@@ -2,14 +2,6 @@ class Admin::RecurringActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_filter :is_admin?
 
-  def index
-    @museum = Museum.find(params[:museum_id])
-    @activities = @museum.activities
-  end
-
-  def show
-  end
-
   def new
     @museum = Museum.find(params[:museum_id])
     @activity = RecurringActivity.new(museum: @museum)
