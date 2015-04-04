@@ -16,12 +16,13 @@ describe UserImporter do
         csv = UserImporter.new(file)
         
         expect(csv.import_class).to eq User
-        expect(csv.file.original_filename).to eq "users.csv"
+        expect(csv.filepath).to_not be nil
       end
 
       it "returns no errors if the csv is great" do
         file = file_to_import('csvs-without-errors', 'users.csv')
         csv = UserImporter.new(file)
+        csv.perform
 
         expect(csv.errors).to be_empty
       end
@@ -29,7 +30,8 @@ describe UserImporter do
       it "returns an error that shows the number of users without an email" do
         file = file_to_import('csvs-with-errors', 'users_no_emails.csv')
         csv = UserImporter.new(file)
-        
+        csv.perform
+
         expect(csv.errors[:csv_errors]).to_not be_empty
         expect(csv.errors[:csv_errors][:no_email]).to eq 1
       end
@@ -40,6 +42,7 @@ describe UserImporter do
         
         file = file_to_import('csvs-with-errors', 'users_many_errors.csv')
         csv = UserImporter.new(file)
+        csv.perform
         
         expect(csv.errors[:csv_errors]).to_not be_empty
         expect(csv.errors[:csv_errors][:no_email]).to eq 1
@@ -49,21 +52,39 @@ describe UserImporter do
     end
   end
 
-  describe "#import" do
+  describe "#perform" do
+    it "returns errors on the columns if there are extra or not the correct headings" do
+      file = file_to_import('csvs-with-errors', 'users_wrong_headers.csv')
+      csv = UserImporter.new(file)
+      csv.perform
+
+      expect(csv.errors[:column_errors].count).to eq 2
+    end
+
+    it "returns no errors on the columns if there are none" do
+      file = file_to_import('csvs-without-errors', 'users.csv')
+      csv = UserImporter.new(file)
+      csv.perform
+
+      expect(csv.errors[:column_errors]).to be nil
+    end
+
     it "returns no results if there are errors" do
       file = file_to_import('csvs-with-errors', 'users_no_emails.csv')
       csv = UserImporter.new(file)
-      expect(csv.import).to be_empty
+      csv.perform
+
+      expect(csv.imported).to be_empty
     end
 
     it "returns an array of attributes if it succeeds" do
       file = file_to_import('csvs-without-errors', 'users.csv')
       csv = UserImporter.new(file)
-      results = csv.import
+      csv.perform
       
       expect(csv.errors).to be_empty
-      expect(results.count).to eq 1
-      expect(results.first[:email]).to eq "tony@avengers.com"
+      expect(csv.imported.count).to eq 1
+      expect(csv.imported.first[:email]).to eq "tony@avengers.com"
       expect(User.all.count).to eq 1
       
       the_national_museum = User.where(email: "tony@avengers.com").to_a
@@ -74,12 +95,13 @@ describe UserImporter do
     it "will not import the same user twice" do
       file = file_to_import('csvs-without-errors', 'users.csv')
       csv = UserImporter.new(file)
-      results = csv.import
+      csv.perform
+
       expect(csv.errors).to be_empty
       expect(User.all.count).to eq 1
 
       more_csv = UserImporter.new(file)
-      more_results = more_csv.import
+      more_csv.perform
       expect(more_csv.errors).to_not be_empty
       
       duplicate_email_error = more_csv.errors[:csv_errors]["tony@avengers.com"][:duplicate_email]
@@ -92,7 +114,8 @@ describe UserImporter do
       FactoryGirl.create(:family_card, pass_id: 99999, _id: 99999)
       file = file_to_import('csvs-with-errors', 'users_duplicate_rows.csv')
       csv = UserImporter.new(file)
-      
+      csv.perform
+
       expect(csv.errors[:csv_errors]).to_not be_empty
       expect(csv.errors[:csv_errors]["tony@avengers.com"]).to_not be_empty
 

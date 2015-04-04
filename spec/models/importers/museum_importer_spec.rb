@@ -12,20 +12,22 @@ describe MuseumImporter do
         csv = MuseumImporter.new(file)
         
         expect(csv.import_class).to eq Museum
-        expect(csv.file.original_filename).to eq "museums.csv"
+        expect(csv.filepath).to_not be nil
       end
 
       it "returns no errors if the csv is great" do
         file = file_to_import('csvs-without-errors', 'museums.csv')
         csv = MuseumImporter.new(file)
-        
+        csv.perform
+
         expect(csv.errors).to be_empty
       end
 
       it "returns an error that shows the number of museums without a name" do
         file = file_to_import('csvs-with-errors', 'museums_no_names.csv')
         csv = MuseumImporter.new(file)
-        
+        csv.perform
+
         expect(csv.errors[:csv_errors]).to_not be_empty
         expect(csv.errors[:csv_errors][:no_name]).to eq 1
       end
@@ -33,7 +35,8 @@ describe MuseumImporter do
       it "returns a list of errors associated with the museum name_id if they exist" do
         file = file_to_import('csvs-with-errors', 'museums_many_errors.csv')
         csv = MuseumImporter.new(file)
-        
+        csv.perform
+
         expect(csv.errors[:csv_errors]).to_not be_empty
         expect(csv.errors[:csv_errors][:no_name]).to eq 1
         expect(csv.errors[:csv_errors]["the-national-museum"]).to include :address, :borough,
@@ -45,6 +48,7 @@ describe MuseumImporter do
       it "checks for duplicates within the file itself" do
         file = file_to_import('csvs-with-errors', 'museums_duplicate_rows.csv')
         csv = MuseumImporter.new(file)
+        csv.perform
         
         expect(csv.errors[:csv_errors]).to_not be_empty
         expect(csv.errors[:csv_errors]["the-national-museum"]).to_not be_empty
@@ -56,21 +60,39 @@ describe MuseumImporter do
     end
   end
 
-  describe "#import" do
+  describe "#perform" do
+    it "returns errors on the columns if there are extra or not the correct headings" do
+      file = file_to_import('csvs-with-errors', 'museums_wrong_headers.csv')
+      csv = MuseumImporter.new(file)
+      csv.perform
+
+      expect(csv.errors[:column_errors].count).to eq 2
+    end
+
+    it "returns no errors on the columns if there are none" do
+      file = file_to_import('csvs-without-errors', 'museums.csv')
+      csv = MuseumImporter.new(file)
+      csv.perform
+
+      expect(csv.errors[:column_errors]).to be nil
+    end
+
     it "returns no results if there are errors" do
       file = file_to_import('csvs-with-errors', 'museums_no_names.csv')
       csv = MuseumImporter.new(file)
-      expect(csv.import).to be_empty
+      csv.perform
+      
+      expect(csv.imported).to be_empty
     end
 
     it "returns an array of attributes if it succeeds" do
       file = file_to_import('csvs-without-errors', 'museums.csv')
       csv = MuseumImporter.new(file)
-      results = csv.import
+      csv.perform
       
       expect(csv.errors).to be_empty
-      expect(results.count).to eq 1
-      expect(results.first[:name]).to eq "The National Museum"
+      expect(csv.imported.count).to eq 1
+      expect(csv.imported.first[:name]).to eq "The National Museum"
       expect(Museum.all.count).to eq 1
       
       the_national_museum = Museum.where(name_id: "the-national-museum").to_a
@@ -81,12 +103,13 @@ describe MuseumImporter do
     it "will not import the same user twice" do
       file = file_to_import('csvs-without-errors', 'museums.csv')
       csv = MuseumImporter.new(file)
-      results = csv.import
+      csv.perform
+
       expect(csv.errors).to be_empty
       expect(Museum.all.count).to eq 1
 
       more_csv = MuseumImporter.new(file)
-      more_results = more_csv.import
+      more_csv.perform
       expect(more_csv.errors).to_not be_empty
       
       duplicate_name_error = more_csv.errors[:csv_errors]["the-national-museum"][:duplicate_name]

@@ -3,7 +3,6 @@ require 'importers/csv_importer'
 class MuseumImporter < CSVImporter
   def initialize(file)
     super(Museum, file)
-    validate_rows
   end
 
   private
@@ -43,7 +42,8 @@ class MuseumImporter < CSVImporter
   end
 
   def validate_rows
-    results = SmarterCSV.process(self.file, { row_sep: :auto, remove_empty_values: false })
+    options = { row_sep: :auto, remove_empty_values: false }
+    results = SmarterCSV.process(filepath, options)
     self.errors[:csv_errors] = { no_name: 0 }
     
     results.each do |row|

@@ -44,18 +44,16 @@ gem 'recurring_select'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 
+gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
 gem 'kaminari'
-
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'
 gem 'devise'
 
 gem 'newrelic_rpm'
-
 gem 'mandrill-api'
-
-gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
+gem 'delayed_job_mongoid'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

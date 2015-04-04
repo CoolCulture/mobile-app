@@ -13,7 +13,7 @@ describe CSVImporter do
         csv = CSVImporter.new(FamilyCard, file)
         
         expect(csv.import_class).to eq FamilyCard
-        expect(csv.file.original_filename).to eq "family_cards.csv"
+        expect(csv.filepath).to_not be nil
       end
 
       it "saves columns from the file" do
@@ -22,19 +22,6 @@ describe CSVImporter do
 
         expect(csv.columns).to include(:first_name, :last_name)
         expect(csv.columns).to_not include(:created_at, :updated_at)
-      end
-      
-      it "returns errors on the columns if there are extra or not the correct headings" do
-        file = file_to_import('csvs-with-errors', 'family_cards_wrong_headers.csv')
-        csv = CSVImporter.new(FamilyCard, file)
-
-        expect(csv.errors[:column_errors].count).to eq 2
-      end
-
-      it "returns no errors on the columns if there are none" do
-        file = file_to_import('csvs-without-errors', 'family_cards.csv')
-        csv = CSVImporter.new(FamilyCard, file)
-        expect(csv.errors[:column_errors]).to be nil
       end
     end
   end

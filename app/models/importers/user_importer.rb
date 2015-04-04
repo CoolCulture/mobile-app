@@ -3,7 +3,6 @@ require 'importers/csv_importer'
 class UserImporter < CSVImporter
   def initialize(file)
     super(User, file)
-    validate_rows
   end
 
   private
@@ -22,7 +21,8 @@ class UserImporter < CSVImporter
   end
 
   def validate_rows
-    results = SmarterCSV.process(self.file, { row_sep: :auto })
+    options = { row_sep: :auto, remove_empty_values: false }
+    results = SmarterCSV.process(filepath, options)
     self.errors[:csv_errors] = { no_email: 0 }
     
     results.each do |row|
