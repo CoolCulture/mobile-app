@@ -1,8 +1,8 @@
 require 'importers/csv_importer'
 
 class MuseumImporter < CSVImporter
-  def initialize(file)
-    super(Museum, file)
+  def initialize(admin_user, file)
+    super(admin_user, Museum, file)
   end
 
   private
@@ -44,12 +44,12 @@ class MuseumImporter < CSVImporter
   def validate_rows
     options = { row_sep: :auto, remove_empty_values: false }
     results = SmarterCSV.process(filepath, options)
-    self.errors[:csv_errors] = { no_name: 0 }
+    self.errors[:csv_errors] = { missing_ids: 0 }
     
     results.each do |row|
       
       if row[:name].blank?
-        self.errors[:csv_errors][:no_name] += 1
+        self.errors[:csv_errors][:missing_ids] += 1
         next
       else
         id = Museum.slug_format(row[:name])
@@ -105,7 +105,7 @@ class MuseumImporter < CSVImporter
       self.errors[:csv_errors].delete(id) if self.errors[:csv_errors][id].empty?
     end
 
-    self.errors[:csv_errors].delete(:no_name) if self.errors[:csv_errors][:no_name] == 0
+    self.errors[:csv_errors].delete(:missing_ids) if self.errors[:csv_errors][:missing_ids] == 0
     self.errors.delete(:csv_errors) if self.errors[:csv_errors].empty?
     return self.errors
   end

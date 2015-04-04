@@ -10,15 +10,20 @@ describe CSVImporter do
         expect( lambda { CSVImporter.new(FamilyCard) } ).to raise_error
 
         file = file_to_import('csvs-without-errors', 'family_cards.csv')
-        csv = CSVImporter.new(FamilyCard, file)
+        expect( lambda { CSVImporter.new(FamilyCard, file) } ).to raise_error
         
+        admin = FactoryGirl.create(:admin_user)
+        csv = CSVImporter.new(admin, FamilyCard, file)
+        
+        expect(csv.admin_user.email).to eq "admin@coolculture.org"
         expect(csv.import_class).to eq FamilyCard
         expect(csv.filepath).to_not be nil
       end
 
       it "saves columns from the file" do
+        admin = FactoryGirl.create(:admin_user)
         file = file_to_import('csvs-without-errors', 'family_cards.csv')
-        csv = CSVImporter.new(FamilyCard, file)
+        csv = CSVImporter.new(admin, FamilyCard, file)
 
         expect(csv.columns).to include(:first_name, :last_name)
         expect(csv.columns).to_not include(:created_at, :updated_at)

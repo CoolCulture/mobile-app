@@ -1,3 +1,5 @@
+require 'importers/museum_importer'
+
 ActiveAdmin.register Museum do
   permit_params :name, :phone_number, :address, :borough, :site_url,
                 :image_url, :bus_lines, :wifi, :handicap_accessible, :hands_on_activity, :description,
@@ -19,9 +21,9 @@ ActiveAdmin.register Museum do
   collection_action :csv_import, :method => :post do
     begin
       if params[:museum]
-        errors = Museum.import(params[:museum][:file].tempfile)
-        flash[:success] = "Museums imported successfully!"
-        # AdminMailer.user_upload_report(current_admin_user, results[:created_users], @warnings).deliver
+        csv = MuseumImporter.new(current_admin_user, params[:museum][:file])
+        csv.perform
+        flash[:notice] = "Your import is being processed! You'll receive an email when it's done."
       else
         flash[:error] = "Oops. Looks like you need a file."
       end

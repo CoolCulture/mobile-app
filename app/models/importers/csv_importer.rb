@@ -1,16 +1,23 @@
 class CSVImporter
-  attr_accessor :import_class, :filepath, :imported, :columns, :errors
+  attr_accessor :admin_user, :import_class, :filepath, :imported, :columns, :errors
 
-  def initialize(import_class, file)
+  def initialize(admin_user, import_class, file)
+    @admin_user, @import_class = admin_user, import_class
     @errors, @imported = {}, []
-    @import_class, @filepath = import_class, file.path
+    @filepath = local_path(file)
     @columns = select_columns(import_class)
   end
 
   def perform
     validate_columns
     validate_rows
-    import
+    results = import
+
+    if results.empty?
+      AdminMailer.failed_import(admin_user, import_class, errors).deliver
+    else
+      AdminMailer.successful_import(admin_user, import_class, imported).deliver
+    end
   end
   handle_asynchronously :perform
 
@@ -54,5 +61,14 @@ class CSVImporter
         errors[:column_errors] << "#{err.to_s} is not included in the csv."
       end
     end
+  end
+
+  def local_path(file)
+    directory = "#{Rails.root}/tmp/csv_uploads"
+    FileUtils.mkdir_p(directory) unless File.directory?(directory)
+    path = File.join(directory, "#{DateTime.now.to_s}-#{file.original_filename}")
+    File.open(path, "wb") { |f| f.write(file.read) }
+    
+    return File.path(path)
   end
 end

@@ -1,8 +1,8 @@
 require 'importers/csv_importer'
 
 class FamilyCardImporter < CSVImporter
-  def initialize(file)
-    super(FamilyCard, file)
+  def initialize(admin, file)
+    super(admin, FamilyCard, file)
   end
 
   private
@@ -24,12 +24,12 @@ class FamilyCardImporter < CSVImporter
   def validate_rows
     options = { row_sep: :auto, remove_empty_values: false }
     results = SmarterCSV.process(filepath, options)
-    self.errors[:csv_errors] = { no_pass_id: 0 }
+    self.errors[:csv_errors] = { missing_ids: 0 }
     
     results.each do |row|
       id = row[:pass_id]
       if id.blank?
-        self.errors[:csv_errors][:no_pass_id] += 1
+        self.errors[:csv_errors][:missing_ids] += 1
         next
       end
 
@@ -62,7 +62,7 @@ class FamilyCardImporter < CSVImporter
       self.errors[:csv_errors].delete(id) if self.errors[:csv_errors][id].empty?
     end
 
-    self.errors[:csv_errors].delete(:no_pass_id) if self.errors[:csv_errors][:no_pass_id] == 0
+    self.errors[:csv_errors].delete(:missing_ids) if self.errors[:csv_errors][:missing_ids] == 0
     self.errors.delete(:csv_errors) if self.errors[:csv_errors].empty?
     return self.errors
   end

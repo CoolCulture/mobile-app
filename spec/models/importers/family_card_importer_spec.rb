@@ -3,13 +3,15 @@ require 'importers/family_card_importer'
 include ActionDispatch::TestProcess
 
 describe FamilyCardImporter do
+  let!(:admin) { FactoryGirl.create(:admin_user) }
+
   context "class methods" do
     describe ".new" do
       it "requires and returns import class type and file" do
         expect( lambda { FamilyCardImporter.new } ).to raise_error
 
         file = file_to_import('csvs-without-errors', 'family_cards.csv')
-        csv = FamilyCardImporter.new(file)
+        csv = FamilyCardImporter.new(admin, file)
         
         expect(csv.import_class).to eq FamilyCard
         expect(csv.filepath).to_not be nil
@@ -17,7 +19,7 @@ describe FamilyCardImporter do
 
       it "returns no errors if the csv is great" do
         file = file_to_import('csvs-without-errors', 'family_cards.csv')
-        csv = FamilyCardImporter.new(file)
+        csv = FamilyCardImporter.new(admin, file)
         
         expect(csv.errors).to be_empty
       end
@@ -27,7 +29,7 @@ describe FamilyCardImporter do
   describe "#perform" do
     it "returns errors on the columns if there are extra or not the correct headings" do
       file = file_to_import('csvs-with-errors', 'family_cards_wrong_headers.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:column_errors].count).to eq 2
@@ -35,7 +37,7 @@ describe FamilyCardImporter do
 
     it "returns no errors on the columns if there are none" do
       file = file_to_import('csvs-without-errors', 'family_cards.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:column_errors]).to be nil
@@ -43,7 +45,7 @@ describe FamilyCardImporter do
 
     it "returns no results if there are errors" do
       file = file_to_import('csvs-with-errors', 'family_cards_no_pass_ids.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
       
       expect(csv.imported).to be_empty
@@ -51,7 +53,7 @@ describe FamilyCardImporter do
 
     it "returns an array of attributes if it succeeds" do
       file = file_to_import('csvs-without-errors', 'family_cards.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
       
       expect(csv.errors).to be_empty
@@ -63,12 +65,13 @@ describe FamilyCardImporter do
 
     it "will not import the same family card twice" do
       file = file_to_import('csvs-without-errors', 'family_cards.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
       expect(csv.errors).to be_empty
       expect(FamilyCard.all.count).to eq 1
 
-      more_csv = FamilyCardImporter.new(file)
+      new_file = file_to_import('csvs-without-errors', 'family_cards.csv')
+      more_csv = FamilyCardImporter.new(admin, new_file)
       more_csv.perform
       expect(more_csv.errors).to_not be_empty
       
@@ -79,20 +82,20 @@ describe FamilyCardImporter do
 
     it "returns an error that shows the number of family cards without Pass IDs" do
       file = file_to_import('csvs-with-errors', 'family_cards_no_pass_ids.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:csv_errors]).to_not be_empty
-      expect(csv.errors[:csv_errors][:no_pass_id]).to eq 2
+      expect(csv.errors[:csv_errors][:missing_ids]).to eq 2
     end
 
     it "returns a list of errors associated with the Pass ID if they exist" do
       file = file_to_import('csvs-with-errors', 'family_cards_many_errors.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:csv_errors]).to_not be_empty
-      expect(csv.errors[:csv_errors][:no_pass_id]).to eq 1
+      expect(csv.errors[:csv_errors][:missing_ids]).to eq 1
       expect(csv.errors[:csv_errors][99999]).to include :first_name, :last_name,
                                                         :expiration, :language,
                                                         :organization_name
@@ -100,7 +103,7 @@ describe FamilyCardImporter do
 
     it "checks for duplicates within the file itself" do
       file = file_to_import('csvs-with-errors', 'family_cards_duplicate_rows.csv')
-      csv = FamilyCardImporter.new(file)
+      csv = FamilyCardImporter.new(admin, file)
       csv.perform
       
       expect(csv.errors[:csv_errors]).to_not be_empty

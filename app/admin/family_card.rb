@@ -18,18 +18,10 @@ ActiveAdmin.register FamilyCard do
 
   collection_action :csv_import, :method => :post do
     begin
-      if params[:family_card][:file]
-        file = params[:family_card][:file].tempfile
-        csv = FamilyCardImporter.new(file)
-        results = csv.import
-
-        if results.empty?
-          flash[:error] = "Looks like there were errors with your file."
-          # send admin email
-        else
-          flash[:notice] = "Hurray! Your file is good."
-          # send admin email
-        end
+      if params[:family_card]
+        csv = FamilyCardImporter.new(current_admin_user, params[:family_card][:file])
+        csv.perform
+        flash[:notice] = "Your import is being processed! You'll receive an email when it's done."
       else
         flash[:error] = "Oops. Looks like you need a file."
       end

@@ -3,6 +3,8 @@ require 'importers/user_importer'
 include ActionDispatch::TestProcess
 
 describe UserImporter do
+  let!(:admin) { FactoryGirl.create(:admin_user) }
+  
   before :each do
     FactoryGirl.create(:family_card)
   end
@@ -13,7 +15,7 @@ describe UserImporter do
         expect( lambda { UserImporter.new } ).to raise_error
 
         file = file_to_import('csvs-without-errors', 'users.csv')
-        csv = UserImporter.new(file)
+        csv = UserImporter.new(admin, file)
         
         expect(csv.import_class).to eq User
         expect(csv.filepath).to_not be nil
@@ -21,7 +23,7 @@ describe UserImporter do
 
       it "returns no errors if the csv is great" do
         file = file_to_import('csvs-without-errors', 'users.csv')
-        csv = UserImporter.new(file)
+        csv = UserImporter.new(admin, file)
         csv.perform
 
         expect(csv.errors).to be_empty
@@ -29,11 +31,11 @@ describe UserImporter do
 
       it "returns an error that shows the number of users without an email" do
         file = file_to_import('csvs-with-errors', 'users_no_emails.csv')
-        csv = UserImporter.new(file)
+        csv = UserImporter.new(admin, file)
         csv.perform
-
+        
         expect(csv.errors[:csv_errors]).to_not be_empty
-        expect(csv.errors[:csv_errors][:no_email]).to eq 1
+        expect(csv.errors[:csv_errors][:missing_ids]).to eq 1
       end
 
       it "returns a list of errors associated with the user's email if they exist" do
@@ -41,11 +43,11 @@ describe UserImporter do
                                   family_card_id: nil)
         
         file = file_to_import('csvs-with-errors', 'users_many_errors.csv')
-        csv = UserImporter.new(file)
+        csv = UserImporter.new(admin, file)
         csv.perform
-        
+
         expect(csv.errors[:csv_errors]).to_not be_empty
-        expect(csv.errors[:csv_errors][:no_email]).to eq 1
+        expect(csv.errors[:csv_errors][:missing_ids]).to eq 1
         expect(csv.errors[:csv_errors]["tony@avengers.com"]).to include :family_card_id
         expect(csv.errors[:csv_errors]["bruce@avengers.com"]).to include :family_card_id
       end
@@ -55,7 +57,7 @@ describe UserImporter do
   describe "#perform" do
     it "returns errors on the columns if there are extra or not the correct headings" do
       file = file_to_import('csvs-with-errors', 'users_wrong_headers.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:column_errors].count).to eq 2
@@ -63,7 +65,7 @@ describe UserImporter do
 
     it "returns no errors on the columns if there are none" do
       file = file_to_import('csvs-without-errors', 'users.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:column_errors]).to be nil
@@ -71,7 +73,7 @@ describe UserImporter do
 
     it "returns no results if there are errors" do
       file = file_to_import('csvs-with-errors', 'users_no_emails.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
 
       expect(csv.imported).to be_empty
@@ -79,7 +81,7 @@ describe UserImporter do
 
     it "returns an array of attributes if it succeeds" do
       file = file_to_import('csvs-without-errors', 'users.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
       
       expect(csv.errors).to be_empty
@@ -94,13 +96,14 @@ describe UserImporter do
 
     it "will not import the same user twice" do
       file = file_to_import('csvs-without-errors', 'users.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors).to be_empty
       expect(User.all.count).to eq 1
 
-      more_csv = UserImporter.new(file)
+      new_file = file_to_import('csvs-without-errors', 'users.csv')
+      more_csv = UserImporter.new(admin, new_file)
       more_csv.perform
       expect(more_csv.errors).to_not be_empty
       
@@ -113,7 +116,7 @@ describe UserImporter do
     it "checks for email and family card id duplicates within the file itself" do
       FactoryGirl.create(:family_card, pass_id: 99999, _id: 99999)
       file = file_to_import('csvs-with-errors', 'users_duplicate_rows.csv')
-      csv = UserImporter.new(file)
+      csv = UserImporter.new(admin, file)
       csv.perform
 
       expect(csv.errors[:csv_errors]).to_not be_empty
