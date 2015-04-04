@@ -1,0 +1,20 @@
+%div
+  %h3
+    You can import 
+    = "#{import_type}s"
+    on this page.
+  %p Select "Choose File" below and select a valid CSV file. 
+
+%br
+
+= form_for import_type, url: { action: :csv_import}, html: { multipart: true } do |f|
+  %table
+    %tr
+      %td
+        %label{:for => "family_card_import"}
+          Select a CSV File :
+      %td
+        = f.file_field :file
+    %tr
+      %td
+        = submit_tag 'Submit'

@@ -9,7 +9,7 @@ class RecurringActivity < Activity
   has_many :one_time_activities
 
   after_find :deyamlize_rule
-  before_save :yamlize_rule
+  before_save :yamlize_rule, :format_from_timepicker
   validates_presence_of :name, :description, :schedule
 
   default_scope -> { where(active: true) }

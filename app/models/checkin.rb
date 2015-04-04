@@ -7,10 +7,9 @@ class Checkin
   end
 
   belongs_to :museum
-
   belongs_to :family_card
-  field :last_name
 
+  field :last_name, type: String
   field :number_of_adults, type: Integer
   field :number_of_children, type: Integer
   field :date, type: String
@@ -24,5 +23,4 @@ class Checkin
       errors.add(:limit, "You can only check into this museum once per-day")
     end
   end
-
 end

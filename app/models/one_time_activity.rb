@@ -15,6 +15,8 @@ class OneTimeActivity < Activity
     act.update_attributes(featured: false) if act.featured.nil?
   end
 
+  before_save :format_from_timepicker
+
   default_scope -> { where(active: true) }
 
   scope :old, ->(date=Date.today) { where(:date.lt => 3.days.ago(date)) }

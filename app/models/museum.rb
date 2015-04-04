@@ -107,20 +107,17 @@ class Museum
     self.subway_lines = sorted_subway_lines
   end
 
-  SUBWAY_LINES = [
-    "1", "2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M",
-    "G", "J", "Z", "L", "S", "N", "Q", "R", "SIR"
-  ]
+  def self.list_subway_lines
+    CATEGORIES
+  end
 
-  CATEGORIES = [
-    "History", "Science", "Art", "Nature", "Other", "Featured"
-  ]
+  def self.list_categories
+    CATEGORIES
+  end
 
-  BOROUGHS = {"M" => "Manhattan",
-              "BX" => "Bronx",
-              "BK" => "Brooklyn",
-              "SI" => "Staten Island",
-              "Q" => "Queens"}
+  def self.list_boroughs
+    BOROUGHS.values
+  end
 
   def self.slug_format(name)
     name.gsub(/[^A-Za-z0-9 ]/, '').split(" ").join("-").downcase

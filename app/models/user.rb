@@ -91,6 +91,12 @@ class User
     { errors: errors, created_users: created_users }
   end
 
+  def assign_new_password
+    password, password_confirmation = Devise.friendly_token.first(10)
+    save
+    return password
+  end
+
   private
 
   def self.format_attributes(user)

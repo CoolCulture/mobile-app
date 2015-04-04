@@ -4,6 +4,7 @@ class FamilyCard
 
   has_many :checkins, dependent: :delete
   has_one :user, dependent: :delete
+  accepts_nested_attributes_for :user
 
   field :first_name, type: String
   field :last_name, type: String

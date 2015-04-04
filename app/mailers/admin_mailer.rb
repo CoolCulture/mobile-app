@@ -13,22 +13,11 @@ class AdminMailer < ActionMailer::Base
          :to => user.email
   end
 
-  def reset_password(current_user, user)
-    @current_user = current_user
-    @user = user
-    @password = assign_new_password(user)
+  def reset_password(current_user, user, password)
+    @current_user, @user, @password = [current_user, user, password]
 
     mail :subject => "Force Password Reset for #{user.email}",
-         :to => [current_user.email, ADMIN_EMAIL]
-  end
-
-  private
-
-  def assign_new_password(user)
-    password = Devise.friendly_token.first(10)
-    user.update_attributes(password: password, password_confirmation: password)
-
-    password
+         :to => [current_user.email]
   end
 
   def construct_successful_upload_report(success)
