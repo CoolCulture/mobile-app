@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CheckinsController do
   before(:each) do
-    user = FactoryGirl.create(:user, admin: true)
+    user = FactoryGirl.create(:admin_user)
     sign_in user
   end
   

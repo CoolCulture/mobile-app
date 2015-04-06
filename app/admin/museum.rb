@@ -57,8 +57,8 @@ ActiveAdmin.register Museum do
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   filter :name
-  filter :borough, as: :select, collection: proc { Museum.list_boroughs }
-  filter :categories, as: :check_boxes, collection: proc { Museum.list_categories }
+  filter :borough, as: :select, collection: BOROUGHS.values
+  filter :categories, as: :check_boxes, collection: CATEGORIES
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # SHOW PAGE
@@ -87,12 +87,11 @@ ActiveAdmin.register Museum do
       tab 'Location Details' do
         f.inputs do
           f.input :name
-          f.input :description, as: :text # needs less rows
+          f.input :description, as: :text, input_html: { rows: 5 }
           f.input :phone_number
           f.input :address
-          # f.input :hours # Need to add multiple hours slots or something
-          f.input :borough, as: :select, collection: Museum.list_boroughs
-          f.input :subway_lines, as: :check_boxes, collection: Museum.list_subway_lines
+          f.input :borough, as: :select, collection: BOROUGHS.values
+          f.input :subway_lines, as: :check_boxes, collection: SUBWAY_LINES
           f.input :bus_lines, placeholder: "eg. M2 M3 M5"
           f.input :additional_directional_info
         end

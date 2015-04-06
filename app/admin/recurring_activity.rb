@@ -16,6 +16,10 @@ ActiveAdmin.register RecurringActivity do
     end
   end
   
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # INDEX
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  
   index do
     selectable_column
     column :name
@@ -29,9 +33,17 @@ ActiveAdmin.register RecurringActivity do
     actions
   end
 
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # FILTERS
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
   filter :name
   filter :created_at
   filter :museum, as: :select, collection: Museum.asc(:name)
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # EDIT FORM
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   form partial: 'form'
 end

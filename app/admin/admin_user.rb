@@ -2,6 +2,10 @@ ActiveAdmin.register AdminUser, as: "Admin" do
   permit_params :email, :password, :password_confirmation
   menu label: "Admin Users", parent: "Users"
 
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # INDEX
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
   index do
     selectable_column
     column :email
@@ -11,10 +15,18 @@ ActiveAdmin.register AdminUser, as: "Admin" do
     actions
   end
 
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # FILTERS
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
   filter :email
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # EDIT FORM
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   form do |f|
     f.semantic_errors *f.object.errors.keys

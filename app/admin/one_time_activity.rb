@@ -2,6 +2,10 @@ ActiveAdmin.register OneTimeActivity do
   permit_params :name, :date, :description, :start_time, :end_time, :featured, :museum_id
   menu parent: "Activities"
   
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # INDEX
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  
   index do
     selectable_column
     column :name
@@ -20,11 +24,19 @@ ActiveAdmin.register OneTimeActivity do
     actions
   end
 
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # FILTERS
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
   filter :name
   filter :date
   filter :featured
   filter :active
   filter :museum, as: :select, collection: Museum.asc(:name)
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # EDIT FORM
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   form partial: 'form'
 end

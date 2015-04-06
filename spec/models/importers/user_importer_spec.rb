@@ -39,9 +39,6 @@ describe UserImporter do
       end
 
       it "returns a list of errors associated with the user's email if they exist" do
-        FactoryGirl.create(:user, email: "tony@avengers.com",
-                                  family_card_id: nil)
-        
         file = file_to_import('csvs-with-errors', 'users_many_errors.csv')
         csv = UserImporter.new(admin, file)
         csv.perform
