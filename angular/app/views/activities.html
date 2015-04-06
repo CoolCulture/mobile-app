@@ -38,6 +38,23 @@
 </section>
 
 <section id="activities" ng-if="activitiesByDay.length > 0">
+  <div class="featured activities-list" ng-if="featuredActivity">
+    <h1 class="activity-date">{{ featuredActivity['date'] | date:'fullDate' }}</h1>
+    <div class="featured-activity-banner">
+      <span>Don't miss out on this featured activity!</span>
+    </div>
+    <div class="activity" ng-click="go('/museums/' + featuredActivity.museum.nameId)">
+      <div>
+        <h2>{{ featuredActivity.name }}</h2>
+        <h3>{{ featuredActivity.startTime }} - {{ featuredActivity.endTime }}</h3>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <p class="activity-description-text" ng-bind-html="featuredActivity.description"></p>
+        <img class="address-icon" src="images/address.svg"/>
+        <span class="museum-name">{{ featuredActivity.museum.name }}</span>
+      </div>
+    </div>
+  </div>
+
   <div ng-repeat="day in activitiesByDay">
     
     <!-- No activities for the day -->

@@ -6,4 +6,8 @@ class ActivitiesController < ApplicationController
     grouped_activities = Activity.upcoming(start_date, end_date).group_by {|a| a.date}
     @days = (start_date..end_date).map {|day| {date: day, activities: grouped_activities[day] || []}}
   end
+
+  def featured
+    @featured = Activity.featured_activities.to_a.first
+  end
 end

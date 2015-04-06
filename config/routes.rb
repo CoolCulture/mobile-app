@@ -11,6 +11,7 @@ MobileApp::Application.routes.draw do
     resources :checkins, only: [:show, :create]
 
     get '/activities/upcoming', to: 'activities#upcoming'
+    get '/activities/featured', to: 'activities#featured'
   end
 
   namespace :admin do

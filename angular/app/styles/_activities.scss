@@ -84,4 +84,24 @@
       top: 1px;
     }
   }
+
+  .featured {
+    .activity {
+      border: 3px solid $cool-culture-orange;
+      border-top: none;
+      margin-top: 0;
+    }
+
+    .featured-activity-banner {
+      span {
+        background: $cool-culture-orange;
+        color: white;
+        display: block;
+        font-size: 1em;
+        padding: 5px 0;
+        text-align: center;
+        @media screen and (max-width: 768px) { margin: 0 10px; }
+      }
+    }
+  }
 }

@@ -18,6 +18,9 @@ class OneTimeActivity < Activity
   default_scope -> { where(active: true) }
 
   scope :old, ->(date=Date.today) { where(:date.lt => 3.days.ago(date)) }
+  scope :featured_activities, ->(date=Date.today) do
+    where(:date.gte => date, active: true, featured: true).asc(:date)
+  end
   scope :upcoming, ->(start_date, end_date) do
     where(date: start_date..end_date).asc(:date)
   end

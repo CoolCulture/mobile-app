@@ -32,6 +32,7 @@ angular.module('coolCultureApp')
     }
 
     $scope.$watch('date', function(newValue, oldValue) {
+      $scope.featuredActivity = Activities.featured();
       $scope.activitiesByDay = Activities.upcoming(new Date(newValue));
     });
 
