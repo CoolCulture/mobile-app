@@ -10,7 +10,7 @@ ActiveAdmin.register Museum do
   # # IMPORT
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   
-  action_item(:index) do
+  action_item(:import, only: :index) do
     link_to 'Import Museums', :action => :upload_museums_csv
   end
 

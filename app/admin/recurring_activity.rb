@@ -1,6 +1,20 @@
 ActiveAdmin.register RecurringActivity do
-  permit_params :name, :start_time, :end_time, :schedule
+  permit_params :name, :description, :museum_id, :start_time, :end_time, :schedule
   menu parent: "Activities", priority: 1
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # CONTROLLER MODIFICATIONS
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  controller do
+    def create
+      super
+
+      if @recurring_activity.valid?
+        @recurring_activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }
+      end
+    end
+  end
   
   index do
     selectable_column
@@ -19,24 +33,5 @@ ActiveAdmin.register RecurringActivity do
   filter :created_at
   filter :museum, as: :select, collection: Museum.asc(:name)
 
-  form do |f|
-    f.semantic_errors *f.object.errors.keys
-
-    f.inputs do
-      f.input :name
-      f.input :start_time, 
-               as: :time_picker,
-               input_html: { value: Activity.format_for_timepicker(@resource.start_time) }
-      f.input :end_time,   
-               as: :time_picker,
-               input_html: { value: Activity.format_for_timepicker(@resource.start_time) }
-      li class: "select input required", id: "recurring_activity_schedule_input" do
-        f.label :schedule, class: "label", for: "recurring_activity_schedule"
-        f.select_recurring :schedule, [IceCube::Rule.from_yaml(@resource.schedule)]
-        # need to be able to run @resource.schedule = nil in the controller
-      end
-    end
-
-    f.actions
-  end
+  form partial: 'form'
 end

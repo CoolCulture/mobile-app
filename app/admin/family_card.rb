@@ -1,14 +1,14 @@
 require 'importers/family_card_importer'
 
 ActiveAdmin.register FamilyCard do
-  permit_params :first_name, :last_name, :expiration, :organization_name
+  permit_params :pass_id, :first_name, :last_name, :expiration, :organization_name
   menu parent: "Users"
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # IMPORT
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   
-  action_item(:index) do
+  action_item(:import, only: :index) do
     link_to 'Import Family Cards', :action => :upload_family_card_csv
   end
 
@@ -77,6 +77,7 @@ ActiveAdmin.register FamilyCard do
     tabs do
       tab 'Family Card Details' do
         f.inputs do
+          f.input :pass_id, label: "Pass ID" if f.object.new_record?
           f.input :first_name
           f.input :last_name
           f.input :expiration, as: :datepicker

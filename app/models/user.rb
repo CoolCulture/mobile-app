@@ -27,21 +27,19 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
-  ## Confirmable
-  # field :confirmation_token,   type: String
-  # field :confirmed_at,         type: Time
-  # field :confirmation_sent_at, type: Time
-  # field :unconfirmed_email,    type: String # Only if using reconfirmable
-
-  ## Lockable
-  # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
-  # field :locked_at,       type: Time
-
-  ## Admin
   field :admin, type: Boolean, default: false
-  
   field :family_card_id, type: Integer
+
+  validate :needs_family_card_id
+
+  def needs_family_card_id
+    if family_card_id.nil?
+      errors.add(:family_card_id, "a family card id is required")
+    else
+      family_card = FamilyCard.where(_id: family_card_id).to_a
+      errors.add(:family_card_id, "not a valid family card id") if family_card.count == 0
+    end
+  end
 
   def self.import(file)
     options = { chunk_size: 5000, row_sep: :auto }

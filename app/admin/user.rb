@@ -8,7 +8,7 @@ ActiveAdmin.register User do
   # # IMPORT
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   
-  action_item(:index) do
+  action_item(:import, only: :index) do
     link_to 'Import Users', :action => :upload_users_csv
   end
 
@@ -75,7 +75,7 @@ ActiveAdmin.register User do
     f.semantic_errors *f.object.errors.keys
     
     f.inputs do
-      f.input :family_card_id, input_html: { disabled: true }
+      f.input :family_card_id
       f.input :email
       f.input :password
       f.input :password_confirmation

@@ -1,5 +1,5 @@
 ActiveAdmin.register OneTimeActivity do
-  permit_params :name, :date, :start_time, :end_time, :featured, :museum
+  permit_params :name, :date, :description, :start_time, :end_time, :featured, :museum_id
   menu parent: "Activities"
   
   index do
@@ -26,22 +26,5 @@ ActiveAdmin.register OneTimeActivity do
   filter :active
   filter :museum, as: :select, collection: Museum.asc(:name)
 
-  form do |f|
-    f.semantic_errors *f.object.errors.keys
-    
-    f.inputs do
-      f.input :name
-      f.input :date, as: :datepicker
-      f.input :start_time, 
-               as: :time_picker,
-               input_html: { value: Activity.format_for_timepicker(@resource.start_time) }
-      f.input :end_time,   
-               as: :time_picker,
-               input_html: { value: Activity.format_for_timepicker(@resource.start_time) }
-      f.input :featured, as: :radio
-      # f.input :museum, as: :select, collection: Museum.asc(:name)
-    end
-    
-    f.actions
-  end
+  form partial: 'form'
 end
