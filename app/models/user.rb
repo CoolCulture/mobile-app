@@ -32,6 +32,8 @@ class User
 
   validate :needs_family_card_id
 
+  scope :recent, ->(limit){ where(:last_sign_in_at.exists => true).limit(limit) }
+
   def needs_family_card_id
     if family_card_id.nil?
       errors.add(:family_card_id, "a family card id is required")

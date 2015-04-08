@@ -15,6 +15,9 @@ class Activity
   scope :upcoming, ->(start_date=Date.today, end_date=(Date.today+35.days)) do
     OneTimeActivity.upcoming(start_date, end_date)
   end
+  scope :upcoming_activities_for_museum, ->(museum_id) do
+    where(_type: "OneTimeActivity", museum_id: museum_id).asc(:date).limit(5)
+  end
 
   def self.format_for_timepicker(time)
     Time.parse(time).strftime("%H:%M:%S")
