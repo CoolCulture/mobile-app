@@ -34,6 +34,26 @@ ActiveAdmin.register RecurringActivity do
   end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # SHOW PAGE
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  show do
+    attributes_table do
+      row :name
+      row :description
+      row :created_at
+      row :schedule do |act|
+        IceCube::Rule.from_yaml(act.schedule).to_s
+      end
+      row :start_time
+      row :end_time
+      row :museum do |act|
+        act.museum? ? link_to(act.museum.name, admin_museum_path(act.museum)) : "N/A"
+      end
+    end
+  end
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # FILTERS
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

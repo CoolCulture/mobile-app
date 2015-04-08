@@ -8,21 +8,41 @@ ActiveAdmin.register AdminUser, as: "Admin" do
 
   index do
     selectable_column
+    column 'Name' do |admin|
+      [admin.first_name, admin.last_name].join(' ')
+    end
+    column :title
     column :email
-    column :current_sign_in_at
     column :sign_in_count
-    column :created_at
     actions
+  end
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # SHOW PAGE
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  show do
+    attributes_table do
+      row :first_name
+      row :last_name
+      row :title
+      row :email
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+    end
   end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # FILTERS
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+  filter :first_name
+  filter :last_name
   filter :email
+  filter :created_at
   filter :current_sign_in_at
   filter :sign_in_count
-  filter :created_at
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # EDIT FORM

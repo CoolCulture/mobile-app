@@ -68,12 +68,33 @@ ActiveAdmin.register Museum do
     attributes_table do
       row :name
       row :description
+      row :address
+      row :borough
+      row :subway_lines do |museum|
+        museum.subway_lines.reject(&:blank?).join(", ")
+      end
+      row :bus_lines do |museum|
+        museum.bus_lines
+      end
       row :checkin_url do |museum|
         museum.checkin_url
       end
+      row :twitter
+      row :facebook
     end
 
-    render 'admin/museum/show'
+    panel "Upcoming Events for #{museum.name}" do
+      table_for Activity.upcoming_activities_for_museum(museum) do
+        column :name
+        column :featured
+        column :date
+        column :start_time
+        column :end_time
+        column 'Link' do |act|
+          link_to 'View', admin_one_time_activity_path(act.id)
+        end
+      end
+    end
   end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

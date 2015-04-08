@@ -15,9 +15,24 @@ ActiveAdmin.register Checkin do
     column :number_of_adults
     column :number_of_children
     column :date
-    actions dropdown: true, defaults: false do |checkin|
+    actions defaults: false do |checkin|
       item "View", admin_checkin_path(checkin)
       item "Delete", admin_checkin_path(checkin), method: :delete
+    end
+  end
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # SHOW PAGE
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  show do
+    attributes_table do
+      row :family_card
+      row :last_name
+      row :number_of_adults
+      row :number_of_children
+      row :date
+      row :museum
     end
   end
 

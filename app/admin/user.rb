@@ -42,6 +42,8 @@ ActiveAdmin.register User do
 
   member_action :reset_password, method: :put do
     password = resource.assign_new_password
+    resource.update_attributes(password: password, password_confirmation: password)
+
     AdminMailer.reset_password(current_admin_user, resource, password).deliver
     redirect_to admin_users_path, notice: "#{resource.email} has had their password reset."
   end
@@ -55,8 +57,24 @@ ActiveAdmin.register User do
     column :email
     column :sign_in_count
     column :created_at
-    actions dropdown: true do |user|
+    actions do |user|
       item "Reset Password", reset_password_admin_user_path(user), method: :put
+    end
+  end
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # SHOW PAGE
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  show do
+    attributes_table do
+      row :created_at
+      row :updated_at
+      row :email
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :family_card
     end
   end
 
