@@ -45,6 +45,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 
 gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
+gem 'active_skin'
 gem 'kaminari'
 gem 'smarter_csv'
 

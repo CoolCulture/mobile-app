@@ -1,7 +1,0 @@
-%div
-  %h3
-    Upcoming Events
-  - resource.activities.upcoming.limit(5).each do |act|
-    %p
-      = "#{act.name} on #{act.date.strftime('%B %d, %Y')} starting at #{act.start_time}"
-      = link_to "[Go To Activity]", admin_one_time_activity_path(act)
