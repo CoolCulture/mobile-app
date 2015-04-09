@@ -44,8 +44,9 @@ class User
   end
 
   def assign_new_password
-    password, password_confirmation = Devise.friendly_token.first(10)
-    save
-    return password
+    new_password = Devise.friendly_token.first(10)
+    self.update_attributes(password: new_password, password_confirmation: new_password,
+                           encrypted_password: BCrypt::Password.create(new_password))
+    return new_password
   end
 end

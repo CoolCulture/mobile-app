@@ -7,16 +7,15 @@ class UserImporter < CSVImporter
 
   private
 
-  def format_attributes(row)
-    password = Devise.friendly_token.first(15)
-    
+  def format_attributes(row)    
+    password = Devise.friendly_token.first(10)
+
     {
       family_card_id: row[:family_card_id],
       email: row[:email],
       password: password,
       password_confirmation: password,
-      created_at: DateTime.now,
-      updated_at: DateTime.now
+      encrypted_password: BCrypt::Password.create(password)
     }
   end
 

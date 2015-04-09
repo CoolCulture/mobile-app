@@ -10,6 +10,11 @@ class AdminMailer < ActionMailer::Base
 
   def successful_import(current_user, import_type, imported)
     @current_user, @import_type = current_user, import_type
+    
+    if import_type == User
+      csv_user_report_path = csv_user_report(imported)
+      attachments["user-upload-report.csv"] = File.read(csv_user_report_path)
+    end
 
     mail :subject => "Your #{import_type} Import Has Finished!",
          :to => [current_user.email]
@@ -32,6 +37,20 @@ class AdminMailer < ActionMailer::Base
   end
 
   private
+
+  def csv_user_report(imported)
+    file = Tempfile.new("users.csv")
+    CSV.open(file.path, 'w') do |csv|
+      csv << ["Family Card ID", "Email", "Password"]
+      imported.each do |attributes|
+        csv << [attributes[:family_card_id],
+                attributes[:email],
+                attributes[:password]]
+      end
+    end
+
+    file.path
+  end
 
   def csv_error_report(import_type, csv_errors)
     file = Tempfile.new("#{import_type}.csv")

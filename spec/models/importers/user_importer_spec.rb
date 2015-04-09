@@ -86,9 +86,24 @@ describe UserImporter do
       expect(csv.imported.first[:email]).to eq "tony@avengers.com"
       expect(User.all.count).to eq 1
       
-      the_national_museum = User.where(email: "tony@avengers.com").to_a
-      expect(the_national_museum).to_not be_empty
-      expect(the_national_museum.first.family_card_id).to eq 10000
+      user = User.where(email: "tony@avengers.com").to_a
+      expect(user).to_not be_empty
+      expect(user.first.family_card_id).to eq 10000
+    end
+
+    it "encrypts the password when the user is imported" do
+      file = file_to_import('csvs-without-errors', 'users.csv')
+      csv = UserImporter.new(admin, file)
+      csv.perform
+      
+      expect(csv.errors).to be_empty
+      expect(csv.imported.count).to eq 1
+      expect(csv.imported.first[:email]).to eq "tony@avengers.com"
+      expect(csv.imported.first[:password]).to_not be_blank
+      
+      user = User.where(email: "tony@avengers.com").to_a
+      expect(user).to_not be_empty
+      expect(user.first.encrypted_password).to_not be_blank
     end
 
     it "will not import the same user twice" do
