@@ -38,7 +38,7 @@
 </section>
 
 <section id="activities" ng-if="activitiesByDay.length > 0">
-  <div class="featured activities-list" ng-if="featuredActivity">
+  <div class="featured activities-list" ng-if="featuredActivity['date']">
     <h1 class="activity-date">{{ featuredActivity['date'] | date:'fullDate' }}</h1>
     <div class="featured-activity-banner">
       <span>Don't miss out on this featured activity!</span>
