@@ -25,6 +25,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
+    FileUtils.rm_rf('tmp/csv_uploads') if File.directory?('tmp/csv_uploads')
   end
   config.before(:each) do
     DatabaseCleaner.start
