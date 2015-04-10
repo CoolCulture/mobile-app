@@ -1,4 +1,4 @@
-json.extract! activity, :name, :description, :date, :start_time, :end_time
+json.extract! activity, :name, :description, :featured, :date, :start_time, :end_time
 
 json.museum do
   json.name activity.museum.name

@@ -92,12 +92,11 @@
 
 <p>
   <strong>Activities</strong>
-  <ul>
-    <% @museum.activities.each do   |activity| %>
-      <%= render partial: 'activity', locals: {activity: activity} %>
-    <% end %>
-  </ul>
-  <%= link_to 'New', new_admin_museum_activity_path(@museum) %>
+  <%= link_to 'Go To All Activities', admin_museum_one_time_activities_path(@museum) %>
+  <%= " | " %>  
+  <%= link_to 'New One Time Activity', new_admin_museum_one_time_activity_path(@museum) %>
+  <%= " | " %>
+  <%= link_to 'New Recurring Activity', new_admin_museum_recurring_activity_path(@museum) %>
 </p>
 
 <p>

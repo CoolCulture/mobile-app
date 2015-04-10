@@ -223,6 +223,12 @@ main {
     padding: 10px;
 }
 
+.description-text.featured {
+    border-left: 5px solid $cool-culture-orange;
+    margin: 10px 5px;
+    h4 { margin: 5px 0; }
+}
+
 .description-title, .activities-title {
     font-size: 120%;
 }

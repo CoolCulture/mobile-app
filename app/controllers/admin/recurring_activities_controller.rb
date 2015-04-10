@@ -1,28 +1,24 @@
-class Admin::OneTimeActivitiesController < ApplicationController
+class Admin::RecurringActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_filter :is_admin?
 
-  def index
-    @museum = Museum.find(params[:museum_id])
-    @activities = @museum.activities
-  end
-
-  def show
-  end
-
   def new
     @museum = Museum.find(params[:museum_id])
-    @activity = OneTimeActivity.new(museum: @museum)
+    @activity = RecurringActivity.new(museum: @museum)
+    @existing_rule = nil
   end
 
   def edit
+    @existing_rule = [IceCube::Rule.from_yaml(@activity.schedule)]
+    @activity.schedule = nil
   end
 
   def create
     @museum = Museum.find(params[:museum_id])
-    @activity = OneTimeActivity.new(activity_params.merge(museum: @museum))
-
-    if @activity.save
+    activity = RecurringActivity.new(activity_params.merge(museum: @museum))
+    
+    if activity.save
+      activity.generate_upcoming_events.each { |attrs| OneTimeActivity.create(attrs) }
       redirect_to admin_museum_one_time_activities_path(@museum)
     else
       render action: 'new'
@@ -31,14 +27,14 @@ class Admin::OneTimeActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
-      redirect_to admin_museum_one_time_activity_path(@museum, @activity)
+      redirect_to admin_museum_one_time_activities_path(@museum)
     else
       render action: 'edit'
     end
   end
 
   def destroy
-    @activity.update_attributes(active: false)
+    @activity.destroy
     redirect_to admin_museum_one_time_activities_path(@museum)
   end
 
@@ -50,6 +46,6 @@ class Admin::OneTimeActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:one_time_activity).permit(:name, :description, :date, :start_time, :end_time, :featured)
+    params.require(:recurring_activity).permit(:name, :description, :start_time, :end_time, :schedule)
   end
 end

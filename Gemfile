@@ -39,6 +39,7 @@ gem "mongoid_slug"
 
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'recurring_select'
 
 gem 'kaminari'
 
@@ -63,6 +64,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'ffaker'
   gem 'pry'
   gem 'letter_opener'
 end

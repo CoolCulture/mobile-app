@@ -4,13 +4,23 @@ class OneTimeActivity < Activity
   field :date, type: Date
   field :start_time, type: String
   field :end_time, type: String
+  field :featured, type: Boolean, default: false
   field :active, type: Boolean, default: true
 
+  belongs_to :recurring_activity
+
   validates_presence_of :name, :description, :date
+
+  after_initialize do |act|
+    act.update_attributes(featured: false) if act.featured.nil?
+  end
 
   default_scope -> { where(active: true) }
 
   scope :old, ->(date=Date.today) { where(:date.lt => 3.days.ago(date)) }
+  scope :featured_activities, ->(date=Date.today) do
+    where(:date.gte => date, active: true, featured: true).asc(:date)
+  end
   scope :upcoming, ->(start_date, end_date) do
     where(date: start_date..end_date).asc(:date)
   end
