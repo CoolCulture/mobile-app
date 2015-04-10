@@ -1,42 +1,65 @@
 class AdminMailer < ActionMailer::Base
   default from: "help@coolculturegram.org"
 
-  def user_upload_report(user, success, errors)
-    @user = user
-    @errors = errors
-    @success = success
-
-    path = construct_successful_upload_report(@success)
-    attachments["User Upload #{DateTime.now.to_s}.csv"] = File.read(path)
-    
-    mail :subject => "User Upload Report: #{DateTime.now.strftime('%B %d, %Y, %l:%M %p')}",
-         :to => user.email
-  end
-
-  def reset_password(current_user, user)
-    @current_user = current_user
-    @user = user
-    @password = assign_new_password(user)
+  def reset_password(current_user, user, password)
+    @current_user, @user, @password = [current_user, user, password]
 
     mail :subject => "Force Password Reset for #{user.email}",
-         :to => [current_user.email, ADMIN_EMAIL]
+         :to => [current_user.email]
+  end
+
+  def successful_import(current_user, import_type, imported)
+    @current_user, @import_type = current_user, import_type
+    
+    if import_type == User
+      csv_user_report_path = csv_user_report(imported)
+      attachments["user-upload-report.csv"] = File.read(csv_user_report_path)
+    end
+
+    mail :subject => "Your #{import_type} Import Has Finished!",
+         :to => [current_user.email]
+  end
+
+  def failed_import(current_user, import_type, errors)
+    @current_user, @import_type = current_user, import_type
+    @column_errors = errors[:column_errors]
+    @missing_ids = errors[:csv_errors][:missing_ids]
+
+    errors = errors[:csv_errors].except(:missing_ids)
+
+    if errors.present?
+      error_report_path = csv_error_report(import_type, errors)
+      attachments["#{import_type}-errors.csv"] = File.read(error_report_path)
+    end
+
+    mail :subject => "Your #{import_type} Import Has Failed.",
+         :to => [current_user.email]
   end
 
   private
 
-  def assign_new_password(user)
-    password = Devise.friendly_token.first(10)
-    user.update_attributes(password: password, password_confirmation: password)
+  def csv_user_report(imported)
+    file = Tempfile.new("users.csv")
+    CSV.open(file.path, 'w') do |csv|
+      csv << ["Family Card ID", "Email", "Password"]
+      imported.each do |attributes|
+        csv << [attributes[:family_card_id],
+                attributes[:email],
+                attributes[:password]]
+      end
+    end
 
-    password
+    file.path
   end
 
-  def construct_successful_upload_report(success)
-    file = Tempfile.new("file.csv")
+  def csv_error_report(import_type, csv_errors)
+    file = Tempfile.new("#{import_type}.csv")
     CSV.open(file.path, 'w') do |csv|
-      csv << ["Pass ID", "Last Name", "Organization Name", "Email", "Password", "Is Admin?"]
-      success.each do |pass_id, user|
-        csv << [pass_id, user[:last_name], user[:organization_name], user[:email], user[:password], user[:admin]]
+      csv << ["#{import_type} Identifier", "Error Type", "Message"]
+      csv_errors.each do |id, errors|
+        errors.each do |field, error|
+          csv << [id, field, error]
+        end
       end
     end
 

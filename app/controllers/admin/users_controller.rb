@@ -45,7 +45,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def reset_password
-    AdminMailer.reset_password(current_user, @user).deliver
+    password = assign_new_password(user)
+    AdminMailer.reset_password(current_user, @user, password).deliver
     flash.now[:notice] = "#{@user.email} has had their password reset."
 
     redirect_to admin_users_path
