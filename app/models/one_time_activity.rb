@@ -7,13 +7,16 @@ class OneTimeActivity < Activity
   field :featured, type: Boolean, default: false
   field :active, type: Boolean, default: true
 
+  belongs_to :museum
   belongs_to :recurring_activity
 
-  validates_presence_of :name, :description, :date
+  validates_presence_of :name, :description, :date, :museum
 
   after_initialize do |act|
     act.update_attributes(featured: false) if act.featured.nil?
   end
+
+  before_save :format_from_timepicker
 
   default_scope -> { where(active: true) }
 
