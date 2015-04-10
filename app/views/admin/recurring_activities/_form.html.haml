@@ -1,0 +1,22 @@
+- @act = @recurring_activity
+- @start = Activity.format_for_timepicker(@act.start_time) if @act.start_time.present?
+- @end = Activity.format_for_timepicker(@act.end_time) if @act.end_time.present?
+- @rule = [IceCube::Rule.from_yaml(@act.schedule)] if @act.schedule && @act.schedule != 'null'
+- @act.schedule = nil
+
+= semantic_form_for [:admin, @recurring_activity] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs do
+    = f.input :name
+    = f.input :description
+    = f.input :start_time, as: :time_picker, input_html: { value: @start }
+    = f.input :end_time, as: :time_picker, input_html: { value: @end }
+    
+    %li#recurring_activity_schedule_input.select.input.required
+      = f.label :schedule, class: "label", for: "recurring_activity_schedule"
+      = f.select_recurring :schedule, @rule
+    
+    = f.input :museum, as: :select, collection: Museum.asc(:name)
+
+  = f.actions
