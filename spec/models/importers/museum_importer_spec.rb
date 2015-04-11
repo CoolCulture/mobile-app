@@ -14,7 +14,7 @@ describe MuseumImporter do
         csv = MuseumImporter.new(admin, file)
         
         expect(csv.import_class).to eq Museum
-        expect(csv.filepath).to_not be nil
+        expect(csv.file).to_not be nil
       end
 
       it "returns no errors if the csv is great" do

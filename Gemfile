@@ -44,8 +44,10 @@ gem 'recurring_select'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 
+gem 'foreman'
 gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
 gem 'active_skin'
+gem 'aws-sdk'
 gem 'kaminari'
 gem 'smarter_csv'
 

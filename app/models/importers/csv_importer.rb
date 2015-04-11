@@ -1,14 +1,15 @@
 class CSVImporter
-  attr_accessor :admin_user, :import_class, :filepath, :imported, :columns, :errors
+  attr_accessor :admin_user, :import_class, :file, :imported, :columns, :errors
 
   def initialize(admin_user, import_class, file)
     @admin_user, @import_class = admin_user, import_class
     @errors, @imported = {}, []
-    @filepath = local_path(file)
+    @file = select_file(file)
     @columns = select_columns(import_class)
   end
 
   def perform
+    load_file
     validate_columns
     validate_rows
     results = import
@@ -23,13 +24,48 @@ class CSVImporter
 
   private
 
+  def select_file(file)
+    Rails.env == "production" ? s3_upload(file) : local_path(file)
+  end
+
+  def load_file
+    return self.file unless Rails.env == "production"
+    filename = self.file
+
+    file_contents = S3_CLIENT.get_object(bucket_name: S3_BUCKET, key: filename)[:data]
+    csv_data = CSV.parse(file_contents, converters: lambda{ |v| v ? v.strip : nil })
+    
+    CSV.open("tmp/#{filename}", 'wb') do |csv|
+      csv_data.each { |row| csv << row }
+    end
+
+    self.file = "#{Rails.root}/tmp/#{filename}"
+  end
+
+  def validate_columns
+    options = { row_sep: :auto, remove_empty_values: false }
+    headers = SmarterCSV.process(file, options).first.keys
+    
+    if (self.columns - headers).present?
+      self.errors = { column_errors: [] }
+      
+      (headers - self.columns).each do |err|
+        errors[:column_errors] << "#{err.to_s} is not a correct column name."
+      end
+      
+      (self.columns - headers).each do |err|
+        errors[:column_errors] << "#{err.to_s} is not included in the csv."
+      end
+    end
+  end
+
   def import
     return {} if errors.present?
 
     imported_files = []
     options = { chunk_size: 5000, row_sep: :auto, remove_empty_values: false }
 
-    SmarterCSV.process(filepath, options) do |chunk|
+    SmarterCSV.process(file, options) do |chunk|
       attributes_chunk = chunk.map { |row| format_attributes(row) }
       imported_files << attributes_chunk
       self.import_class.collection.insert(attributes_chunk)
@@ -46,21 +82,13 @@ class CSVImporter
     import_class.column_names.map(&:to_sym) - do_not_include_list
   end
 
-  def validate_columns
-    options = { row_sep: :auto, remove_empty_values: false }
-    headers = SmarterCSV.process(filepath, options).first.keys
-    
-    if (self.columns - headers).present?
-      self.errors = { column_errors: [] }
-      
-      (headers - self.columns).each do |err|
-        errors[:column_errors] << "#{err.to_s} is not a correct column name."
-      end
-      
-      (self.columns - headers).each do |err|
-        errors[:column_errors] << "#{err.to_s} is not included in the csv."
-      end
-    end
+  def s3_upload(file)
+    filename = file.original_filename
+    S3_CLIENT.put_object(bucket_name: S3_BUCKET,
+                         key: filename,
+                         data: IO.read(file.tempfile))
+
+    return filename
   end
 
   def local_path(file)

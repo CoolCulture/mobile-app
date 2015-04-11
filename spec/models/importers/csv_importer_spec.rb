@@ -17,7 +17,7 @@ describe CSVImporter do
         
         expect(csv.admin_user.email).to eq "admin@coolculture.org"
         expect(csv.import_class).to eq FamilyCard
-        expect(csv.filepath).to_not be nil
+        expect(csv.file).to_not be nil
       end
 
       it "saves columns from the file" do

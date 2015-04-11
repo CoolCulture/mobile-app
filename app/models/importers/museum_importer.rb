@@ -43,7 +43,7 @@ class MuseumImporter < CSVImporter
 
   def validate_rows
     options = { row_sep: :auto, remove_empty_values: false }
-    results = SmarterCSV.process(filepath, options)
+    results = SmarterCSV.process(file, options)
     self.errors[:csv_errors] = { missing_ids: 0 }
     
     results.each do |row|
