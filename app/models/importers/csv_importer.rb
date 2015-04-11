@@ -25,11 +25,11 @@ class CSVImporter
   private
 
   def select_file(file)
-    Rails.env == "production" ? s3_upload(file) : local_path(file)
+    PRODUCTION ? s3_upload(file) : local_path(file)
   end
 
   def load_file
-    return self.file unless Rails.env == "production"
+    return self.file unless PRODUCTION
     filename = self.file
 
     file_contents = S3_CLIENT.get_object(bucket_name: S3_BUCKET, key: filename)[:data]

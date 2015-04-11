@@ -3,7 +3,9 @@ AWS.config( access_key_id:     ENV['AWSKEY'],
 
 S3_CLIENT = AWS::S3::Client.new
 
-if Rails.env == "production"
+PRODUCTION = ["production", "staging"].include?(Rails.env)
+
+if PRODUCTION
   S3_BUCKET = 'coolculture-imports'
 else
   S3_BUCKET = 'coolculture-import-test'
