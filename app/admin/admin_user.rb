@@ -51,6 +51,9 @@ ActiveAdmin.register AdminUser, as: "Admin" do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs "Admin Details" do
+      f.input :first_name
+      f.input :last_name
+      f.input :title
       f.input :email
       f.input :password
       f.input :password_confirmation
