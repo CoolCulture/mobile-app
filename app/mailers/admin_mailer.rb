@@ -10,7 +10,9 @@ class AdminMailer < ActionMailer::Base
 
   def successful_import(current_user, import_type, imported)
     @current_user, @import_type = current_user, import_type
-    
+    @fun_facts = fun_facts
+    @fun_facts[:new_record_count] = imported.count
+
     if import_type == User
       csv_user_report_path = csv_user_report(imported)
       attachments["user-upload-report.csv"] = File.read(csv_user_report_path)
@@ -24,7 +26,8 @@ class AdminMailer < ActionMailer::Base
     @current_user, @import_type = current_user, import_type
     @column_errors = errors[:column_errors]
     @missing_ids = errors[:csv_errors][:missing_ids]
-
+    @fun_facts = fun_facts
+    
     errors = errors[:csv_errors].except(:missing_ids)
 
     if errors.present?
@@ -50,6 +53,15 @@ class AdminMailer < ActionMailer::Base
     end
 
     file.path
+  end
+
+  def fun_facts
+    {
+      active_events: OneTimeActivity.count,
+      total_checkins: Checkin.count,
+      listed_museums: Museum.count,
+      active_family_cards: FamilyCard.count
+    }
   end
 
   def csv_error_report(import_type, csv_errors)
