@@ -77,20 +77,27 @@ ActiveAdmin.register FamilyCard do
       row "Name" do
         [family_card.first_name, family_card.last_name].join(" ")
       end
+      if family_card.user
+        row "Email" do
+          family_card.user.email
+        end
+      end
       row :expiration
       row :organization_name
     end
 
-    panel "Latest Checkins for #{family_card.pass_id}" do
-      table_for family_card.checkins do
-        column "Museum" do |checkin|
-          checkin.museum.name if checkin.museum
-        end
-        column :number_of_adults
-        column :number_of_children
-        column :date
-        column 'Link' do |checkin|
-          link_to 'View', admin_checkin_path(checkin.id)
+    if family_card.checkins.present?
+      panel "Latest Checkins for #{family_card.pass_id}" do
+        table_for family_card.checkins do
+          column "Museum" do |checkin|
+            checkin.museum.name if checkin.museum
+          end
+          column :number_of_adults
+          column :number_of_children
+          column :date
+          column 'Link' do |checkin|
+            link_to 'View', admin_checkin_path(checkin.id)
+          end
         end
       end
     end

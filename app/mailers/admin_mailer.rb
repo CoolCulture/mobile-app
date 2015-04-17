@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: "help@coolculturegram.org"
+  default from: ADMIN_EMAIL
 
   def reset_password(current_user, user, password)
     @current_user, @user, @password = [current_user, user, password]
