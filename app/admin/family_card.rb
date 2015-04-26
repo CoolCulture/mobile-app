@@ -1,8 +1,19 @@
 require 'importers/family_card_importer'
 
 ActiveAdmin.register FamilyCard do
-  permit_params :pass_id, :first_name, :last_name, :expiration, :organization_name
-  menu parent: "Users"
+  permit_params :pass_id, :first_name, :last_name, :expiration, :organization_name,
+                 user_attributes: [:id, :email, :password, :password_confirmation]
+
+  controller do
+    def update
+      user_attrs = params[:family_card][:user_attributes]
+      if user_attrs[:password].blank? && user_attrs[:password_confirmation].blank?
+        user_attrs.delete("password")
+        user_attrs.delete("password_confirmation")
+      end
+      super
+    end
+  end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # IMPORT
@@ -37,6 +48,19 @@ ActiveAdmin.register FamilyCard do
   end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # RESET PASSWORD
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  member_action :reset_password, method: :put do
+    user = resource.user
+    password = user.assign_new_password
+    user.update_attributes(password: password, password_confirmation: password)
+
+    AdminMailer.reset_password(current_admin_user, user, password).deliver
+    redirect_to admin_family_card_path, notice: "#{user.email} has had their password reset."
+  end
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # # INDEX
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -47,14 +71,17 @@ ActiveAdmin.register FamilyCard do
     column :last_name
     column :expiration
     column :organization_name
-    column "User" do |fc|
+    column "User Email" do |fc|
       if fc.user?
-        "<span class='status_tag yes'>Yes</span>".html_safe
+        fc.user.email
       else 
-        link_to("<span class='status_tag no'>Create</span>".html_safe, new_admin_user_path({user: {family_card_id: fc.id}}))
+        user_attrs = { user: { family_card_id: fc.id } }
+        link_to("N/A - Create User", new_admin_user_path(user_attrs))
       end
     end
-    actions
+    actions do |fc|
+      item "Reset Password", reset_password_admin_family_card_path(fc), method: :put if fc.user
+    end
   end
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -84,6 +111,18 @@ ActiveAdmin.register FamilyCard do
       end
       row :expiration
       row :organization_name
+    end
+
+    if family_card.user.present?
+      panel "User Data" do
+        attributes_table_for family_card.user do
+          row :updated_at
+          row :email
+          row :sign_in_count
+          row :current_sign_in_at
+          row :last_sign_in_at
+        end
+      end
     end
 
     if family_card.checkins.present?
