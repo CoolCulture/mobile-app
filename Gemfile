@@ -11,8 +11,9 @@ gem 'rack-cache'
 # Use Heroku 12 Factor app for Heroku support
 gem 'rails_12factor', group: :production
 
-# Use SCSS for stylesheets
+# Use SCSS for stylesheets and HAML where needed
 gem 'sass-rails', '~> 4.0.0'
+gem "haml-rails", "~> 0.9"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -40,19 +41,22 @@ gem "mongoid_slug"
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'recurring_select'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 
+gem 'foreman'
+gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
+gem 'active_skin'
+gem 'aws-sdk'
 gem 'kaminari'
-
 gem 'smarter_csv'
 
 gem 'angular_rails_csrf'
 gem 'devise'
 
 gem 'newrelic_rpm'
-gem 'bootstrap-datepicker-rails'
-gem 'bootstrap-timepicker-rails'
-
 gem 'mandrill-api'
+gem 'delayed_job_mongoid'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
