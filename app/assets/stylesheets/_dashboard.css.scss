@@ -1,0 +1,113 @@
+$white: #FFFFFF;
+$light-gray: #E2E2E2;
+$middle-gray: #CCCCCC;
+$dark-gray: #4C4C4C;
+$cool-culture-orange: #F5623C;
+
+.delayed-jobs {
+  margin: 10px auto 40px;
+  text-align: center;
+  width: 40%;
+  h3 { margin: 10px 0; }
+  p { line-height: 1.2em; }
+  .flash { border-bottom: 0 !important; border-radius: 10px; }
+}
+
+#header {
+  h1.site_title { display: none; }
+  ul.tabs > li.has_nested {
+    .current a, a {
+      background-position: 90% 50%;
+      margin-left: 10px;
+      padding-left: 10px;
+    }
+  }
+  ul.tabs > li ul {
+    margin-left: 10px;
+  }
+  #tabs { padding-left: 10px; }
+  #utility_nav {
+    background: none;
+    color: white;
+    li a:hover { color: $cool-culture-orange; }
+  }
+}
+
+#title_bar .action_items a:hover {
+  background: $light-gray !important;
+}
+
+#footer {
+  p { display: none; }
+  &:after {
+    content: "© Cool Culture.";
+  }
+}
+
+table.index_table td a, table.index_table td a:link, table.index_table td a:visited {
+  &:hover { background: none; color: $cool-culture-orange; }
+}
+
+form fieldset > ol > li.radio fieldset ol { margin-bottom: 0; }
+fieldset.inputs fieldset.choices legend { border: none; }
+
+fieldset.inputs .radio fieldset.choices {
+  li.choice {
+    display: inline;
+    label { display: inline; margin-right: 10px; width: auto; }
+  }
+}
+
+#museum_subway_lines_input {
+  label { display: inline; width: auto; }
+  li.choice {
+    display: inline;
+    margin: 0.1em 1em 0.5em 0;
+  }
+}
+
+.panel tbody tr {
+  padding: 2px 0;
+  &.even td {
+    background: white;
+    padding: 8px;
+  }
+  &.odd td {
+    background: lighten($light-gray, 10%);
+    padding: 8px;
+  }
+}
+
+.dashboard-panel {
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .recent-listing {
+    padding: 5px;
+
+    span {
+      font-size: 1em;
+      line-height: 1.5em;
+      &.date {
+        display: block;
+        font-weight: 700;
+      }
+
+      &.heading:after {
+        content: ' @ ';
+      }
+      
+      &.heading, &.subheading {
+        display: inline-block;
+      }
+
+      a, a:link, a:visited {
+        color: $cool-culture-orange;
+        text-decoration: none;
+        &:hover { color: darken($cool-culture-orange, 20%);  }
+      }
+    }
+  }
+}
