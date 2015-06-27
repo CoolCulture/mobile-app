@@ -32,7 +32,7 @@ class User
 
   validate :needs_family_card_id
 
-  scope :recent, ->(limit){ where(:last_sign_in_at.exists => true).limit(limit) }
+  scope :recent, ->(limit){ where(:last_sign_in_at.exists => true).desc(:last_sign_in_at).limit(limit) }
 
   def needs_family_card_id
     if family_card_id.nil?

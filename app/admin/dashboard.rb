@@ -40,10 +40,10 @@ ActiveAdmin.register_page "Dashboard" do
       column class: 'column dashboard-panel' do
         panel "Latest Checkins" do
           ul do
-            Checkin.asc(:date).limit(10).map do |checkin|
+            Checkin.desc(:date).limit(10).map do |checkin|
               div class: 'recent-listing' do
                 span class: 'date' do
-                  checkin.date.to_date.strftime('%A, %B %d')
+                  checkin.date.to_date.strftime('%A, %B %d, %Y')
                 end
                 span class: 'heading' do
                   link_to "The #{checkin.last_name} Family", admin_family_card_path(checkin.family_card)
@@ -63,7 +63,7 @@ ActiveAdmin.register_page "Dashboard" do
             Activity.upcoming.limit(10).map do |act|
               div class: 'recent-listing' do
                 span class: 'date' do
-                  act.date.to_date.strftime('%A, %B %d')
+                  act.date.to_date.strftime('%A, %B %d, %Y')
                 end
                 span class: 'heading' do
                   link_to(act.name, admin_one_time_activity_path(act))
@@ -83,7 +83,7 @@ ActiveAdmin.register_page "Dashboard" do
             User.recent(10).map do |user|
               div class: 'recent-listing' do
                 span class: 'date' do
-                  user.last_sign_in_at.strftime('%A, %B %d')
+                  user.last_sign_in_at.strftime('%A, %B %d, %Y')
                 end
                 span class: 'subheading' do
                   link_to(user.email, admin_user_path(user))
