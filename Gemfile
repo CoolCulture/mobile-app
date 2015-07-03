@@ -47,7 +47,7 @@ gem 'bootstrap-timepicker-rails'
 gem 'foreman'
 gem 'activeadmin', github: 'Zhomart/active_admin', branch: 'mongoid-old'
 gem 'active_skin'
-gem 'aws-sdk'
+gem 'aws-sdk-v1'
 gem 'kaminari'
 gem 'smarter_csv'
 
