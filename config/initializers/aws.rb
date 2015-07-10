@@ -6,7 +6,7 @@ S3_CLIENT = AWS::S3::Client.new
 PRODUCTION = ["production", "staging"].include?(Rails.env)
 
 if PRODUCTION
-  S3_BUCKET = 'coolculture-imports'
+  S3_BUCKET = 'cool-culture-imports-prod'
 else
-  S3_BUCKET = 'coolculture-import-test'
+  S3_BUCKET = 'cool-culture-imports-stag'
 end
