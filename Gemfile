@@ -10,7 +10,7 @@ gem 'rack-cache'
 
 group :staging, :production do
   # Use Heroku 12 Factor app for Heroku support
-  gem 'rails_12factor', group: :staging
+  gem 'rails_12factor'
 end
 
 # Use SCSS for stylesheets and HAML where needed
