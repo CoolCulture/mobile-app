@@ -8,8 +8,10 @@ gem 'rails', '4.1.6'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-cache'
 
-# Use Heroku 12 Factor app for Heroku support
-gem 'rails_12factor', group: :production
+group :staging, :production do
+  # Use Heroku 12 Factor app for Heroku support
+  gem 'rails_12factor', group: :staging
+end
 
 # Use SCSS for stylesheets and HAML where needed
 gem 'sass-rails', '~> 4.0.0'
