@@ -35,8 +35,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'compass'
 
-gem 'mongoid', '~> 4.0.0'
-gem "mongoid_slug"
+gem 'mongoid', '~> 5.0.1'
+gem "mongoid-slug", '~> 5.1.1'
 
 gem 'bootstrap-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
