@@ -68,7 +68,7 @@ class CSVImporter
     SmarterCSV.process(file, options) do |chunk|
       attributes_chunk = chunk.map { |row| format_attributes(row) }
       imported_files << attributes_chunk
-      self.import_class.collection.insert(attributes_chunk)
+      self.import_class.collection.insert_many(attributes_chunk)
     end
 
     self.imported = imported_files.flatten
